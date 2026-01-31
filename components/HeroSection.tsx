@@ -159,7 +159,21 @@ export default function HeroSection() {
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
-                      target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%230f172a'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23cbd5e1' font-family='Arial' font-size='24'%3E${featuredGame.name}%3C/text%3E%3C/svg%3E`
+                      // Try alternative image names
+                      const alternatives = ['logo.png', 'icon.png', 'thumbnail.png', 'default.png']
+                      let tried = 0
+                      
+                      const tryAlternative = () => {
+                        if (tried < alternatives.length) {
+                          target.src = `${serverUrl}/${featuredGame.url}/${alternatives[tried]}`
+                          tried++
+                        } else {
+                          // Final fallback to SVG placeholder
+                          target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300F2FF;stop-opacity:0.3'/%3E%3Cstop offset='100%25' style='stop-color:%238B5CF6;stop-opacity:0.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad)'/%3E%3Ctext x='50%25' y='40%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Sora' font-size='32' font-weight='bold'%3E${featuredGame.name}%3C/text%3E%3Ctext x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' fill='%23a1a1aa' font-family='Sora' font-size='18'%3E${featuredGame.genre}%3C/text%3E%3C/svg%3E`
+                        }
+                      }
+                      
+                      tryAlternative()
                     }}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />

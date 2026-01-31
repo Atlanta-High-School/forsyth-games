@@ -108,7 +108,7 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=no" />
         
         {/* Extension Policy */}
-        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https:; font-src 'self' data: https:; connect-src 'self' https: https:; media-src 'self' https: https:; frame-src 'self' https: gms.parcoil.com; frame-ancestors 'self';" />
+        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https:; font-src 'self' data: https:; connect-src 'self' https: https:; media-src 'self' https: https:; frame-src 'self' https: gms.parcoil.com;" />
         
         {/* Structured Data for Education */}
         <script
