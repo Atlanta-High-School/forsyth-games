@@ -83,38 +83,37 @@ input:focus {
   outline-offset: 2px;
 }
 
-/* Glassmorphism base styles */
+/* Glassmorphism base styles - Darker and more opaque */
 .glass {
-  background: rgba(10, 10, 10, 0.4);
-  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(5, 5, 5, 0.7);
+  backdrop-filter: blur(12px) saturate(120%);
   border: 1px solid var(--glass-border);
   box-shadow: 
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
-    0 0 0 1px rgba(0, 0, 0, 0.1);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.03),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
 .glass-hover {
-  background: rgba(26, 26, 26, 0.4);
-  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(12px) saturate(120%);
   border: 1px solid var(--glass-border-hover);
   box-shadow: 
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
-    0 0 0 1px rgba(0, 0, 0, 0.1);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
-/* Floating card effect */
+/* Floating card effect - Simplified */
 .floating-card {
   transform-style: preserve-3d;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
 }
 
 .floating-card:hover {
-  transform: translateY(-12px) rotateX(3deg) rotateY(-3deg) scale(1.02);
+  transform: translateY(-8px) rotateX(2deg) rotateY(-2deg) scale(1.01);
   box-shadow: 
-    0 30px 60px rgba(0, 242, 255, 0.25),
-    0 20px 40px rgba(139, 92, 246, 0.2),
-    0 0 80px rgba(0, 242, 255, 0.15),
-    inset 0 0 40px rgba(0, 242, 255, 0.05);
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 10px 20px rgba(0, 242, 255, 0.1);
 }
 
 /* Neon border sweep animation */
@@ -164,57 +163,53 @@ input:focus {
   z-index: -1;
 }
 
-/* Aurora light leaks */
+/* Aurora light leaks - Reduced intensity and complexity */
 .aurora-light {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
+  filter: blur(60px);
+  opacity: 0.15;
   pointer-events: none;
   mix-blend-mode: screen;
+  will-change: transform, opacity;
 }
 
 .aurora-1 {
-  top: -15%;
-  left: -15%;
-  width: 50%;
-  height: 50%;
-  background: radial-gradient(ellipse, var(--neon-blue) 0%, rgba(0, 242, 255, 0.4) 40%, transparent 70%);
-  animation: aurora 10s ease-in-out infinite;
+  top: -10%;
+  left: -10%;
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(ellipse, var(--neon-blue) 0%, rgba(0, 242, 255, 0.2) 40%, transparent 70%);
+  animation: aurora 15s ease-in-out infinite;
 }
 
 .aurora-2 {
-  bottom: -15%;
-  right: -15%;
-  width: 45%;
-  height: 45%;
-  background: radial-gradient(ellipse, var(--neon-purple) 0%, rgba(139, 92, 246, 0.4) 40%, transparent 70%);
-  animation: aurora 10s ease-in-out infinite 3s;
+  bottom: -10%;
+  right: -10%;
+  width: 35%;
+  height: 35%;
+  background: radial-gradient(ellipse, var(--neon-purple) 0%, rgba(139, 92, 246, 0.2) 40%, transparent 70%);
+  animation: aurora 15s ease-in-out infinite 5s;
 }
 
 .aurora-3 {
   top: 50%;
   left: 60%;
-  width: 30%;
-  height: 30%;
-  background: radial-gradient(ellipse, var(--neon-pink) 0%, rgba(236, 72, 153, 0.3) 40%, transparent 70%);
-  animation: aurora 10s ease-in-out infinite 6s;
+  width: 25%;
+  height: 25%;
+  background: radial-gradient(ellipse, var(--neon-pink) 0%, rgba(236, 72, 153, 0.15) 40%, transparent 70%);
+  animation: aurora 15s ease-in-out infinite 10s;
 }
 
-/* Text glow effects */
+/* Text glow effects - Significantly reduced */
 .text-glow {
   text-shadow: 
-    0 0 10px currentColor,
-    0 0 20px currentColor,
-    0 0 40px currentColor,
-    0 0 80px rgba(0, 242, 255, 0.2);
+    0 0 4px rgba(0, 242, 255, 0.3);
 }
 
 .text-glow-subtle {
   text-shadow: 
-    0 0 8px currentColor,
-    0 0 16px currentColor,
-    0 0 24px rgba(139, 92, 246, 0.3);
+    0 0 2px rgba(139, 92, 246, 0.2);
 }
 
 /* Conic gradient border */
@@ -270,14 +265,14 @@ input:focus {
   text-shadow: 0 0 10px currentColor;
 }
 
-/* Film grain overlay */
+/* Film grain overlay - Reduced */
 .film-grain {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.02;
+  opacity: 0.01;
   pointer-events: none;
   z-index: 1;
   background-image: 
