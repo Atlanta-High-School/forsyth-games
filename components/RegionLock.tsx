@@ -91,7 +91,7 @@ export default function RegionLock({ region, country }: RegionLockProps) {
           className="text-xl text-textSecondary mb-8 leading-relaxed"
           variants={itemVariants}
         >
-          Forsyth Games is exclusively available to users located in Georgia, United States.
+          Forsyth Games is exclusively available to users located in the United States.
         </motion.p>
 
         {/* Location Info */}
@@ -126,7 +126,7 @@ export default function RegionLock({ region, country }: RegionLockProps) {
             <Globe className="w-8 h-8 text-neon-purple mb-3" />
             <h3 className="text-lg font-semibold text-textPrimary mb-2">Regional Access</h3>
             <p className="text-sm text-textSecondary">
-              This platform is designed specifically for students and educators in Georgia, US.
+              This platform is designed specifically for students and educators in the US.
             </p>
           </div>
           <div className="glass border border-white/10 rounded-xl p-6 text-left">
