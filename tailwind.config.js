@@ -8,49 +8,81 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Deep Space Theme
+        'deep-space': '#000000',
+        'deep-space-dark': '#050505',
+        'surface': '#0a0a0a',
+        'surface-hover': '#1a1a1a',
+        
+        // Dynamic Mesh Gradient Colors
+        'electric-cyan': '#00F2FF',
+        'royal-purple': '#8B5CF6',
+        'neon-blue': '#00F2FF',
+        'neon-purple': '#8B5CF6',
+        'neon-pink': '#EC4899',
+        'neon-lime': '#84CC16',
+        
+        // Text Colors
+        'text-primary': '#ffffff',
+        'text-secondary': '#a1a1aa',
+        'text-muted': '#525252',
+        
+        // Glass and Border Colors
+        'glass': 'rgba(10, 10, 10, 0.4)',
+        'glass-border': 'rgba(255, 255, 255, 0.1)',
+        'glass-border-hover': 'rgba(255, 255, 255, 0.2)',
+        
+        // Legacy Colors (for compatibility)
         background: '#000000',
-        surface: '#0a0a0a',
-        surfaceHover: '#1a1a1a',
-        accent: '#22d3ee',
+        accent: '#00F2FF',
         accentHover: '#06b6d4',
-        primary: '#a78bfa',
+        primary: '#8B5CF6',
         secondary: '#f472b6',
         textPrimary: '#ffffff',
         textSecondary: '#a1a1aa',
         textMuted: '#525252',
+        
         gradient: {
           start: '#000000',
-          middle: '#0f0f0f',
-          end: '#1a1a1a',
+          middle: '#050505',
+          end: '#0a0a0a',
         },
         neon: {
-          blue: '#22d3ee',
-          lime: '#84cc16',
-          purple: '#a855f7',
-          pink: '#ec4899',
+          blue: '#00F2FF',
+          purple: '#8B5CF6',
+          pink: '#EC4899',
+          lime: '#84CC16',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        sans: ['Sora', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Sora', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'obsidian-gradient':
-          'radial-gradient(ellipse at top, #0a0a0a 0%, #000000 50%, #0f0f0f 100%)',
-        'neon-glow':
-          'radial-gradient(ellipse at center, rgba(34, 211, 238, 0.1) 0%, transparent 70%)',
-        'dark-gradient':
-          'linear-gradient(to bottom right, #000000, #0a0a0a, #1a1a1a)',
+        'deep-space-gradient':
+          'radial-gradient(ellipse at top, #000000 0%, #050505 50%, #000000 100%)',
+        'mesh-gradient':
+          'linear-gradient(135deg, #00F2FF 0%, #8B5CF6 50%, #00F2FF 100%)',
+        'aurora-gradient':
+          'radial-gradient(ellipse at top left, rgba(0, 242, 255, 0.3) 0%, transparent 50%), radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.3) 0%, transparent 50%)',
+        'geometric-grid':
+          'linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)',
+        'film-grain':
+          'url("data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.02"/%3E%3C/svg%3E")',
       },
       boxShadow: {
         'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
-        'glass-hover': '0 8px 40px 0 rgba(34, 211, 238, 0.2)',
-        'neon': '0 0 20px rgba(34, 211, 238, 0.4)',
-        'neon-lg': '0 0 40px rgba(34, 211, 238, 0.6)',
+        'glass-hover': '0 8px 40px 0 rgba(0, 242, 255, 0.2)',
+        'neon-cyan': '0 0 20px rgba(0, 242, 255, 0.4)',
+        'neon-purple': '0 0 20px rgba(139, 92, 246, 0.4)',
+        'neon-lg': '0 0 40px rgba(0, 242, 255, 0.6)',
         'card': '0 4px 20px rgba(0, 0, 0, 0.4)',
-        'card-hover': '0 8px 30px rgba(34, 211, 238, 0.15)',
+        'card-hover': '0 8px 30px rgba(0, 242, 255, 0.15)',
+        'floating': '0 10px 40px rgba(0, 242, 255, 0.1), 0 20px 60px rgba(139, 92, 246, 0.05)',
+        'glow': '0 0 60px rgba(0, 242, 255, 0.3), inset 0 0 20px rgba(139, 92, 246, 0.1)',
       },
       animation: {
         'float': 'float 3s ease-in-out infinite',
@@ -58,6 +90,10 @@ module.exports = {
         'gradient': 'gradient 3s ease infinite',
         'slide-up': 'slide-up 0.3s ease-out',
         'fade-in': 'fade-in 0.5s ease-out',
+        'border-sweep': 'border-sweep 2s linear infinite',
+        'conic-rotate': 'conic-rotate 3s linear infinite',
+        'aurora': 'aurora 8s ease-in-out infinite',
+        'mesh-shift': 'mesh-shift 4s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -79,6 +115,23 @@ module.exports = {
         'fade-in': {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
+        },
+        'border-sweep': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'conic-rotate': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'aurora': {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)', opacity: 0.3 },
+          '33%': { transform: 'translate(30px, -30px) scale(1.1)', opacity: 0.5 },
+          '66%': { transform: 'translate(-20px, 20px) scale(0.9)', opacity: 0.4 },
+        },
+        'mesh-shift': {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
         },
       },
       backdropBlur: {

@@ -89,10 +89,19 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
       whileHover="hover"
       layout
     >
-      {/* Glass Card */}
+      {/* Glass Card with Floating Effect */}
       <motion.div 
-        className="relative h-full bg-surface/40 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-glass hover:shadow-glass-hover transition-all duration-500"
-        whileHover={{ y: -5 }}
+        className="relative h-full floating-card glass glass-hover border border-white/10 rounded-2xl overflow-hidden neon-border-sweep"
+        whileHover={{ 
+          scale: 1.02,
+          y: -8,
+          rotateX: 2,
+          rotateY: -2
+        }}
+        style={{
+          transformStyle: 'preserve-3d',
+          perspective: '1000px'
+        }}
       >
         {/* Game Image */}
         <div className="relative h-3/5 overflow-hidden">
@@ -115,7 +124,7 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
           <div className="absolute top-3 left-3 flex gap-2">
             {game.trending && (
               <motion.div
-                className="flex items-center gap-1 px-2 py-1 bg-neon-lime/20 border border-neon-lime/50 rounded-full"
+                className="flex items-center gap-1 glass glass-hover rounded-full px-2 py-1 border border-white/10"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2 }}
@@ -126,7 +135,7 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
             )}
             {game.isNew && (
               <motion.div
-                className="px-2 py-1 bg-neon-blue/20 border border-neon-blue/50 rounded-full"
+                className="glass glass-hover rounded-full px-2 py-1 border border-white/10"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.3 }}
@@ -144,23 +153,25 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
           >
             <motion.button
               onClick={() => window.location.href = `/play?gameurl=${game.url}/`}
-              className="bg-neon-blue text-surface px-6 py-3 rounded-full font-semibold flex items-center gap-2 shadow-neon hover:shadow-neon-lg transition-all duration-300"
+              className="conic-border px-6 py-3 rounded-full font-semibold flex items-center gap-2 transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Play className="w-4 h-4" />
-              <span>Play</span>
+              <span className="relative z-10 flex items-center gap-2 text-text-primary">
+                <Play className="w-4 h-4" />
+                <span>Play</span>
+              </span>
             </motion.button>
           </motion.div>
         </div>
 
         {/* Game Info */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-surface/80 backdrop-blur-sm">
+        <div className="absolute bottom-0 left-0 right-0 p-4 glass border-t border-white/10">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="font-semibold text-textPrimary truncate">{game.name}</h3>
+            <h3 className="font-semibold text-text-primary truncate text-glow-subtle">{game.name}</h3>
             <div className="flex items-center gap-1">
               <Star className="w-4 h-4 text-yellow-400 fill-current" />
-              <span className="text-textSecondary text-sm">{game.rating}</span>
+              <span className="text-text-secondary text-sm">{game.rating}</span>
             </div>
           </div>
           
@@ -168,7 +179,7 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
             <div className={`px-2 py-1 rounded-full text-xs font-semibold border ${getGenreColor(game.genre)}`}>
               {game.genre}
             </div>
-            <div className="flex items-center gap-1 text-textSecondary text-sm">
+            <div className="flex items-center gap-1 text-text-secondary text-sm">
               <Users className="w-3 h-3" />
               <span>{game.players}</span>
             </div>
@@ -179,7 +190,15 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
         <motion.div
           className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(34, 211, 238, 0.1), transparent 50%)',
+            background: 'radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 242, 255, 0.1), transparent 50%)',
+          }}
+        />
+        
+        {/* Floating Shadow */}
+        <motion.div
+          className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-3/4 h-8 bg-neon-blue/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{
+            filter: 'blur(20px)',
           }}
         />
       </motion.div>

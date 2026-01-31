@@ -88,7 +88,15 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-textPrimary">
+    <div className="min-h-screen bg-deep-space text-text-primary relative overflow-hidden">
+      {/* Aurora Light Leaks */}
+      <div className="aurora-light aurora-1" />
+      <div className="aurora-light aurora-2" />
+      <div className="aurora-light aurora-3" />
+      
+      {/* Film Grain Overlay */}
+      <div className="film-grain" />
+      
       <NavigationSidebar 
         onSearchToggle={handleSearchToggle}
         isSearchActive={isSearchActive}
@@ -127,19 +135,19 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <h3 className="text-2xl font-bold text-textPrimary">
+                <h3 className="text-2xl font-bold text-text-primary">
                   {searchQuery && (
-                    <span className="bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent text-glow">
                       {filteredGames.length} Results for "{searchQuery}"
                     </span>
                   )}
                   {!searchQuery && selectedCategory !== 'all' && (
-                    <span className="text-textSecondary">
+                    <span className="text-text-secondary">
                       {' '} in {selectedCategory}
                     </span>
                   )}
                   {!searchQuery && selectedCategory === 'all' && (
-                    <span className="text-textSecondary">
+                    <span className="text-text-secondary">
                       {' '} in All Games
                     </span>
                   )}
@@ -154,11 +162,11 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent text-glow animate-gradient">
                   Game Library
                 </span>
               </h2>
-              <p className="text-textSecondary text-lg max-w-2xl mx-auto">
+              <p className="text-text-secondary text-lg max-w-2xl mx-auto text-glow-subtle">
                 Explore our collection of {filteredGames.length} educational games designed to enhance your learning experience
               </p>
             </motion.div>
@@ -193,8 +201,8 @@ export default function Home() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
               >
-                <div className="bg-surface/40 backdrop-blur-xl border border-white/10 rounded-2xl p-12 max-w-md mx-auto">
-                  <h3 className="text-2xl font-bold text-textPrimary mb-4">No Games Found</h3>
+                <div className="bg-surface/40 backdrop-blur-xl glass border border-white/10 rounded-2xl p-12 max-w-md mx-auto">
+                  <h3 className="text-2xl font-bold text-text-primary mb-4 text-glow-subtle">No Games Found</h3>
                   <p className="text-textSecondary mb-6">
                     {searchQuery && (
                       <>No games found matching "{searchQuery}"</>
@@ -213,9 +221,9 @@ export default function Home() {
                           setSearchQuery('')
                           handleSearch('')
                         }}
-                        className="bg-neon-blue text-surface px-6 py-3 rounded-full font-semibold hover:bg-neon-blue/80 transition-colors"
+                        className="conic-border px-6 py-3 rounded-full font-semibold transition-all duration-300"
                       >
-                        Clear Search
+                        <span className="relative z-10 text-text-primary">Clear Search</span>
                       </button>
                     )}
                     {selectedCategory !== 'all' && (
@@ -224,9 +232,9 @@ export default function Home() {
                           setSelectedCategory('all')
                           handleCategoryChange('all')
                         }}
-                        className="bg-neon-purple text-surface px-6 py-3 rounded-full font-semibold hover:bg-neon-purple/80 transition-colors"
+                        className="conic-border px-6 py-3 rounded-full font-semibold transition-all duration-300"
                       >
-                      All Categories
+                        <span className="relative z-10 text-text-primary">All Categories</span>
                       </button>
                     )}
                   </div>
@@ -242,20 +250,20 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <div className="inline-flex items-center gap-8 bg-surface/40 backdrop-blur-xl border border-white/10 rounded-full px-8 py-4">
+                <div className="inline-flex items-center gap-8 glass glass-hover border border-white/10 rounded-full px-8 py-4">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-neon-blue">{filteredGames.length}</div>
-                    <div className="text-textSecondary text-sm">Games Available</div>
+                    <div className="text-2xl font-bold text-neon-blue text-glow">{filteredGames.length}</div>
+                    <div className="text-text-secondary text-sm">Games Available</div>
                   </div>
                   <div className="w-px h-8 bg-white/20" />
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-neon-lime">{games.filter(g => g.trending).length}</div>
-                    <div className="text-textSecondary text-sm">Trending Now</div>
+                    <div className="text-2xl font-bold text-neon-lime text-glow">{games.filter(g => g.trending).length}</div>
+                    <div className="text-text-secondary text-sm">Trending Now</div>
                   </div>
                   <div className="w-px h-8 bg-white/20" />
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-neon-purple">{games.filter(g => g.isNew).length}</div>
-                    <div className="text-textSecondary text-sm">New Games</div>
+                    <div className="text-2xl font-bold text-neon-purple text-glow">{games.filter(g => g.isNew).length}</div>
+                    <div className="text-text-secondary text-sm">New Games</div>
                   </div>
                 </div>
               </motion.div>
