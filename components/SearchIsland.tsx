@@ -25,6 +25,8 @@ export default function SearchIsland({ onSearch, placeholder = "Search games..."
         setGameNames(names)
       } catch (error) {
         console.error('Error fetching games:', error)
+        // Fallback to empty array to prevent broken search functionality
+        setGameNames([])
       }
     }
 
