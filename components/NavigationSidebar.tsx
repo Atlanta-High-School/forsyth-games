@@ -49,11 +49,15 @@ export default function NavigationSidebar({ onSearchToggle, isSearchActive }: Na
         <div className="flex flex-col items-center py-8 h-full">
           {/* Logo */}
           <motion.div
-            className="w-12 h-12 bg-gradient-to-br from-neon-blue to-neon-purple rounded-xl flex items-center justify-center mb-12 shadow-neon"
+            className="w-12 h-12 bg-gradient-to-br from-neon-blue to-neon-purple rounded-xl flex items-center justify-center mb-12 shadow-neon overflow-hidden"
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ duration: 0.3 }}
           >
-            <span className="text-surface font-bold text-xl">FG</span>
+            <img 
+              src="https://site.imsglobal.org/sites/default/files/orgs/logos/primary/fcslogo_hexagon.png" 
+              alt="FCS Logo"
+              className="w-full h-full object-cover"
+            />
           </motion.div>
 
           {/* Navigation Items */}
@@ -108,10 +112,15 @@ export default function NavigationSidebar({ onSearchToggle, isSearchActive }: Na
         <div className="flex items-center justify-between p-4">
           {/* Logo */}
           <motion.div
-            className="w-10 h-10 bg-gradient-to-br from-neon-blue to-neon-purple rounded-lg flex items-center justify-center shadow-neon"
+            className="w-10 h-10 bg-gradient-to-br from-neon-blue to-neon-purple rounded-lg flex items-center justify-center shadow-neon overflow-hidden"
             whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
           >
-            <span className="text-surface font-bold text-lg">FG</span>
+            <img 
+              src="https://site.imsglobal.org/sites/default/files/orgs/logos/primary/fcslogo_hexagon.png" 
+              alt="FCS Logo"
+              className="w-full h-full object-cover"
+            />
           </motion.div>
 
           {/* Mobile Menu Button */}

@@ -58,9 +58,16 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent">
-                Forsyth Games
-              </span>
+              <div className="flex items-center gap-4">
+                <img 
+                  src="https://site.imsglobal.org/sites/default/files/orgs/logos/primary/fcslogo_hexagon.png" 
+                  alt="FCS Logo"
+                  className="w-16 h-16 object-contain"
+                />
+                <span className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent">
+                  Forsyth Games
+                </span>
+              </div>
             </motion.h1>
 
             <motion.p 
