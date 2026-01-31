@@ -2,6 +2,7 @@ import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import ScrollToTop from '@/components/ScrollToTop'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 // Force dynamic rendering for all pages since we use Clerk authentication
 export const dynamic = 'force-dynamic'
@@ -160,6 +161,7 @@ export default function RootLayout({
           <ScrollToTop />
           {children}
           <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>

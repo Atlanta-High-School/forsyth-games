@@ -37,9 +37,10 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
     if (pathname !== '/blocked') {
       // Check if we already have a valid Georgia check in cookies
       const geoChecked = request.cookies.get('geo-checked');
+      const geoAllowed = request.cookies.get('geo-allowed');
       
-      // Only verify location if not already checked
-      if (!geoChecked) {
+      // Only verify location if not already checked with valid allowed status
+      if (!geoChecked || geoAllowed?.value !== 'true') {
         const clientIp = getClientIp(request.headers);
         const location = await checkGeorgiaLocation(clientIp);
         
