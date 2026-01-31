@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import HeroSection from '@/components/HeroSection'
-import NavigationSidebar from '@/components/NavigationSidebar'
+import FloatingNavigation from '@/components/FloatingNavigation'
 import CategoryPills from '@/components/CategoryPills'
 import BentoGameCard from '@/components/BentoGameCard'
 import GameSkeleton from '@/components/GameSkeleton'
@@ -97,7 +97,7 @@ export default function Home() {
       {/* Film Grain Overlay */}
       <div className="film-grain" />
       
-      <NavigationSidebar 
+      <FloatingNavigation 
         onSearchToggle={handleSearchToggle}
         isSearchActive={isSearchActive}
       />
@@ -112,8 +112,8 @@ export default function Home() {
         )}
       </AnimatePresence>
       
-      {/* Main Content with Sidebar Offset */}
-      <div className="lg:ml-20">
+      {/* Main Content */}
+      <div>
         {/* Hero Section */}
         <section id="home">
           <HeroSection />
