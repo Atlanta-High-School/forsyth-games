@@ -49,10 +49,38 @@ export default function SearchIsland({ onSearch, placeholder = "Search games..."
     setIsExpanded(false)
   }
 
+  const handleToggleSearch = () => {
+    setIsExpanded(!isExpanded)
+    if (!isExpanded) {
+      // Clear search when opening
+      setSearchQuery('')
+      setSuggestions([])
+      onSearch('')
+    }
+  }
+
   return (
     <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
+      {/* Only show search button when not expanded */}
+      {!isExpanded && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleToggleSearch}
+          className="bg-surface/60 backdrop-blur-xl border border-white/20 rounded-full shadow-glass px-6 py-4 flex items-center gap-3 hover:bg-surfaceHover/50 transition-all duration-300"
+        >
+          <Search className="w-5 h-5 text-textMuted" />
+          <span className="text-textSecondary font-medium">
+            Search games...
+          </span>
+        </motion.button>
+      )}
+
+      {/* Expanded Search Bar */}
       <AnimatePresence>
-        {isExpanded ? (
+        {isExpanded && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -60,7 +88,6 @@ export default function SearchIsland({ onSearch, placeholder = "Search games..."
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="relative"
           >
-            {/* Expanded Search Bar */}
             <div className="bg-surface/80 backdrop-blur-xl border border-white/20 rounded-full shadow-neon-lg p-2 min-w-[400px] max-w-[600px]">
               <form onSubmit={handleSubmit} className="flex items-center gap-3">
                 <div className="relative flex-1">
@@ -85,10 +112,10 @@ export default function SearchIsland({ onSearch, placeholder = "Search games..."
                 <button
                   onClick={() => {
                     setIsExpanded(false)
-                  setSearchQuery('')
-                  setSuggestions([])
-                  onSearch('')
-                }}
+                    setSearchQuery('')
+                    setSuggestions([])
+                    onSearch('')
+                  }}
                   className="text-textMuted hover:text-textPrimary p-2 rounded-full hover:bg-surfaceHover/50 transition-colors"
                 >
                   <X className="w-5 h-5" />
@@ -102,7 +129,7 @@ export default function SearchIsland({ onSearch, placeholder = "Search games..."
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="absolute top-full left-0 right-0 mt-2 bg-surface/90 backdrop-blur-xl border border-white/20 rounded-2xl shadow-neon-lg overflow-hidden"
+                  className="absolute top-full left-0 right-0 mt-2 bg-surface/90 backdrop-blur-xl border border-white/20 rounded-2xl shadow-neon-lg overflow-hidden z-10"
                 >
                   <div className="p-2 max-h-60 overflow-y-auto">
                     {suggestions.map((suggestion, index) => (
@@ -120,32 +147,6 @@ export default function SearchIsland({ onSearch, placeholder = "Search games..."
               )}
             </div>
           </motion.div>
-        ) : (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsExpanded(true)}
-            className="bg-surface/60 backdrop-blur-xl border border-white/20 rounded-full shadow-glass px-6 py-4 flex items-center gap-3 hover:bg-surfaceHover/50 transition-all duration-300"
-          >
-            <Search className="w-5 h-5 text-textMuted" />
-            <span className="text-textSecondary font-medium">
-              {searchQuery || placeholder}
-            </span>
-            {searchQuery && (
-              <button
-                onClick={() => {
-                  setSearchQuery('')
-                  onSearch('')
-                }}
-                className="text-textMuted hover:text-textPrimary p-1 rounded-full hover:bg-surfaceHover/50 transition-colors"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
-          </motion.button>
         )}
       </AnimatePresence>
     </div>

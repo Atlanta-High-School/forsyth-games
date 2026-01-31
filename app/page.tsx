@@ -171,30 +171,28 @@ export default function Home() {
 
             {/* Bento Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-rows-[200px] gap-6">
-              <AnimatePresence mode="wait">
-                {loading ? (
-                  // Show skeleton loaders
-                  Array.from({ length: 12 }).map((_, index) => {
-                    const sizes: ('small' | 'medium' | 'large' | 'wide')[] = ['large', 'medium', 'small', 'wide']
-                    return (
-                      <GameSkeleton
-                        key={`skeleton-${index}`}
-                        size={sizes[index % 4]}
-                      />
-                    )
-                  })
-                ) : (
-                  // Show actual games
-                  bentoGames.map((game, index) => (
-                    <BentoGameCard
-                      key={game.url}
-                      game={game}
-                      size={game.size || 'medium'}
-                      index={index}
+              {loading ? (
+                // Show skeleton loaders
+                Array.from({ length: 12 }).map((_, index) => {
+                  const sizes: ('small' | 'medium' | 'large' | 'wide')[] = ['large', 'medium', 'small', 'wide']
+                  return (
+                    <GameSkeleton
+                      key={`skeleton-${index}`}
+                      size={sizes[index % 4]}
                     />
-                  ))
-                )}
-              </AnimatePresence>
+                  )
+                })
+              ) : (
+                // Show actual games - removed AnimatePresence to fix warning
+                bentoGames.map((game, index) => (
+                  <BentoGameCard
+                    key={game.url}
+                    game={game}
+                    size={game.size || 'medium'}
+                    index={index}
+                  />
+                ))
+              )}
             </div>
 
             {/* No Results */}
