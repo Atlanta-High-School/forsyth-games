@@ -99,8 +99,8 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="hidden lg:block fixed top-6 left-1/2 transform -translate-x-1/2 z-50"
           >
-            <div className="glass glass-hover border border-white/10 rounded-full px-6 py-3 shadow-glow">
-              <div className="flex items-center gap-2">
+            <div className="glass glass-hover border border-white/10 rounded-full px-8 py-4 shadow-glow min-w-fit max-w-4xl mx-auto">
+              <div className="flex items-center gap-3 justify-center">
                 {/* Logo */}
                 <motion.div
                   className="w-10 h-10 bg-gradient-to-br from-neon-blue to-neon-purple rounded-xl flex items-center justify-center shadow-neon overflow-hidden"
@@ -117,7 +117,7 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
                 </motion.div>
 
                 {/* Navigation Items */}
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-2">
                   {navigationItems.map((item, index) => (
                     <motion.button
                       key={item.id}
