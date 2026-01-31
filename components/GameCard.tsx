@@ -18,7 +18,13 @@ export default function GameCard({ game }: GameCardProps) {
   const serverUrl = "https://gms.parcoil.com"
   
   const handleGameClick = () => {
-    window.location.href = `/play?gameurl=${game.url}/`
+    try {
+      window.location.href = `/play?gameurl=${game.url}/`
+    } catch (error) {
+      console.error('Navigation error:', error)
+      // Fallback: try opening in new tab
+      window.open(`/play?gameurl=${game.url}/`, '_blank')
+    }
   }
 
   const cardVariants = {

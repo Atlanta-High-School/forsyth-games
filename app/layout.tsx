@@ -96,12 +96,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#8b5cf6" />
-        <meta name="msapplication-TileColor" content="#1a1a1a" />
         <meta name="application-name" content="Forsyth Games" />
         <meta name="apple-mobile-web-app-title" content="Forsyth Games" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -120,7 +116,6 @@ export default function RootLayout({
               "name": "Forsyth Games",
               "description": "Educational gaming platform offering 293+ brain-training games for students",
               "url": "https://forsyth-games.vercel.app",
-              "logo": "https://forsyth-games.vercel.app/logo.png",
               "sameAs": [],
               "educationalUse": "instruction, recreation, cognitive development",
               "learningResourceType": "interactive resource, educational game",
