@@ -1,8 +1,97 @@
+'use client'
+
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { headers } from 'next/headers'
+import { useEffect } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  useEffect(() => {
+    // Scroll to top on page load
+    window.scrollTo(0, 0)
+    
+    // Handle browser back/forward buttons
+    const handlePopState = () => {
+      window.scrollTo(0, 0)
+    }
+    
+    window.addEventListener('popstate', handlePopState)
+    
+    return () => {
+      window.removeEventListener('popstate', handlePopState)
+    }
+  }, [])
+
+  return (
+    <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="application-name" content="Forsyth Games" />
+        <meta name="apple-mobile-web-app-title" content="Forsyth Games" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="referrer" content="no-referrer-when-downgrade" />
+        <meta name="format-detection" content="telephone=no" />
+        
+        {/* Extension Policy */}
+        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https:; font-src 'self' data: https:; connect-src 'self' https: https:; media-src 'self' https: https:; frame-src 'self' https: gms.parcoil.com;" />
+        
+        {/* Structured Data for Education */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "EducationalOrganization",
+              "name": "Forsyth County Schools",
+              "description": "Educational gaming platform offering 293+ brain-training games for students",
+              "url": "https://forsyth-games.vercel.app",
+              "sameAs": [],
+              "educationalUse": "instruction, recreation, cognitive development",
+              "learningResourceType": "interactive resource, educational game",
+              "typicalAgeRange": "8-18",
+              "targetAudience": {
+                "@type": "EducationalAudience",
+                "educationalRole": "student"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              },
+              "mainEntity": {
+                "@type": "ItemList",
+                "name": "Educational Games Collection",
+                "description": "Collection of 293+ educational games for students",
+                "numberOfItems": 293,
+                "itemListElement": [
+                  {
+                    "@type": "Game",
+                    "name": "Educational Games",
+                    "description": "Brain training and educational games",
+                    "educationalUse": "cognitive development",
+                    "learningResourceType": "interactive resource"
+                  }
+                ]
+              }
+            })
+          }}
+        />
+      </head>
+      <body className={inter.className}>{children}</body>
+    </html>
+  )
+}
 
 export const metadata = {
   title: 'Forsyth Games - Educational Games for Students',
@@ -86,74 +175,4 @@ export const metadata = {
   accessMode: ['visual', 'textual'],
   accessibilityFeature: ['navigation', 'readingOrder'],
   accessibilityHazard: 'none',
-}
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="application-name" content="Forsyth Games" />
-        <meta name="apple-mobile-web-app-title" content="Forsyth Games" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="referrer" content="no-referrer-when-downgrade" />
-        <meta name="format-detection" content="telephone=no" />
-        
-        {/* Extension Policy */}
-        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https:; font-src 'self' data: https:; connect-src 'self' https: https:; media-src 'self' https: https:; frame-src 'self' https: gms.parcoil.com;" />
-        
-        {/* Structured Data for Education */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "EducationalOrganization",
-              "name": "Forsyth County Schools",
-              "description": "Educational gaming platform offering 293+ brain-training games for students",
-              "url": "https://forsyth-games.vercel.app",
-              "sameAs": [],
-              "educationalUse": "instruction, recreation, cognitive development",
-              "learningResourceType": "interactive resource, educational game",
-              "typicalAgeRange": "8-18",
-              "targetAudience": {
-                "@type": "EducationalAudience",
-                "educationalRole": "student"
-              },
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD",
-                "availability": "https://schema.org/InStock"
-              },
-              "mainEntity": {
-                "@type": "ItemList",
-                "name": "Educational Games Collection",
-                "description": "Collection of 293+ educational games for students",
-                "numberOfItems": 293,
-                "itemListElement": [
-                  {
-                    "@type": "Game",
-                    "name": "Educational Games",
-                    "description": "Brain training and educational games",
-                    "educationalUse": "cognitive development",
-                    "learningResourceType": "interactive resource"
-                  }
-                ]
-              }
-            })
-          }}
-        />
-      </head>
-      <body className={inter.className}>{children}</body>
-    </html>
-  )
 }

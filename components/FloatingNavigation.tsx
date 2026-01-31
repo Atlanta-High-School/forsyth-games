@@ -97,9 +97,9 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="hidden lg:block fixed top-6 left-1/2 transform -translate-x-1/2 z-50"
+            className="hidden lg:block fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-4"
           >
-            <div className="glass glass-hover border border-white/10 rounded-full px-8 py-4 shadow-glow min-w-fit max-w-4xl mx-auto">
+            <div className="glass glass-hover border border-white/10 rounded-full px-8 py-4 shadow-glow w-fit mx-auto">
               <div className="flex items-center gap-3 justify-center">
                 {/* Logo */}
                 <motion.div
