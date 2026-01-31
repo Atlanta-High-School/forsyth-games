@@ -3,6 +3,9 @@ import { ClerkProvider } from '@clerk/nextjs'
 import ScrollToTop from '@/components/ScrollToTop'
 import { Analytics } from '@vercel/analytics/next'
 
+// Force dynamic rendering for all pages since we use Clerk authentication
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Forsyth Games - Educational Games for Students',
   description: 'A curated collection of 293+ educational and brain-training games designed for students. Perfect for school breaks, study breaks, and educational entertainment. Safe, fun, and engaging games that help develop critical thinking, problem-solving, and cognitive skills.',
