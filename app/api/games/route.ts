@@ -3,11 +3,23 @@ import path from 'path'
 import { promises as fs } from 'fs'
 
 export async function GET() {
+  const filePath = path.join(process.cwd(), 'public', 'config', 'games.json')
+  
   try {
     // Read the games.json file from the public directory
-    const filePath = path.join(process.cwd(), 'public', 'config', 'games.json')
     const fileContents = await fs.readFile(filePath, 'utf8')
-    const games = JSON.parse(fileContents)
+    
+    // Parse JSON with explicit error handling
+    let games
+    try {
+      games = JSON.parse(fileContents)
+    } catch (parseError) {
+      console.error(`Error parsing JSON from ${filePath}:`, parseError)
+      return NextResponse.json(
+        { error: 'Invalid games data format' },
+        { status: 500 }
+      )
+    }
     
     return NextResponse.json(games, {
       headers: {
@@ -15,7 +27,7 @@ export async function GET() {
       },
     })
   } catch (error) {
-    console.error('Error reading games.json:', error)
+    console.error(`Error reading games.json from ${filePath}:`, error)
     return NextResponse.json(
       { error: 'Failed to load games' },
       { status: 500 }
