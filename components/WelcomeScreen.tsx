@@ -141,20 +141,20 @@ export default function WelcomeScreen({ onComplete }: WelcomeScreenProps) {
               whileHover={{ scale: 1.05 }}
             >
               <Sparkles className="w-6 h-6 text-yellow-400" />
-              Ultimate Gaming Experience
+              Educational Gaming Experience
               <Zap className="w-6 h-6 text-blue-400" />
             </motion.span>
           </motion.p>
 
-          {/* Features Animation */}
+          {/* Educational Features */}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
             variants={itemVariants}
           >
             {[
-              { icon: Gamepad2, title: '293+ Games', desc: 'Huge collection' },
-              { icon: Sparkles, title: 'Modern UI', desc: 'Beautiful design' },
-              { icon: Zap, title: 'Lightning Fast', desc: 'Instant play' },
+              { icon: Gamepad2, title: '293+ Educational Games', desc: 'Brain training & learning' },
+              { icon: Sparkles, title: 'Student-Focused', desc: 'Safe & appropriate content' },
+              { icon: Zap, title: 'Cognitive Development', desc: 'Critical thinking skills' },
             ].map((feature, index) => (
               <motion.div
                 key={index}

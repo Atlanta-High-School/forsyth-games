@@ -107,7 +107,7 @@ export default function Home() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                v2.0 - Modern Gaming Experience
+                Educational Games for Cognitive Development & Learning
               </motion.p>
             </motion.div>
 
