@@ -87,7 +87,7 @@ export default function ExtensionBlocker() {
               
               const hasIndicator = indicators.some(indicator => {
                 const className = element.className
-                const classNameStr = typeof className === 'string' ? className : (className?.toString() || '')
+                const classNameStr = typeof className === 'string' ? className : ''
                 return (
                   classNameStr.includes(indicator) ||
                   element.id?.includes(indicator) ||
@@ -178,9 +178,9 @@ export default function ExtensionBlocker() {
       if (window.RTCPeerConnection) {
         const OriginalRTC = window.RTCPeerConnection
         window.RTCPeerConnection = new Proxy(OriginalRTC, {
-          construct(target, args) {
-            console.warn('[Security] WebRTC connection attempt detected')
-            return new target(...(args as [RTCConfiguration | undefined]))
+          construct() {
+            console.warn('[Security] WebRTC connection blocked for security')
+            throw new Error('WebRTC is blocked by security policy')
           }
         })
       }

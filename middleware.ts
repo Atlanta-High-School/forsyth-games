@@ -96,24 +96,14 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
     "img-src 'self' data: https: blob: https://img.clerk.com https://site.imsglobal.org",
     // Font sources
     "font-src 'self' data: https://fonts.gstatic.com",
-    // Connect sources - allow required APIs but block monitoring services
-    "connect-src 'self' https: wss: https://clerk.accounts.dev https://*.clerk.accounts.dev https://vitals.vercel-insights.com https://gms.parcoil.com",
+    // Connect sources - explicit allowlist (blocks monitoring services by omission)
+    "connect-src 'self' https://clerk.accounts.dev https://*.clerk.accounts.dev https://vitals.vercel-insights.com https://gms.parcoil.com",
     // Media sources
-    "media-src 'self' https:",
+    "media-src 'self' https://gms.parcoil.com",
     // Frame sources - allow required iframes but block monitoring/filtering services
     "frame-src 'self' https://gms.parcoil.com https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.app https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com https://youtube-nocookie.com",
     // Prevent this site from being framed by others
-    "frame-ancestors 'self'",
-    // Block all requests to monitoring/filtering services
-    "connect-src 'self' https: wss: https://clerk.accounts.dev https://*.clerk.accounts.dev https://vitals.vercel-insights.com https://gms.parcoil.com " +
-    // Explicitly block monitoring domains (negative CSP - browsers may ignore, but added for documentation)
-    "'none' from *.familyzone.com *.familyzone.com.au *.familyzone.io *.familyzone.tools " +
-    "*.linewize.com *.linewize.io *.linewize.net *.linewizereseller.net " +
-    "*.qoria.com *.qoria.cloud *.qoriaapis.cloud *.qoria-api.cloud " +
-    "*.smoothwall.com *.smoothwall.cloud *.sphirewall.net " +
-    "block.tools fzbox.tools home.tools us.classwize.qoria.cloud us.schoolmanager.qoria.cloud " +
-    "*.ably.io *.ably-realtime.com *.xirsys.com *.stream-io-api.com *.stream-io-video.com " +
-    "*.stream-io-cdn.com *.getstream.io *.educatorimpact.com *.zdassets.com eipulse.zendesk.com"
+    "frame-ancestors 'self'"
   ]
   
   response.headers.set(
@@ -139,18 +129,6 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
   response.headers.set(
     'Permissions-Policy',
     'camera=(), microphone=(), display-capture=(), screen-wake-lock=(), geolocation=(), payment=(), usb=()'
-  )
-  
-  // Feature Policy (deprecated but kept for older browsers)
-  response.headers.set(
-    'Feature-Policy',
-    "camera 'none'; microphone 'none'; display-capture 'none'; geolocation 'none'"
-  )
-  
-  // Block specific extension IDs known to be monitoring/filtering services
-  response.headers.set(
-    'X-Extension-Block',
-    'classwize,linewize,qoria,familyzone,smoothwall'
   )
   
   return response;
