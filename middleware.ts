@@ -101,7 +101,7 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
     // Media sources
     "media-src 'self' https://gms.parcoil.com",
     // Frame sources - allow required iframes but block monitoring/filtering services
-    "frame-src 'self' https://gms.parcoil.com https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.app https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com https://youtube-nocookie.com",
+    "frame-src 'self' https://gms.parcoil.com https://forsyth-games.onrender.com https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.app https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com https://youtube-nocookie.com",
     // Prevent this site from being framed by others
     "frame-ancestors 'self'"
   ]
