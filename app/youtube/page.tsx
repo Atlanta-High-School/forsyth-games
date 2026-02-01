@@ -57,7 +57,7 @@ export default function YouTubePage() {
     setError(null)
   }
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !loading) {
       handlePlay()
     }
@@ -114,7 +114,7 @@ export default function YouTubePage() {
                   type="text"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
-                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyDown}
                   placeholder="https://www.youtube.com/watch?v=..."
                   className="w-full px-4 py-3 bg-surface/80 border border-white/10 rounded-xl text-text-primary placeholder-text-secondary/50 focus:outline-none focus:border-neon-blue/50 focus:ring-2 focus:ring-neon-blue/20 transition-all"
                   disabled={loading}
