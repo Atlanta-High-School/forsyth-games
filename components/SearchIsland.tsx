@@ -101,26 +101,28 @@ export default function SearchIsland({ onSearch, placeholder = "Search games..."
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="relative"
           >
-            <div className="bg-surface/80 backdrop-blur-xl border border-white/20 rounded-full shadow-neon-lg p-2 min-w-[400px] max-w-[600px]">
+            <div className="glass-premium border border-white/20 rounded-full shadow-holographic p-2 min-w-[400px] max-w-[600px]">
               <form onSubmit={handleSubmit} className="flex items-center gap-3">
                 <div className="relative flex-1">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-textMuted" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neon-blue animate-pulse" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => handleSearch(e.target.value)}
                     placeholder={placeholder}
-                    className="w-full bg-transparent text-textPrimary placeholder-textMuted pl-12 pr-4 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-neon-blue/50"
+                    className="w-full bg-transparent text-textPrimary placeholder-textMuted pl-12 pr-4 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-neon-blue/50 focus:shadow-neon-cyan"
                     autoFocus
                   />
                 </div>
                 
-                <button
+                <motion.button
                   type="submit"
-                  className="bg-neon-blue text-surface px-4 py-2 rounded-full font-semibold hover:bg-neon-blue/80 transition-colors"
+                  className="premium-button px-4 py-2 rounded-full font-semibold"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Search
-                </button>
+                  <span className="relative z-10 text-text-primary">Search</span>
+                </motion.button>
                 
                 <button
                   onClick={() => {
@@ -129,7 +131,7 @@ export default function SearchIsland({ onSearch, placeholder = "Search games..."
                     setSuggestions([])
                     onSearch('')
                   }}
-                  className="text-textMuted hover:text-textPrimary p-2 rounded-full hover:bg-surfaceHover/50 transition-colors"
+                  className="text-textMuted hover:text-textPrimary p-2 rounded-full hover:bg-surfaceHover/50 transition-colors glow-hover"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -142,18 +144,22 @@ export default function SearchIsland({ onSearch, placeholder = "Search games..."
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="absolute top-full left-0 right-0 mt-2 bg-surface/90 backdrop-blur-xl border border-white/20 rounded-2xl shadow-neon-lg overflow-hidden z-10"
+                  className="absolute top-full left-0 right-0 mt-2 glass-premium border border-white/20 rounded-2xl shadow-holographic overflow-hidden z-10"
                 >
                   <div className="p-2 max-h-60 overflow-y-auto">
                     {suggestions.map((suggestion, index) => (
-                      <button
+                      <motion.button
                         key={index}
                         onClick={() => handleSuggestionClick(suggestion)}
-                        className="w-full text-left px-4 py-3 text-textSecondary hover:bg-surfaceHover/50 hover:text-textPrimary rounded-lg transition-colors flex items-center gap-3"
+                        className="w-full text-left px-4 py-3 text-textSecondary hover:bg-surfaceHover/50 hover:text-textPrimary rounded-lg transition-colors flex items-center gap-3 glow-hover"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        whileHover={{ x: 5 }}
                       >
                         <TrendingUp className="w-4 h-4 text-neon-lime" />
                         <span>{suggestion}</span>
-                      </button>
+                      </motion.button>
                     ))}
                   </div>
                 </motion.div>

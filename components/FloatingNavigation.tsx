@@ -105,13 +105,13 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="hidden lg:block fixed top-2 left-1/2 transform -translate-x-1/2 z-50"
           >
-            <div className="glass glass-hover border border-white/10 rounded-full px-6 py-4 shadow-glow">
+            <div className="glass-premium border border-white/10 rounded-full px-6 py-4 shadow-holographic">
               <div className="flex items-center justify-center gap-2">
                 {/* Logo */}
                 <motion.div
-                  className="w-10 h-10 bg-gradient-to-br from-yellow-500 via-amber-500 to-yellow-600 rounded-lg flex items-center justify-center shadow-lg overflow-hidden ring-2 ring-yellow-500/50"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.3 }}
+                  className="w-10 h-10 bg-gradient-to-br from-yellow-500 via-amber-500 to-yellow-600 rounded-lg flex items-center justify-center shadow-lg overflow-hidden ring-2 ring-yellow-500/50 glow-hover"
+                  whileHover={{ scale: 1.1, rotate: 360 }}
+                  transition={{ duration: 0.6 }}
                   style={{
                     clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)'
                   }}
@@ -176,8 +176,8 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
                   <SignedOut>
                     <SignInButton mode="modal">
                       <motion.button
-                        className="px-3 py-2 rounded-xl glass glass-hover border border-white/10 text-text-primary text-sm font-semibold transition-all duration-300 hover:border-neon-blue/50"
-                        whileHover={{ scale: 1.05 }}
+                        className="px-3 py-2 rounded-xl glass-premium border border-white/10 text-text-primary text-sm font-semibold transition-all duration-300 hover:border-neon-blue/50 glow-hover"
+                        whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                       >
                         Sign In
@@ -185,8 +185,8 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
                     </SignInButton>
                     <SignUpButton mode="modal">
                       <motion.button
-                        className="conic-border px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-300"
-                        whileHover={{ scale: 1.05 }}
+                        className="premium-button px-3 py-2 rounded-xl text-sm font-semibold"
+                        whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                       >
                         <span className="relative z-10 text-text-primary">Sign Up</span>
