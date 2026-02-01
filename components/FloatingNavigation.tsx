@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Home, TrendingUp, Youtube, Search, X, Menu } from 'lucide-react'
 import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
@@ -19,6 +20,7 @@ interface FloatingNavigationProps {
 }
 
 export default function FloatingNavigation({ onSearchToggle, isSearchActive }: FloatingNavigationProps) {
+  const router = useRouter()
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -77,8 +79,8 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
     if (itemId === 'search') {
       onSearchToggle()
     } else if (itemId === 'youtube') {
-      // Navigate to YouTube page
-      window.location.href = href
+      // Navigate to YouTube page using Next.js router
+      router.push(href)
     } else {
       setActiveItem(itemId)
       setIsMobileMenuOpen(false)
