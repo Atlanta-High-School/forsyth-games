@@ -1,11 +1,10 @@
 'use client'
 
 import { useState, useEffect, lazy, Suspense } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import HeroSection from '@/components/HeroSection'
 import CategoryPills from '@/components/CategoryPills'
 import BentoGameCard from '@/components/BentoGameCard'
-import GameSkeleton from '@/components/GameSkeleton'
 import SearchIsland from '@/components/SearchIsland'
 import Footer from '@/components/Footer'
 
@@ -199,18 +198,18 @@ export default function Home() {
             {/* Optimized Grid Layout with CLS prevention */}
             <div className="game-grid lazy-load-container mb-12">
               {loading ? (
-                // Fixed height skeletons to prevent CLS
-                Array.from({ length: 12 }).map((_, index) => (
-                  <div key={`skeleton-${index}`} className="skeleton-fixed" />
-                ))
+                // Show loading message instead of skeletons
+                <div className="col-span-full text-center py-20">
+                  <div className="text-2xl text-text-secondary mb-4">Loading Educational Games...</div>
+                  <div className="w-16 h-16 mx-auto border-4 border-neon-blue/30 border-t-transparent rounded-full animate-spin"></div>
+                </div>
               ) : (
                 // Stable grid with fixed aspect ratios
-                filteredGames.slice(0, 20).map((game, index) => (
+                filteredGames.slice(0, 20).map((game) => (
                   <div key={game.url} className="aspect-ratio-1-1">
                     <BentoGameCard
                       game={game}
                       size="medium"
-                      index={index}
                     />
                   </div>
                 ))

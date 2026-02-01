@@ -34,13 +34,8 @@ export const GAME_SERVER_CONFIG = {
 export function getOptimizedGameUrl(gameUrl: string, imageUrl: string): string {
   const primaryUrl = `${GAME_SERVER_CONFIG.primary}/${gameUrl}/${imageUrl}`
   
-  // Try CDN fallbacks for faster loading
-  const cdnUrls = GAME_SERVER_CONFIG.cdnFallbacks.map(cdn => 
-    `${cdn}/${gameUrl}/${imageUrl}`
-  )
-  
-  // Return array of URLs to try in order (primary first, then CDNs)
-  return primaryUrl // For now return primary - implement fallback logic in components
+  // For now return primary URL - CDN fallbacks can be implemented later
+  return primaryUrl
 }
 
 // Preload critical game assets

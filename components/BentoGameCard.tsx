@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { Play, Users, Star, TrendingUp } from 'lucide-react'
 import { getOptimizedGameUrl, CDNPerformanceMonitor } from '@/lib/cdn-utils'
 import { useEffect, useState } from 'react'
@@ -20,11 +19,9 @@ interface Game {
 interface BentoGameCardProps {
   game: Game
   size: 'small' | 'medium' | 'large' | 'wide'
-  index: number
 }
 
-export default function BentoGameCard({ game, size, index }: BentoGameCardProps) {
-  const serverUrl = "https://gms.parcoil.com"
+export default function BentoGameCard({ game, size }: BentoGameCardProps) {
   const [imageUrl, setImageUrl] = useState<string>("")
   const [loadStartTime, setLoadStartTime] = useState<number>(0)
   const performanceMonitor = CDNPerformanceMonitor.getInstance()
@@ -50,34 +47,6 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
     wide: 'h-48'
   }
 
-  const cardVariants = {
-    initial: { 
-      opacity: 0, 
-      scale: 0.9,
-      y: 30 
-    },
-    animate: { 
-      opacity: 1, 
-      scale: 1,
-      y: 0,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 12,
-        delay: index * 0.1,
-      },
-    },
-    hover: { 
-      scale: 1.02,
-      y: -5,
-      transition: {
-        type: "spring" as const,
-        stiffness: 400,
-        damping: 10,
-      },
-    },
-  }
-
   const getGenreColor = (genre: string) => {
     const colors: { [key: string]: string } = {
       'Action': 'border-neon-pink/50 bg-neon-pink/10',
@@ -91,21 +60,12 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
   }
 
   return (
-    <motion.div
+    <div
       className={`${sizeClasses[size]} ${heightClasses[size]} relative group cursor-pointer game-card opacity-0 transition-opacity duration-300`}
-      variants={cardVariants}
-      initial="initial"
-      animate="animate"
-      whileHover="hover"
-      layout
     >
       {/* Optimized Glass Card */}
-      <motion.div 
+      <div 
         className="relative h-full glass border border-white/10 rounded-2xl overflow-hidden"
-        whileHover={{ 
-          scale: 1.02,
-          y: -4
-        }}
       >
         {/* Optimized Game Image */}
         <div className="relative h-3/5 overflow-hidden">
@@ -135,7 +95,7 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
                   target.src = fallbackUrl
                   tried++
                 } else {
-                  target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300F2FF;stop-opacity:0.2'/%3E%3Cstop offset='100%25' style='stop-color:%238B5CF6;stop-opacity:0.2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad)'/%3E%3Ctext x='50%25' y='40%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Sora' font-size='24' font-weight='bold'%3E${game.name}%3C/text%3E%3Ctext x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' fill='%23a1a1aa' font-family='Sora' font-size='16'%3E${game.genre}%3C/text%3E%3C/svg%3E`
+                  target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25% y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300F2FF;stop-opacity:0.2'/%3E%3Cstop offset='100%25' style='stop-color:%238B5CF6;stop-opacity:0.2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad)'/%3E%3Ctext x='50%25' y='40%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Sora' font-size='24' font-weight='bold'%3E${game.name}%3C/text%3E%3Ctext x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' fill='%23a1a1aa' font-family='Sora' font-size='16'%3E${game.genre}%3C/text%3E%3C/svg%3E`
                 }
               }
               
@@ -195,7 +155,7 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
             </div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 }

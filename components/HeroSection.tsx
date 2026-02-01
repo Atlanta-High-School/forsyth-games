@@ -1,8 +1,6 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { Play, TrendingUp, Users, Star } from 'lucide-react'
 
 interface FeaturedGame {
@@ -15,14 +13,14 @@ interface FeaturedGame {
 }
 
 export default function HeroSection() {
-  const [featuredGame] = useState<FeaturedGame>({
+  const featuredGame: FeaturedGame = {
     name: "1v1.LOL",
     image: "logo.png",
     url: "1v1lol",
     players: "2.3K Online",
     genre: "Battle Royale",
     rating: 4.8
-  })
+  }
 
   const serverUrl = "https://gms.parcoil.com"
 
