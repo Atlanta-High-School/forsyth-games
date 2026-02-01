@@ -16,12 +16,12 @@ export default function CategoryPills({ onCategoryChange }: { onCategoryChange: 
 
   const categories: Category[] = [
     { id: 'all', name: 'All Games', color: 'text-textPrimary', bgColor: 'bg-surface/60', borderColor: 'border-white/20' },
-    { id: 'action', name: 'Action', color: 'text-neon-pink', bgColor: 'bg-neon-pink/20', borderColor: 'border-neon-pink/50' },
-    { id: 'arcade', name: 'Arcade', color: 'text-neon-blue', bgColor: 'bg-neon-blue/20', borderColor: 'border-neon-blue/50' },
-    { id: 'strategy', name: 'Strategy', color: 'text-neon-purple', bgColor: 'bg-neon-purple/20', borderColor: 'border-neon-purple/50' },
-    { id: 'puzzle', name: 'Puzzle', color: 'text-neon-lime', bgColor: 'bg-neon-lime/20', borderColor: 'border-neon-lime/50' },
-    { id: 'sports', name: 'Sports', color: 'text-orange-400', bgColor: 'bg-orange-400/20', borderColor: 'border-orange-400/50' },
-    { id: 'racing', name: 'Racing', color: 'text-cyan-400', bgColor: 'bg-cyan-400/20', borderColor: 'border-cyan-400/50' },
+    { id: 'Action', name: 'Action', color: 'text-neon-pink', bgColor: 'bg-neon-pink/20', borderColor: 'border-neon-pink/50' },
+    { id: 'Arcade', name: 'Arcade', color: 'text-neon-blue', bgColor: 'bg-neon-blue/20', borderColor: 'border-neon-blue/50' },
+    { id: 'Strategy', name: 'Strategy', color: 'text-neon-purple', bgColor: 'bg-neon-purple/20', borderColor: 'border-neon-purple/50' },
+    { id: 'Puzzle', name: 'Puzzle', color: 'text-neon-lime', bgColor: 'bg-neon-lime/20', borderColor: 'border-neon-lime/50' },
+    { id: 'Sports', name: 'Sports', color: 'text-orange-400', bgColor: 'bg-orange-400/20', borderColor: 'border-orange-400/50' },
+    { id: 'Racing', name: 'Racing', color: 'text-cyan-400', bgColor: 'bg-cyan-400/20', borderColor: 'border-cyan-400/50' },
   ]
 
   const handleCategoryClick = (categoryId: string) => {
@@ -37,14 +37,14 @@ export default function CategoryPills({ onCategoryChange }: { onCategoryChange: 
           <motion.button
             key={category.id}
             onClick={() => handleCategoryClick(category.id)}
-            className={`relative px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 backdrop-blur-md border ${category.borderColor} ${
+            className={`relative px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 glass-premium border ${category.borderColor} ${
               activeCategory === category.id
-                ? `${category.bgColor} ${category.color} shadow-neon scale-110`
-                : `${category.bgColor} text-textSecondary hover:scale-105 hover:shadow-card`
+                ? `${category.bgColor} ${category.color} shadow-glow-intense scale-110`
+                : `${category.bgColor} text-textSecondary hover:scale-105 hover:shadow-card-hover`
             }`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -57,17 +57,17 @@ export default function CategoryPills({ onCategoryChange }: { onCategoryChange: 
                 style={{
                   background: category.id === 'all' 
                     ? 'rgba(255, 255, 255, 0.2)' 
-                    : category.id === 'action'
-                    ? 'rgba(236, 72, 153, 0.5)'
-                    : category.id === 'arcade'
-                    ? 'rgba(34, 211, 238, 0.5)'
-                    : category.id === 'strategy'
+                    : category.id === 'Action'
+                    ? 'rgba(255, 0, 170, 0.5)'
+                    : category.id === 'Arcade'
+                    ? 'rgba(0, 245, 255, 0.5)'
+                    : category.id === 'Strategy'
                     ? 'rgba(168, 85, 247, 0.5)'
-                    : category.id === 'puzzle'
-                    ? 'rgba(132, 204, 22, 0.5)'
-                    : category.id === 'sports'
+                    : category.id === 'Puzzle'
+                    ? 'rgba(204, 255, 0, 0.5)'
+                    : category.id === 'Sports'
                     ? 'rgba(251, 146, 60, 0.5)'
-                    : 'rgba(34, 211, 238, 0.5)'
+                    : 'rgba(0, 255, 255, 0.5)'
                 }}
                 animate={{
                   scale: [1, 1.2, 1],
