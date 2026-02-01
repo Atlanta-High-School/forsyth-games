@@ -11,9 +11,9 @@ const nextConfig = {
     } : false,
   },
   
-  // Image optimization
+  // Image optimization with CDN support
   images: {
-    unoptimized: true,
+    unoptimized: false, // Enable Next.js image optimization
     remotePatterns: [
       {
         protocol: 'https',
@@ -27,12 +27,58 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.clerk.accounts.dev',
       },
+      // Add CDN domains for game assets
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.cloudflare.com',
+      },
     ],
+    formats: ['image/webp', 'image/avif'], // Modern image formats
+    minimumCacheTTL: 60 * 60 * 24 * 7, // 1 week cache
   },
   
   // Experimental features for better performance
   experimental: {
     optimizePackageImports: ['framer-motion', '@clerk/nextjs'],
+    // Enable CDN optimizations
+    serverComponentsExternalPackages: ['sharp'],
+  },
+  
+  // CDN and caching headers
+  async headers() {
+    return [
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 's-maxage=86400, stale-while-revalidate=3600',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=43200',
+          },
+        ],
+      },
+    ]
   },
 }
 

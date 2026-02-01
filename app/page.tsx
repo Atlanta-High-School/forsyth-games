@@ -116,24 +116,25 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-deep-space via-surface to-deep-space text-text-primary relative overflow-hidden">
-      {/* Enhanced Aurora Light Leaks */}
-      <div className="aurora-light aurora-1" />
-      <div className="aurora-light aurora-2" />
-      <div className="aurora-light aurora-3" />
+    <div className="min-h-screen bg-deep-space text-text-primary relative overflow-hidden font-loading">
+      {/* Fixed height containers to prevent CLS */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="aurora-light aurora-1 hidden sm:block" />
+        <div className="aurora-light aurora-2 hidden sm:block" />
+        <div className="aurora-light aurora-3 hidden lg:block" />
+        <div className="film-grain hidden xl:block" />
+        <div className="fixed inset-0 cyber-grid opacity-10 pointer-events-none hidden 2xl:block" />
+      </div>
       
-      {/* Film Grain Overlay */}
-      <div className="film-grain" />
-      
-      {/* Geometric Grid Background */}
-      <div className="fixed inset-0 cyber-grid opacity-20 pointer-events-none" />
-      
-      <Suspense fallback={<div style={{ height: '80px' }} />}>
-        <FloatingNavigation 
-          onSearchToggle={handleSearchToggle}
-          isSearchActive={isSearchActive}
-        />
-      </Suspense>
+      {/* Fixed navigation height */}
+      <div className="nav-reserve">
+        <Suspense fallback={<div className="h-20" />}>
+          <FloatingNavigation 
+            onSearchToggle={handleSearchToggle}
+            isSearchActive={isSearchActive}
+          />
+        </Suspense>
+      </div>
       
       {/* Search Island - Only show when search is active */}
       <AnimatePresence>
@@ -145,30 +146,25 @@ export default function Home() {
         )}
       </AnimatePresence>
       
-      {/* Main Content */}
-      <div>
-        {/* Hero Section */}
-        <section id="home">
+      {/* Main Content with stable layout */}
+      <div className="relative">
+        {/* Hero Section with fixed height */}
+        <section id="home" className="hero-reserve">
           <HeroSection />
         </section>
 
-        {/* Category Pills */}
-        <section id="categories" className="relative">
+        {/* Category Pills with stable container */}
+        <section id="categories" className="relative min-h-[100px]">
           <CategoryPills onCategoryChange={handleCategoryChange} />
         </section>
 
-        {/* Enhanced Bento Grid Game Library */}
+        {/* Game Library with CLS prevention */}
         <section id="trending" className="relative py-20">
           <div className="container mx-auto px-6">
             {/* Search Results Header */}
             {(searchQuery || selectedCategory !== 'all') && (
-              <motion.div
-                className="text-center mb-12"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <h3 className="text-3xl font-bold text-text-primary mb-2">
+              <div className="text-center mb-12 min-h-[80px] stats-container">
+                <h3 className="text-3xl font-bold text-text-primary mb-2 text-reserve">
                   {searchQuery && (
                     <span className="bg-gradient-to-r from-neon-blue/80 to-neon-purple/80 bg-clip-text text-transparent">
                       {filteredGames.length} Results for &quot;{searchQuery}&quot;
@@ -185,62 +181,60 @@ export default function Home() {
                     </span>
                   )}
                 </h3>
-                <p className="text-text-secondary/60">Discover amazing educational games</p>
-              </motion.div>
+                <p className="text-text-secondary/60 text-reserve">Discover amazing educational games</p>
+              </div>
             )}
 
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <div className="text-center mb-16 min-h-[120px] stats-container">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 text-reserve">
                 <span className="bg-gradient-to-r from-neon-blue/80 via-neon-purple/80 to-neon-pink/80 bg-clip-text text-transparent neon-text-glow">
                   Game Library
                 </span>
               </h2>
-              <p className="text-text-secondary/70 text-xl max-w-3xl mx-auto leading-relaxed">
+              <p className="text-text-secondary/70 text-xl max-w-3xl mx-auto leading-relaxed text-reserve">
                 Explore our curated collection of {filteredGames.length} educational games designed to enhance learning, critical thinking, and problem-solving skills
               </p>
-            </motion.div>
+            </div>
 
-            {/* Modern Grid Layout with better spacing */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-16">
+            {/* Optimized Grid Layout with CLS prevention */}
+            <div className="game-grid lazy-load-container mb-12">
               {loading ? (
-                // Enhanced skeleton loaders
-                Array.from({ length: 20 }).map((_, index) => (
-                  <GameSkeleton
-                    key={`skeleton-${index}`}
-                    size="medium"
-                  />
+                // Fixed height skeletons to prevent CLS
+                Array.from({ length: 12 }).map((_, index) => (
+                  <div key={`skeleton-${index}`} className="skeleton-fixed" />
                 ))
               ) : (
-                // Show actual games with staggered animation
-                filteredGames.map((game, index) => (
-                  <BentoGameCard
-                    key={game.url}
-                    game={game}
-                    size="medium"
-                    index={index}
-                  />
+                // Stable grid with fixed aspect ratios
+                filteredGames.slice(0, 20).map((game, index) => (
+                  <div key={game.url} className="aspect-ratio-1-1">
+                    <BentoGameCard
+                      game={game}
+                      size="medium"
+                      index={index}
+                    />
+                  </div>
                 ))
               )}
             </div>
+            
+            {/* Load more button with stable height */}
+            {filteredGames.length > 20 && (
+              <div className="text-center mt-8 min-h-[60px] stats-container">
+                <button className="glass-premium px-6 py-3 rounded-full text-text-primary border border-white/10 hover:border-neon-blue/50 transition-all duration-200 btn-stable">
+                  Load More Games ({filteredGames.length - 20} remaining)
+                </button>
+              </div>
+            )}
 
-            {/* Enhanced No Results */}
+            {/* Enhanced No Results with stable layout */}
             {!loading && filteredGames.length === 0 && (
-              <motion.div
-                className="text-center py-24"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-              >
+              <div className="text-center py-24 min-h-[400px] stats-container">
                 <div className="glass-premium border border-white/10 rounded-3xl p-16 max-w-lg mx-auto">
                   <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 flex items-center justify-center">
                     <span className="text-4xl">🎮</span>
                   </div>
-                  <h3 className="text-3xl font-bold text-text-primary mb-4">No Games Found</h3>
-                  <p className="text-text-secondary/70 mb-8 text-lg leading-relaxed">
+                  <h3 className="text-3xl font-bold text-text-primary mb-4 text-reserve">No Games Found</h3>
+                  <p className="text-text-secondary/70 mb-8 text-lg leading-relaxed text-reserve">
                     {searchQuery && (
                       <>No games found matching &quot;{searchQuery}&quot;. Try different keywords!</>
                     )}
@@ -251,14 +245,14 @@ export default function Home() {
                       <>No games available at the moment. Check back soon!</>
                     )}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center min-h-[60px] stats-container">
                     {searchQuery && (
                       <button
                         onClick={() => {
                           setSearchQuery('')
                           handleSearch('')
                         }}
-                        className="conic-border px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+                        className="conic-border px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 btn-stable"
                       >
                         <span className="relative z-10 text-text-primary">Clear Search</span>
                       </button>
@@ -269,41 +263,36 @@ export default function Home() {
                           setSelectedCategory('all')
                           handleCategoryChange('all')
                         }}
-                        className="premium-button px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+                        className="premium-button px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 btn-stable"
                       >
                         <span className="relative z-10 text-text-primary">All Categories</span>
                       </button>
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             )}
 
-            {/* Enhanced Stats Section */}
+            {/* Simplified Stats Section with stable layout */}
             {!loading && filteredGames.length > 0 && (
-              <motion.div
-                className="mt-20 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <div className="inline-flex items-center gap-12 glass-premium border border-white/10 rounded-full px-12 py-6 shadow-holographic">
-                  <div className="text-center group">
-                    <div className="text-4xl font-bold text-neon-blue mb-2 group-hover:scale-110 transition-transform duration-300">{filteredGames.length}</div>
-                    <div className="text-text-secondary/70 text-sm uppercase tracking-wide">Games Available</div>
+              <div className="mt-12 text-center min-h-[80px] stats-container">
+                <div className="inline-flex items-center gap-6 glass border border-white/10 rounded-full px-6 py-3">
+                  <div className="text-center min-w-[60px]">
+                    <div className="text-2xl font-bold text-neon-blue text-reserve">{filteredGames.length}</div>
+                    <div className="text-text-secondary/70 text-xs text-reserve">Games</div>
                   </div>
-                  <div className="w-px h-10 bg-white/20" />
-                  <div className="text-center group">
-                    <div className="text-4xl font-bold text-neon-lime mb-2 group-hover:scale-110 transition-transform duration-300">{games.filter(g => g.trending).length}</div>
-                    <div className="text-text-secondary/70 text-sm uppercase tracking-wide">Trending Now</div>
+                  <div className="w-px h-6 bg-white/20" />
+                  <div className="text-center min-w-[60px]">
+                    <div className="text-2xl font-bold text-neon-lime text-reserve">{games.filter(g => g.trending).length}</div>
+                    <div className="text-text-secondary/70 text-xs text-reserve">Trending</div>
                   </div>
-                  <div className="w-px h-10 bg-white/20" />
-                  <div className="text-center group">
-                    <div className="text-4xl font-bold text-neon-purple mb-2 group-hover:scale-110 transition-transform duration-300">{games.filter(g => g.isNew).length}</div>
-                    <div className="text-text-secondary/70 text-sm uppercase tracking-wide">New Games</div>
+                  <div className="w-px h-6 bg-white/20" />
+                  <div className="text-center min-w-[60px]">
+                    <div className="text-2xl font-bold text-neon-purple text-reserve">{games.filter(g => g.isNew).length}</div>
+                    <div className="text-text-secondary/70 text-xs text-reserve">New</div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             )}
           </div>
         </section>
