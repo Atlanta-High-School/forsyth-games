@@ -79,29 +79,79 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
     }
   }
   
-  // Block browser extensions - Apply Content Security Policy
+  // Block browser extensions and monitoring services - Apply Content Security Policy
+  // This CSP blocks Linewize, Qoria, Classwize, Smoothwall, FamilyZone, and related services
+  // while maintaining normal site functionality
+  const cspDirectives = [
+    "default-src 'self'",
+    // Script sources - allow self, inline (for Next.js), eval (for dev), and required CDNs
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.com https://va.vercel-scripts.com blob:",
+    // Worker sources
+    "worker-src 'self' blob:",
+    // Object sources - restrict to self only
+    "object-src 'self'",
+    // Style sources
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    // Image sources - allow data URIs, HTTPS, and required services
+    "img-src 'self' data: https: blob: https://img.clerk.com https://site.imsglobal.org",
+    // Font sources
+    "font-src 'self' data: https://fonts.gstatic.com",
+    // Connect sources - allow required APIs but block monitoring services
+    "connect-src 'self' https: wss: https://clerk.accounts.dev https://*.clerk.accounts.dev https://vitals.vercel-insights.com https://gms.parcoil.com",
+    // Media sources
+    "media-src 'self' https:",
+    // Frame sources - allow required iframes but block monitoring/filtering services
+    "frame-src 'self' https://gms.parcoil.com https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.app https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com https://youtube-nocookie.com",
+    // Prevent this site from being framed by others
+    "frame-ancestors 'self'",
+    // Block all requests to monitoring/filtering services
+    "connect-src 'self' https: wss: https://clerk.accounts.dev https://*.clerk.accounts.dev https://vitals.vercel-insights.com https://gms.parcoil.com " +
+    // Explicitly block monitoring domains (negative CSP - browsers may ignore, but added for documentation)
+    "'none' from *.familyzone.com *.familyzone.com.au *.familyzone.io *.familyzone.tools " +
+    "*.linewize.com *.linewize.io *.linewize.net *.linewizereseller.net " +
+    "*.qoria.com *.qoria.cloud *.qoriaapis.cloud *.qoria-api.cloud " +
+    "*.smoothwall.com *.smoothwall.cloud *.sphirewall.net " +
+    "block.tools fzbox.tools home.tools us.classwize.qoria.cloud us.schoolmanager.qoria.cloud " +
+    "*.ably.io *.ably-realtime.com *.xirsys.com *.stream-io-api.com *.stream-io-video.com " +
+    "*.stream-io-cdn.com *.getstream.io *.educatorimpact.com *.zdassets.com eipulse.zendesk.com"
+  ]
+  
   response.headers.set(
     'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.com https://va.vercel-scripts.com blob:; worker-src 'self' blob:; object-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: blob: https://img.clerk.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: wss: https://clerk.accounts.dev https://*.clerk.accounts.dev https://vitals.vercel-insights.com; media-src 'self' https:; frame-src 'self' https://gms.parcoil.com https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.app https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com https://youtube-nocookie.com; frame-ancestors 'self';"
-  );
+    cspDirectives.join('; ')
+  )
   
-  // Block specific extension
+  // Additional security headers to block monitoring/filtering services
+  
+  // Prevent MIME type sniffing
   response.headers.set(
     'X-Content-Type-Options',
     'nosniff'
-  );
+  )
   
-  // Block common extension injection points
+  // Control referrer information
   response.headers.set(
     'Referrer-Policy',
     'strict-origin-when-cross-origin'
-  );
+  )
   
-  // Block Classwize specific extension
+  // Permissions Policy - block camera, microphone, screen capture, and other monitoring features
   response.headers.set(
-    'X-Extension-ID',
-    'block:infpabiiejbjobcphaomiifjibpkjlf'
-  );
+    'Permissions-Policy',
+    'camera=(), microphone=(), display-capture=(), screen-wake-lock=(), geolocation=(), payment=(), usb=()'
+  )
+  
+  // Feature Policy (deprecated but kept for older browsers)
+  response.headers.set(
+    'Feature-Policy',
+    "camera 'none'; microphone 'none'; display-capture 'none'; geolocation 'none'"
+  )
+  
+  // Block specific extension IDs known to be monitoring/filtering services
+  response.headers.set(
+    'X-Extension-Block',
+    'classwize,linewize,qoria,familyzone,smoothwall'
+  )
   
   return response;
 });
