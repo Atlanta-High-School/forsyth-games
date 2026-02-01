@@ -6,6 +6,28 @@ import { checkGeorgiaLocation, getClientIp } from './lib/geolocation';
 // Cache duration for geolocation checks (1 hour)
 const GEO_CACHE_DURATION_MS = 60 * 60 * 1000;
 
+// Rate limiting store (in production, use Redis)
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+
+// Rate limiting: 5 requests per minute per IP
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const key = ip;
+  const record = rateLimitStore.get(key);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitStore.set(key, { count: 1, resetTime: now + 60000 });
+    return true;
+  }
+  
+  if (record.count >= 5) {
+    return false;
+  }
+  
+  record.count++;
+  return true;
+}
+
 const isPublicRoute = createRouteMatcher([
   '/',
   '/play(.*)',
@@ -22,6 +44,14 @@ const isApiRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware(async (auth, request: NextRequest) => {
+  // Get client IP for rate limiting and logging
+  const clientIp = getClientIp(request.headers) || 'unknown';
+  
+  // Apply rate limiting to all routes except blocked page
+  if (request.nextUrl.pathname !== '/blocked' && !checkRateLimit(clientIp)) {
+    return new NextResponse('Too Many Requests', { status: 429 });
+  }
+
   // Clerk authentication check
   if (!isPublicRoute(request)) {
     await auth.protect();
@@ -41,8 +71,15 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
       
       // Only verify location if not already checked with valid allowed status
       if (!geoChecked || geoAllowed?.value !== 'true') {
-        const clientIp = getClientIp(request.headers);
         const location = await checkGeorgiaLocation(clientIp);
+        
+        // Log location check for security monitoring
+        console.log(`Location check for IP ${clientIp}:`, {
+          isGeorgia: location.isGeorgia,
+          region: location.region,
+          country: location.country,
+          city: location.city
+        });
         
         // Set cookies with location info
         const redirectResponse = location.isGeorgia 

@@ -18,18 +18,17 @@ export interface GeolocationResponse {
 export async function checkGeorgiaLocation(ip?: string): Promise<GeolocationResponse> {
   try {
     // In production, use the actual IP from the request
-    // For development/testing, we'll allow all requests
+    // For development/testing, we'll simulate Georgia location
     if (process.env.NODE_ENV === 'development') {
       return {
         isGeorgia: true,
         region: 'Georgia',
         country: 'US',
-        city: 'Development Mode'
+        city: 'Alpharetta'
       }
     }
 
-    // Use a free IP geolocation service
-    // Multiple fallback options for reliability
+    // Use multiple geolocation services for accuracy
     const services = [
       async () => {
         const response = await fetch(`https://ipapi.co/${ip || ''}/json/`, {
@@ -38,7 +37,7 @@ export async function checkGeorgiaLocation(ip?: string): Promise<GeolocationResp
         if (!response.ok) throw new Error('ipapi.co failed')
         const data = await response.json()
         return {
-          isGeorgia: data.country_code === 'US' && data.region_code === 'GA',
+          isGeorgia: data.country_code === 'US' && (data.region_code === 'GA' || data.region === 'Georgia'),
           region: data.region,
           country: data.country_code,
           city: data.city
@@ -54,13 +53,26 @@ export async function checkGeorgiaLocation(ip?: string): Promise<GeolocationResp
           country: data.countryCode,
           city: data.city
         }
+      },
+      async () => {
+        const response = await fetch(`https://ipinfo.io/${ip || ''}/json`)
+        if (!response.ok) throw new Error('ipinfo.io failed')
+        const data = await response.json()
+        return {
+          isGeorgia: data.country === 'US' && data.region === 'Georgia',
+          region: data.region,
+          country: data.country,
+          city: data.city
+        }
       }
     ]
 
     // Try each service in order
     for (const service of services) {
       try {
-        return await service()
+        const result = await service()
+        console.log(`Geolocation result:`, result)
+        return result
       } catch (error) {
         console.warn('Geolocation service failed, trying next...', error)
         continue
@@ -68,6 +80,7 @@ export async function checkGeorgiaLocation(ip?: string): Promise<GeolocationResp
     }
 
     // If all services fail, deny access for security
+    console.error('All geolocation services failed')
     return {
       isGeorgia: false,
       error: 'Unable to verify location'
