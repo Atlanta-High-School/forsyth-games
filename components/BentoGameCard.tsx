@@ -87,37 +87,35 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
       whileHover="hover"
       layout
     >
-      {/* Glass Card with Floating Effect */}
+      {/* Enhanced Glass Card with Premium Effects */}
       <motion.div 
-        className="relative h-full floating-card glass-premium border border-white/10 rounded-2xl overflow-hidden neon-border-sweep holographic"
+        className="relative h-full floating-card glass-premium border border-white/10 rounded-3xl overflow-hidden neon-border-sweep holographic shadow-holographic"
         whileHover={{ 
-          scale: 1.03,
-          y: -12,
-          rotateX: 3,
-          rotateY: -3
+          scale: 1.05,
+          y: -15,
+          rotateX: 4,
+          rotateY: -4
         }}
         style={{
           transformStyle: 'preserve-3d',
-          perspective: '1500px'
+          perspective: '2000px'
         }}
       >
-        {/* Game Image */}
+        {/* Enhanced Game Image */}
         <div className="relative h-3/5 overflow-hidden">
           <Image
             src={`${serverUrl}/${game.url}/${game.image}`}
             alt={game.name}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
             loading="lazy"
             placeholder="blur"
             blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300F2FF;stop-opacity:0.1'/%3E%3Cstop offset='100%25' style='stop-color:%238B5CF6;stop-opacity:0.1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad)'/%3E%3C/svg%3E"
             onError={(e) => {
               const target = e.target as HTMLImageElement
-              // Prevent infinite error loops
               if (target.dataset.errorHandled === 'true') return
               target.dataset.errorHandled = 'true'
               
-              // Try alternative image names
               const alternatives = ['logo.png', 'icon.png', 'thumbnail.png', 'default.png']
               let tried = 0
               
@@ -126,7 +124,6 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
                   target.src = `${serverUrl}/${game.url}/${alternatives[tried]}`
                   tried++
                 } else {
-                  // Final fallback to SVG placeholder
                   target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300F2FF;stop-opacity:0.2'/%3E%3Cstop offset='100%25' style='stop-color:%238B5CF6;stop-opacity:0.2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23grad)'/%3E%3Ctext x='50%25' y='40%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Sora' font-size='24' font-weight='bold'%3E${game.name}%3C/text%3E%3Ctext x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' fill='%23a1a1aa' font-family='Sora' font-size='16'%3E${game.genre}%3C/text%3E%3C/svg%3E`
                 }
               }
@@ -136,88 +133,98 @@ export default function BentoGameCard({ game, size, index }: BentoGameCardProps)
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
           />
           
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-surface/90 via-transparent to-transparent" />
+          {/* Enhanced Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-surface/95 via-transparent to-transparent" />
           
-          {/* Badges */}
-          <div className="absolute top-3 left-3 flex gap-2">
+          {/* Enhanced Badges */}
+          <div className="absolute top-4 left-4 flex gap-2">
             {game.trending && (
               <motion.div
-                className="flex items-center gap-1 glass-premium rounded-full px-2 py-1 border border-neon-lime/30 shadow-neon-cyan"
+                className="flex items-center gap-2 glass-premium rounded-full px-3 py-2 border border-neon-lime/40 shadow-neon-cyan"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.2, type: "spring" }}
+                whileHover={{ scale: 1.1 }}
               >
-                <TrendingUp className="w-3 h-3 text-neon-lime animate-pulse" />
-                <span className="text-xs text-neon-lime font-semibold">Trending</span>
+                <TrendingUp className="w-4 h-4 text-neon-lime animate-pulse" />
+                <span className="text-xs text-neon-lime font-bold tracking-wide">TRENDING</span>
               </motion.div>
             )}
             {game.isNew && (
               <motion.div
-                className="glass-premium rounded-full px-2 py-1 border border-neon-blue/30 shadow-neon-blue"
+                className="glass-premium rounded-full px-3 py-2 border border-neon-blue/40 shadow-neon-blue"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.3, type: "spring" }}
+                whileHover={{ scale: 1.1 }}
               >
-                <span className="text-xs text-neon-blue font-semibold animate-pulse">NEW</span>
+                <span className="text-xs text-neon-blue font-bold tracking-wide animate-pulse">NEW</span>
               </motion.div>
             )}
           </div>
 
-          {/* Play Button Overlay */}
+          {/* Enhanced Play Button Overlay */}
           <motion.div 
-            className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 backdrop-blur-sm"
+            className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/70 backdrop-blur-lg"
             initial={{ scale: 0.8 }}
             whileHover={{ scale: 1 }}
           >
             <motion.button
               onClick={() => window.location.href = `/play?gameurl=${game.url}/`}
-              className="premium-button px-6 py-3 rounded-full font-semibold flex items-center gap-2"
-              whileHover={{ scale: 1.1, y: -3 }}
+              className="premium-button px-8 py-4 rounded-full font-semibold flex items-center gap-3 shadow-neon-xl"
+              whileHover={{ scale: 1.15, y: -5 }}
               whileTap={{ scale: 0.95 }}
+              animate={{ 
+                boxShadow: [
+                  "0 0 30px rgba(0, 245, 255, 0.5)",
+                  "0 0 60px rgba(168, 85, 247, 0.7)",
+                  "0 0 30px rgba(0, 245, 255, 0.5)",
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
             >
-              <span className="relative z-10 flex items-center gap-2 text-text-primary">
-                <Play className="w-4 h-4" />
+              <span className="relative z-10 flex items-center gap-3 text-text-primary">
+                <Play className="w-5 h-5" />
                 <span>Play</span>
               </span>
             </motion.button>
           </motion.div>
         </div>
 
-        {/* Game Info */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 glass border-t border-white/10">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="font-semibold text-text-primary truncate text-glow-subtle">{game.name}</h3>
-            <div className="flex items-center gap-1">
+        {/* Enhanced Game Info */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 glass-premium border-t border-white/10">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-bold text-text-primary truncate text-glow-subtle text-lg">{game.name}</h3>
+            <div className="flex items-center gap-2">
               <Star className="w-4 h-4 text-yellow-400 fill-current" />
-              <span className="text-text-secondary text-sm">{game.rating}</span>
+              <span className="text-text-secondary text-sm font-medium">{game.rating}</span>
             </div>
           </div>
           
           <div className="flex items-center justify-between">
-            <div className={`px-2 py-1 rounded-full text-xs font-semibold border ${getGenreColor(game.genre)}`}>
+            <div className={`px-3 py-1.5 rounded-full text-xs font-bold border ${getGenreColor(game.genre)}`}>
               {game.genre}
             </div>
-            <div className="flex items-center gap-1 text-text-secondary text-sm">
-              <Users className="w-3 h-3" />
-              <span>{game.players}</span>
+            <div className="flex items-center gap-2 text-text-secondary text-sm">
+              <Users className="w-4 h-4" />
+              <span className="font-medium">{game.players}</span>
             </div>
           </div>
         </div>
 
-        {/* Hover Glow Effect */}
+        {/* Enhanced Hover Glow Effect */}
         <motion.div
-          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 242, 255, 0.1), transparent 50%)',
+            background: 'radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 242, 255, 0.15), transparent 60%)',
           }}
         />
         
-        {/* Floating Shadow */}
+        {/* Enhanced Floating Shadow */}
         <motion.div
-          className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-3/4 h-10 bg-neon-blue/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+          className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-4/5 h-12 bg-neon-blue/40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700"
           style={{
-            filter: 'blur(30px)',
+            filter: 'blur(40px)',
           }}
         />
       </motion.div>

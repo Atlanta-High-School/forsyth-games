@@ -116,14 +116,17 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-deep-space text-text-primary relative overflow-hidden">
-      {/* Aurora Light Leaks */}
+    <div className="min-h-screen bg-gradient-to-br from-deep-space via-surface to-deep-space text-text-primary relative overflow-hidden">
+      {/* Enhanced Aurora Light Leaks */}
       <div className="aurora-light aurora-1" />
       <div className="aurora-light aurora-2" />
       <div className="aurora-light aurora-3" />
       
       {/* Film Grain Overlay */}
       <div className="film-grain" />
+      
+      {/* Geometric Grid Background */}
+      <div className="fixed inset-0 cyber-grid opacity-20 pointer-events-none" />
       
       <Suspense fallback={<div style={{ height: '80px' }} />}>
         <FloatingNavigation 
@@ -154,18 +157,18 @@ export default function Home() {
           <CategoryPills onCategoryChange={handleCategoryChange} />
         </section>
 
-        {/* Bento Grid Game Library */}
-        <section id="trending" className="relative">
-          <div className="container mx-auto px-6 py-12">
+        {/* Enhanced Bento Grid Game Library */}
+        <section id="trending" className="relative py-20">
+          <div className="container mx-auto px-6">
             {/* Search Results Header */}
             {(searchQuery || selectedCategory !== 'all') && (
               <motion.div
-                className="text-center mb-8"
+                className="text-center mb-12"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <h3 className="text-2xl font-bold text-text-primary">
+                <h3 className="text-3xl font-bold text-text-primary mb-2">
                   {searchQuery && (
                     <span className="bg-gradient-to-r from-neon-blue/80 to-neon-purple/80 bg-clip-text text-transparent">
                       {filteredGames.length} Results for &quot;{searchQuery}&quot;
@@ -173,38 +176,39 @@ export default function Home() {
                   )}
                   {!searchQuery && selectedCategory !== 'all' && (
                     <span className="text-text-secondary/80">
-                      {' '} in {selectedCategory}
+                      {selectedCategory} Games
                     </span>
                   )}
                   {!searchQuery && selectedCategory === 'all' && (
                     <span className="text-text-secondary/80">
-                      {' '} in All Games
+                      All Games
                     </span>
                   )}
                 </h3>
+                <p className="text-text-secondary/60">Discover amazing educational games</p>
               </motion.div>
             )}
 
             <motion.div
-              className="text-center mb-12"
+              className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-neon-blue/80 via-neon-purple/80 to-neon-pink/80 bg-clip-text text-transparent">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-neon-blue/80 via-neon-purple/80 to-neon-pink/80 bg-clip-text text-transparent neon-text-glow">
                   Game Library
                 </span>
               </h2>
-              <p className="text-text-secondary/70 text-lg max-w-2xl mx-auto">
-                Explore our collection of {filteredGames.length} educational games designed to enhance your learning experience
+              <p className="text-text-secondary/70 text-xl max-w-3xl mx-auto leading-relaxed">
+                Explore our curated collection of {filteredGames.length} educational games designed to enhance learning, critical thinking, and problem-solving skills
               </p>
             </motion.div>
 
-            {/* Uniform Grid - All cards same size */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {/* Modern Grid Layout with better spacing */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-16">
               {loading ? (
-                // Show skeleton loaders
+                // Enhanced skeleton loaders
                 Array.from({ length: 20 }).map((_, index) => (
                   <GameSkeleton
                     key={`skeleton-${index}`}
@@ -212,7 +216,7 @@ export default function Home() {
                   />
                 ))
               ) : (
-                // Show actual games - all same size
+                // Show actual games with staggered animation
                 filteredGames.map((game, index) => (
                   <BentoGameCard
                     key={game.url}
@@ -224,34 +228,37 @@ export default function Home() {
               )}
             </div>
 
-            {/* No Results */}
+            {/* Enhanced No Results */}
             {!loading && filteredGames.length === 0 && (
               <motion.div
-                className="text-center py-20"
+                className="text-center py-24"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
               >
-                <div className="bg-surface/40 backdrop-blur-xl glass border border-white/10 rounded-2xl p-12 max-w-md mx-auto">
-                  <h3 className="text-2xl font-bold text-text-primary mb-4">No Games Found</h3>
-                  <p className="text-textSecondary/70 mb-6">
+                <div className="glass-premium border border-white/10 rounded-3xl p-16 max-w-lg mx-auto">
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 flex items-center justify-center">
+                    <span className="text-4xl">🎮</span>
+                  </div>
+                  <h3 className="text-3xl font-bold text-text-primary mb-4">No Games Found</h3>
+                  <p className="text-text-secondary/70 mb-8 text-lg leading-relaxed">
                     {searchQuery && (
-                      <>No games found matching &quot;{searchQuery}&quot;</>
+                      <>No games found matching &quot;{searchQuery}&quot;. Try different keywords!</>
                     )}
                     {!searchQuery && selectedCategory !== 'all' && (
-                      <>No games found in the &quot;{selectedCategory}&quot; category.</>
+                      <>No games found in the &quot;{selectedCategory}&quot; category. Explore other categories!</>
                     )}
                     {!searchQuery && selectedCategory === 'all' && (
-                      <>No games available.</>
+                      <>No games available at the moment. Check back soon!</>
                     )}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     {searchQuery && (
                       <button
                         onClick={() => {
                           setSearchQuery('')
                           handleSearch('')
                         }}
-                        className="conic-border px-6 py-3 rounded-full font-semibold transition-all duration-300"
+                        className="conic-border px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
                       >
                         <span className="relative z-10 text-text-primary">Clear Search</span>
                       </button>
@@ -262,7 +269,7 @@ export default function Home() {
                           setSelectedCategory('all')
                           handleCategoryChange('all')
                         }}
-                        className="conic-border px-6 py-3 rounded-full font-semibold transition-all duration-300"
+                        className="premium-button px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
                       >
                         <span className="relative z-10 text-text-primary">All Categories</span>
                       </button>
@@ -272,28 +279,28 @@ export default function Home() {
               </motion.div>
             )}
 
-            {/* Stats */}
+            {/* Enhanced Stats Section */}
             {!loading && filteredGames.length > 0 && (
               <motion.div
-                className="mt-16 text-center"
+                className="mt-20 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <div className="inline-flex items-center gap-8 glass glass-hover border border-white/10 rounded-full px-8 py-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-neon-blue">{filteredGames.length}</div>
-                    <div className="text-text-secondary/70 text-sm">Games Available</div>
+                <div className="inline-flex items-center gap-12 glass-premium border border-white/10 rounded-full px-12 py-6 shadow-holographic">
+                  <div className="text-center group">
+                    <div className="text-4xl font-bold text-neon-blue mb-2 group-hover:scale-110 transition-transform duration-300">{filteredGames.length}</div>
+                    <div className="text-text-secondary/70 text-sm uppercase tracking-wide">Games Available</div>
                   </div>
-                  <div className="w-px h-8 bg-white/20" />
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-neon-lime">{games.filter(g => g.trending).length}</div>
-                    <div className="text-text-secondary/70 text-sm">Trending Now</div>
+                  <div className="w-px h-10 bg-white/20" />
+                  <div className="text-center group">
+                    <div className="text-4xl font-bold text-neon-lime mb-2 group-hover:scale-110 transition-transform duration-300">{games.filter(g => g.trending).length}</div>
+                    <div className="text-text-secondary/70 text-sm uppercase tracking-wide">Trending Now</div>
                   </div>
-                  <div className="w-px h-8 bg-white/20" />
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-neon-purple">{games.filter(g => g.isNew).length}</div>
-                    <div className="text-text-secondary/70 text-sm">New Games</div>
+                  <div className="w-px h-10 bg-white/20" />
+                  <div className="text-center group">
+                    <div className="text-4xl font-bold text-neon-purple mb-2 group-hover:scale-110 transition-transform duration-300">{games.filter(g => g.isNew).length}</div>
+                    <div className="text-text-secondary/70 text-sm uppercase tracking-wide">New Games</div>
                   </div>
                 </div>
               </motion.div>
