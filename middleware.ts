@@ -9,7 +9,21 @@ const GEO_CACHE_DURATION_MS = 60 * 60 * 1000;
 // Rate limiting store (in production, use Redis)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 
-// Rate limiting: 5 requests per minute per IP
+// Cleanup expired entries to prevent memory leaks
+function cleanupExpiredEntries() {
+  const now = Date.now();
+  const entries = Array.from(rateLimitStore.entries());
+  for (const [key, record] of entries) {
+    if (now > record.resetTime) {
+      rateLimitStore.delete(key);
+    }
+  }
+}
+
+// Run cleanup every minute
+setInterval(cleanupExpiredEntries, 60000);
+
+// Rate limiting: 60 requests per minute per IP (relaxed for high traffic)
 function checkRateLimit(ip: string): boolean {
   const now = Date.now();
   const key = ip;
@@ -20,7 +34,7 @@ function checkRateLimit(ip: string): boolean {
     return true;
   }
   
-  if (record.count >= 5) {
+  if (record.count >= 60) {
     return false;
   }
   
@@ -81,37 +95,25 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
           city: location.city
         });
         
-        // Set cookies with location info
-        const redirectResponse = location.isGeorgia 
+        // Set cookies with location info - use single response to avoid race condition
+        const finalResponse = location.isGeorgia 
           ? NextResponse.next() 
           : NextResponse.redirect(new URL('/blocked', request.url));
         
         // Set geo cookies with cache duration
         const cookieExpiry = new Date(Date.now() + GEO_CACHE_DURATION_MS);
-        redirectResponse.cookies.set('geo-checked', 'true', { expires: cookieExpiry });
-        redirectResponse.cookies.set('geo-allowed', location.isGeorgia ? 'true' : 'false', { expires: cookieExpiry });
+        finalResponse.cookies.set('geo-checked', 'true', { expires: cookieExpiry });
+        finalResponse.cookies.set('geo-allowed', location.isGeorgia ? 'true' : 'false', { expires: cookieExpiry });
         
         if (location.region) {
-          redirectResponse.cookies.set('geo-region', location.region, { expires: cookieExpiry });
+          finalResponse.cookies.set('geo-region', location.region, { expires: cookieExpiry });
         }
         if (location.country) {
-          redirectResponse.cookies.set('geo-country', location.country, { expires: cookieExpiry });
+          finalResponse.cookies.set('geo-country', location.country, { expires: cookieExpiry });
         }
         
-        // If not in Georgia, redirect to blocked page
-        if (!location.isGeorgia) {
-          return redirectResponse;
-        }
-        
-        // Copy the geo cookies to the next response
-        response.cookies.set('geo-checked', 'true', { expires: cookieExpiry });
-        response.cookies.set('geo-allowed', 'true', { expires: cookieExpiry });
-        if (location.region) {
-          response.cookies.set('geo-region', location.region, { expires: cookieExpiry });
-        }
-        if (location.country) {
-          response.cookies.set('geo-country', location.country, { expires: cookieExpiry });
-        }
+        // Return the final response with cookies
+        return finalResponse;
       }
     }
   }

@@ -3,10 +3,10 @@ import path from 'path'
 import { promises as fs } from 'fs'
 
 export async function GET() {
-  const filePath = path.join(process.cwd(), 'public', 'config', 'games.json')
+  const filePath = path.join(process.cwd(), 'config', 'games.json')
   
   try {
-    // Read the games.json file from the public directory
+    // Read the games.json file from the config directory
     const fileContents = await fs.readFile(filePath, 'utf8')
     
     // Parse JSON with explicit error handling
@@ -24,6 +24,9 @@ export async function GET() {
     return NextResponse.json(games, {
       headers: {
         'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
       },
     })
   } catch (error) {
