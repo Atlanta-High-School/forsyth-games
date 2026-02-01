@@ -1,14 +1,16 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import HeroSection from '@/components/HeroSection'
-import FloatingNavigation from '@/components/FloatingNavigation'
 import CategoryPills from '@/components/CategoryPills'
 import BentoGameCard from '@/components/BentoGameCard'
 import GameSkeleton from '@/components/GameSkeleton'
 import SearchIsland from '@/components/SearchIsland'
 import Footer from '@/components/Footer'
+
+// Lazy load FloatingNavigation to improve initial load performance
+const FloatingNavigation = lazy(() => import('@/components/FloatingNavigation'))
 
 interface Game {
   name: string
@@ -123,10 +125,12 @@ export default function Home() {
       {/* Film Grain Overlay */}
       <div className="film-grain" />
       
-      <FloatingNavigation 
-        onSearchToggle={handleSearchToggle}
-        isSearchActive={isSearchActive}
-      />
+      <Suspense fallback={<div style={{ height: '80px' }} />}>
+        <FloatingNavigation 
+          onSearchToggle={handleSearchToggle}
+          isSearchActive={isSearchActive}
+        />
+      </Suspense>
       
       {/* Search Island - Only show when search is active */}
       <AnimatePresence>

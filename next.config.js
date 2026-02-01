@@ -1,5 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Performance optimizations
+  reactStrictMode: true,
+  swcMinify: true,
+  
+  // Compiler optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn'],
+    } : false,
+  },
+  
+  // Image optimization
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -16,6 +28,11 @@ const nextConfig = {
         hostname: '**.clerk.accounts.dev',
       },
     ],
+  },
+  
+  // Experimental features for better performance
+  experimental: {
+    optimizePackageImports: ['framer-motion', '@clerk/nextjs'],
   },
 }
 
