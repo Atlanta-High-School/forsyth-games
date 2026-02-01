@@ -81,6 +81,7 @@ app.get('/game/:gameId/*', async (req, res) => {
       headers: {
         'User-Agent': req.headers['user-agent'] || 'Mozilla/5.0',
         'Referer': GAME_SERVER_URL,
+        'Accept': req.headers['accept'] || '*/*',
       },
     });
 
@@ -94,16 +95,96 @@ app.get('/game/:gameId/*', async (req, res) => {
       'Content-Type': contentType,
       'Access-Control-Allow-Origin': '*',
       'Cache-Control': 'public, max-age=3600', // Cache assets for 1 hour
+      'Access-Control-Allow-Headers': 'Content-Type',
     });
 
-    const content = await response.arrayBuffer();
-    res.send(Buffer.from(content));
+    // Handle different content types appropriately
+    if (contentType.includes('application/json') || contentType.includes('text/')) {
+      const content = await response.text();
+      res.send(content);
+    } else {
+      const content = await response.arrayBuffer();
+      res.send(Buffer.from(content));
+    }
     
   } catch (error) {
     console.error(`Error proxying asset ${assetPath}:`, error);
+    
+    // For missing JS/CSS files, return empty content to prevent breaking games
+    if (assetPath.endsWith('.js') || assetPath.endsWith('.css')) {
+      res.set({
+        'Content-Type': assetPath.endsWith('.js') ? 'text/javascript' : 'text/css',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'public, max-age=3600',
+      });
+      return assetPath.endsWith('.js') ? 
+        res.send('// Asset not found') : 
+        res.send('/* Asset not found */');
+    }
+    
     res.status(404).json({
       error: 'Asset not found',
       message: 'The requested game asset could not be found.',
+      path: assetPath
+    });
+  }
+});
+
+// Catch-all for other assets (like js/main.js, css files, etc.)
+app.get('/*', async (req, res) => {
+  const assetPath = req.path.substring(1); // Remove leading slash
+  
+  try {
+    const assetUrl = `${GAME_SERVER_URL}/${assetPath}`;
+    
+    const response = await fetch(assetUrl, {
+      headers: {
+        'User-Agent': req.headers['user-agent'] || 'Mozilla/5.0',
+        'Referer': GAME_SERVER_URL,
+        'Accept': req.headers['accept'] || '*/*',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const contentType = response.headers.get('content-type') || 'application/octet-stream';
+    
+    res.set({
+      'Content-Type': contentType,
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'public, max-age=3600',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    });
+
+    // Handle different content types appropriately
+    if (contentType.includes('application/json') || contentType.includes('text/')) {
+      const content = await response.text();
+      res.send(content);
+    } else {
+      const content = await response.arrayBuffer();
+      res.send(Buffer.from(content));
+    }
+    
+  } catch (error) {
+    console.error(`Error proxying asset ${assetPath}:`, error);
+    
+    // For missing JS/CSS files, return empty content to prevent breaking games
+    if (assetPath.endsWith('.js') || assetPath.endsWith('.css')) {
+      res.set({
+        'Content-Type': assetPath.endsWith('.js') ? 'text/javascript' : 'text/css',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'public, max-age=3600',
+      });
+      return assetPath.endsWith('.js') ? 
+        res.send('// Asset not found') : 
+        res.send('/* Asset not found */');
+    }
+    
+    res.status(404).json({
+      error: 'Asset not found',
+      message: 'The requested asset could not be found.',
       path: assetPath
     });
   }

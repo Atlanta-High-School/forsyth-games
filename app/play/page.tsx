@@ -2,18 +2,20 @@
 
 import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { ArrowLeft, Maximize2, RefreshCw, AlertTriangle } from 'lucide-react'
+import { ArrowLeft, Maximize2, RefreshCw, AlertTriangle, Gamepad2, Trophy, Star, Zap, Target, Shield, Sword } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ErrorBoundary from '@/components/ErrorBoundary'
+import gamesData from '@/config/games.json'
 
 function PlayPageContent() {
   const searchParams = useSearchParams()
   const gameUrl = searchParams.get('gameurl')
-  const [gameName, setGameName] = useState('')
+  const [gameData, setGameData] = useState<{ name: string; image: string; url: string; new: boolean } | null>(null)
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [retryCount, setRetryCount] = useState(0)
+  const [gameStarted, setGameStarted] = useState(false)
 
   const serverUrl = "https://forsyth-games.onrender.com/game"
 
@@ -24,9 +26,21 @@ function PlayPageContent() {
       return
     }
 
-    // Extract game name from URL for display
-    const nameFromUrl = gameUrl.replace('/', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
-    setGameName(nameFromUrl)
+    // Find game data from games.json
+    const cleanGameUrl = gameUrl.replace('/', '')
+    const game = gamesData.find(g => g.url === cleanGameUrl)
+    
+    if (game) {
+      setGameData(game)
+    } else {
+      // Fallback to URL-based name if not found in games.json
+      setGameData({
+        name: gameUrl.replace('/', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        image: 'logo.png',
+        url: cleanGameUrl,
+        new: false
+      })
+    }
   }, [gameUrl])
 
   const handleFullscreen = () => {
@@ -44,6 +58,7 @@ function PlayPageContent() {
     setRetryCount(prev => prev + 1)
     setError('')
     setIsLoading(true)
+    setGameStarted(false)
     
     const iframe = document.getElementById('gameFrame') as HTMLIFrameElement
     if (iframe) {
@@ -57,16 +72,89 @@ function PlayPageContent() {
   const handleIframeLoad = () => {
     setIsLoading(false)
     setError('')
+    setGameStarted(true)
   }
 
   const handleIframeError = () => {
     setIsLoading(false)
+    setGameStarted(false)
     if (retryCount < 2) {
       setError('Game is loading slowly. Click retry to try again.')
     } else {
       setError('This game may be temporarily unavailable. Please try again later or choose a different game.')
     }
   }
+
+  // Get game theme based on game name or category
+  const getGameTheme = (gameName: string) => {
+    const name = gameName.toLowerCase()
+    
+    if (name.includes('2048') || name.includes('puzzle') || name.includes('sudoku')) {
+      return {
+        primary: 'from-purple-600 to-blue-600',
+        secondary: 'bg-purple-500/20',
+        accent: 'text-purple-400',
+        icon: Target,
+        category: 'Puzzle'
+      }
+    }
+    if (name.includes('1v1') || name.includes('shooter') || name.includes('battle')) {
+      return {
+        primary: 'from-red-600 to-orange-600',
+        secondary: 'bg-red-500/20',
+        accent: 'text-red-400',
+        icon: Sword,
+        category: 'Action'
+      }
+    }
+    if (name.includes('racing') || name.includes('drive') || name.includes('car')) {
+      return {
+        primary: 'from-green-600 to-teal-600',
+        secondary: 'bg-green-500/20',
+        accent: 'text-green-400',
+        icon: Zap,
+        category: 'Racing'
+      }
+    }
+    if (name.includes('minecraft') || name.includes('craft') || name.includes('build')) {
+      return {
+        primary: 'from-emerald-600 to-green-600',
+        secondary: 'bg-emerald-500/20',
+        accent: 'text-emerald-400',
+        icon: Shield,
+        category: 'Building'
+      }
+    }
+    
+    return {
+      primary: 'from-blue-600 to-purple-600',
+      secondary: 'bg-blue-500/20',
+      accent: 'text-blue-400',
+      icon: Gamepad2,
+      category: 'Arcade'
+    }
+  }
+
+  if (!gameData) {
+    return (
+      <div className="min-h-screen bg-dark-gradient">
+        <Navbar />
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <div className="bg-blue-500/20 border border-blue-500/50 rounded-lg p-8 max-w-md mx-auto">
+              <Gamepad2 className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+              <h2 className="text-blue-400 text-2xl font-bold mb-4">Loading Game...</h2>
+              <p className="text-white mb-6">Preparing your game experience</p>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    )
+  }
+
+  const theme = getGameTheme(gameData.name)
+  const GameIcon = theme.icon
 
   if (error && !gameUrl) {
     return (
@@ -97,51 +185,73 @@ function PlayPageContent() {
       <Navbar />
       
       <main className="container mx-auto px-4 py-6">
-        {/* Game Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <a 
-              href="/"
-              className="inline-flex items-center space-x-2 text-textSecondary hover:text-white transition-colors"
-            >
-              <ArrowLeft size={20} />
-              <span>Back to Games</span>
-            </a>
-            <div className="h-6 w-px bg-surfaceHover"></div>
-            <h1 className="text-xl font-semibold text-white">
-              {gameName || 'Loading Game...'}
-            </h1>
-          </div>
-          
-          <div className="flex items-center space-x-3">
-            <button
-              onClick={handleRetry}
-              className="inline-flex items-center space-x-2 bg-surface hover:bg-surfaceHover text-white px-4 py-2 rounded-lg transition-colors"
-            >
-              <RefreshCw size={18} className={retryCount > 0 ? 'animate-spin' : ''} />
-              <span>Retry</span>
-            </button>
-            <button
-              onClick={handleFullscreen}
-              className="inline-flex items-center space-x-2 bg-surface hover:bg-surfaceHover text-white px-4 py-2 rounded-lg transition-colors"
-            >
-              <Maximize2 size={18} />
-              <span>Fullscreen</span>
-            </button>
+        {/* Game Header with Theme */}
+        <div className={`bg-gradient-to-r ${theme.primary} rounded-xl p-6 mb-6 shadow-xl`}>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <a 
+                href="/"
+                className="inline-flex items-center space-x-2 text-white/80 hover:text-white transition-colors"
+              >
+                <ArrowLeft size={20} />
+                <span>Back to Games</span>
+              </a>
+              <div className="h-6 w-px bg-white/20"></div>
+              <div className="flex items-center space-x-3">
+                <div className="bg-white/20 p-2 rounded-lg">
+                  <GameIcon className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-white">
+                    {gameData.name}
+                  </h1>
+                  <div className="flex items-center space-x-2 text-white/80 text-sm">
+                    <span className={`px-2 py-1 rounded-full ${theme.secondary} ${theme.accent} text-xs font-medium`}>
+                      {theme.category}
+                    </span>
+                    {gameData.new && (
+                      <span className="px-2 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-medium">
+                        NEW
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={handleRetry}
+                className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all backdrop-blur-sm"
+              >
+                <RefreshCw size={18} className={retryCount > 0 ? 'animate-spin' : ''} />
+                <span>Retry</span>
+              </button>
+              <button
+                onClick={handleFullscreen}
+                className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all backdrop-blur-sm"
+              >
+                <Maximize2 size={18} />
+                <span>Fullscreen</span>
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Game Frame Container */}
-        <div className="bg-surface rounded-xl overflow-hidden border border-surfaceHover shadow-card relative">
+        <div className={`${theme.secondary} rounded-xl overflow-hidden border border-white/10 shadow-2xl relative backdrop-blur-sm`}>
           {/* Loading Overlay */}
           {isLoading && (
             <div className="absolute inset-0 bg-surface/95 backdrop-blur-sm flex items-center justify-center z-10">
               <div className="text-center">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-accent mb-4"></div>
-                <p className="text-white text-lg">Loading Game...</p>
-                <p className="text-textSecondary text-sm mt-2">
-                  {retryCount > 0 ? `Attempt ${retryCount + 1} of 3` : 'This may take a few moments'}
+                <div className={`inline-block animate-spin rounded-full h-12 w-12 border-b-2 ${theme.accent.replace('text', 'border')} mb-4`}></div>
+                <p className="text-white text-lg font-semibold">Loading {gameData.name}...</p>
+                <p className="text-white/70 text-sm mt-2">
+                  {retryCount > 0 ? `Attempt ${retryCount + 1} of 3` : 'Preparing your game experience'}
                 </p>
+                <div className="flex justify-center space-x-2 mt-4">
+                  <GameIcon className={`w-8 h-8 ${theme.accent} animate-pulse`} />
+                </div>
               </div>
             </div>
           )}
@@ -152,11 +262,11 @@ function PlayPageContent() {
               <div className="text-center max-w-md mx-auto p-6">
                 <AlertTriangle className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
                 <h3 className="text-white text-xl font-semibold mb-2">Game Loading Issue</h3>
-                <p className="text-textSecondary mb-6">{error}</p>
+                <p className="text-white/70 mb-6">{error}</p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <button
                     onClick={handleRetry}
-                    className="inline-flex items-center space-x-2 bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg transition-colors"
+                    className={`inline-flex items-center space-x-2 bg-gradient-to-r ${theme.primary} hover:opacity-90 text-white px-6 py-3 rounded-lg transition-all`}
                   >
                     <RefreshCw size={18} />
                     <span>Try Again</span>
@@ -178,7 +288,7 @@ function PlayPageContent() {
             id="gameFrame"
             src={gameUrl ? `${serverUrl}/${gameUrl}` : ''}
             className="w-full h-[calc(100vh-200px)] min-h-[600px] border-0"
-            title={gameName}
+            title={gameData.name}
             allowFullScreen
             onLoad={handleIframeLoad}
             onError={handleIframeError}
@@ -187,25 +297,54 @@ function PlayPageContent() {
           />
         </div>
 
-        {/* Game Instructions */}
-        <div className="mt-6 bg-surface/80 backdrop-blur-sm rounded-xl p-6 border border-surfaceHover">
-          <h2 className="text-lg font-semibold text-white mb-3">How to Play</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Game Instructions with Theme */}
+        <div className={`${theme.secondary} rounded-xl p-6 border border-white/10 backdrop-blur-sm`}>
+          <div className="flex items-center space-x-3 mb-4">
+            <div className={`p-2 rounded-lg bg-gradient-to-r ${theme.primary}`}>
+              <GameIcon className="w-6 h-6 text-white" />
+            </div>
+            <h2 className="text-xl font-semibold text-white">How to Play {gameData.name}</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <h3 className="text-accent font-medium mb-2">🎮 Controls</h3>
-              <ul className="text-textSecondary space-y-1 text-sm">
-                <li>• Use mouse and keyboard to play</li>
-                <li>• Click fullscreen for better experience</li>
-                <li>• Some games require specific controls</li>
+              <h3 className={`${theme.accent} font-medium mb-2 flex items-center space-x-2`}>
+                <Gamepad2 size={16} />
+                <span>Controls</span>
+              </h3>
+              <ul className="text-white/70 space-y-1 text-sm">
+                <li>• Use mouse and keyboard</li>
+                <li>• Click fullscreen for better view</li>
+                <li>• Game-specific controls vary</li>
               </ul>
             </div>
             <div>
-              <h3 className="text-accent font-medium mb-2">💡 Tips</h3>
-              <ul className="text-textSecondary space-y-1 text-sm">
-                <li>• Games may take time to load</li>
-                <li>• Try refresh if game doesn&apos;t start</li>
-                <li>• Some games need internet connection</li>
+              <h3 className={`${theme.accent} font-medium mb-2 flex items-center space-x-2`}>
+                <Trophy size={16} />
+                <span>Tips</span>
+              </h3>
+              <ul className="text-white/70 space-y-1 text-sm">
+                <li>• Games may need time to load</li>
+                <li>• Try refresh if stuck</li>
+                <li>• Check instructions in-game</li>
               </ul>
+            </div>
+            <div>
+              <h3 className={`${theme.accent} font-medium mb-2 flex items-center space-x-2`}>
+                <Star size={16} />
+                <span>Category</span>
+              </h3>
+              <div className="space-y-2">
+                <span className={`inline-block px-3 py-1 rounded-full ${theme.secondary} ${theme.accent} text-sm font-medium`}>
+                  {theme.category}
+                </span>
+                {gameStarted && (
+                  <div className="flex items-center space-x-2 text-green-400 text-sm">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <span>Game Running</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           
