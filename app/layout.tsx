@@ -225,7 +225,7 @@ export default function RootLayout({
                   "@type": "ItemList",
                   "name": "Educational Games Collection",
                   "description": "Collection of 255+ curriculum-aligned educational games for K-12 students",
-                  "numberOfItems": 254,
+                  "numberOfItems": 204,
                   "itemListElement": [
                     {
                       "@type": "Game",

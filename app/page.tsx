@@ -140,7 +140,7 @@ export default function Home() {
         {isSearchActive && (
           <SearchIsland 
             onSearch={handleSearch}
-            placeholder="Search 254+ educational games..."
+            placeholder="Search 204+ educational games..."
           />
         )}
       </AnimatePresence>

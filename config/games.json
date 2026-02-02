@@ -12,12 +12,6 @@
     "new": false
   },
   {
-    "name": "1v1space",
-    "image": "splash.png",
-    "url": "1v1space",
-    "new": false
-  },
-  {
     "name": "2048",
     "image": "2048.png",
     "url": "2048",
@@ -45,24 +39,6 @@
     "name": "Achievement Unlocked",
     "image": "achievementunlocked.png",
     "url": "achievementunlocked",
-    "new": false
-  },
-  {
-    "name": "Adrenaline Challenge",
-    "image": "adrenalinechallenge.jpg",
-    "url": "adrenalinechallenge",
-    "new": false
-  },
-  {
-    "name": "Adventure Drivers",
-    "image": "splash.png",
-    "url": "adventure-drivers",
-    "new": false
-  },
-  {
-    "name": "Ages of Conflict",
-    "image": "splash.jpg",
-    "url": "ages-of-conflict",
     "new": false
   },
   {
@@ -150,12 +126,6 @@
     "new": false
   },
   {
-    "name": "Ballistic Chickens",
-    "image": "logo.png",
-    "url": "ballistic-chickens",
-    "new": false
-  },
-  {
     "name": "Basket Random",
     "image": "splash.jpeg",
     "url": "basket-random",
@@ -168,27 +138,9 @@
     "new": false
   },
   {
-    "name": "Basketbros.io",
-    "image": "thumb.jpg",
-    "url": "basketbros-io",
-    "new": false
-  },
-  {
-    "name": "Battle for Gondor",
-    "image": "battleforgondor.JPG",
-    "url": "battleforgondor",
-    "new": false
-  },
-  {
     "name": "BitLife",
     "image": "splash.png",
     "url": "bitlife",
-    "new": false
-  },
-  {
-    "name": "Black Knight",
-    "image": "blackknight.png",
-    "url": "blackknight",
     "new": false
   },
   {
@@ -207,12 +159,6 @@
     "name": "Bob the Robber 2",
     "image": "splash.jpeg",
     "url": "bobtherobber2",
-    "new": false
-  },
-  {
-    "name": "Boxhead 2 Play",
-    "image": "boxhead2play.jpg",
-    "url": "boxhead2play",
     "new": false
   },
   {
@@ -258,12 +204,6 @@
     "new": false
   },
   {
-    "name": "Champion Archer",
-    "image": "championarcher.png",
-    "url": "championarcher",
-    "new": false
-  },
-  {
     "name": "Champion Island",
     "image": "splash.png",
     "url": "champion-island",
@@ -291,18 +231,6 @@
     "name": "Cookie Clicker",
     "image": "cookie1.jpeg",
     "url": "cookie-clicker",
-    "new": false
-  },
-  {
-    "name": "Core Ball",
-    "image": "pr_source.png",
-    "url": "core-ball",
-    "new": false
-  },
-  {
-    "name": "Craftmine",
-    "image": "images/animal-sheet0.png",
-    "url": "craftmine",
     "new": false
   },
   {
@@ -372,12 +300,6 @@
     "new": false
   },
   {
-    "name": "Draw the Hill",
-    "image": "icons/icon-512.png",
-    "url": "draw-the-hill",
-    "new": false
-  },
-  {
     "name": "Drift Boss",
     "image": "logo.png",
     "url": "drift-boss",
@@ -438,33 +360,9 @@
     "new": false
   },
   {
-    "name": "Evolution",
-    "image": "splash.png",
-    "url": "evolution",
-    "new": false
-  },
-  {
-    "name": "Factory Balls",
-    "image": "images/splash.png",
-    "url": "factoryballs",
-    "new": false
-  },
-  {
-    "name": "Fancy Pants Adventures",
-    "image": "fancypantsadventure.png",
-    "url": "fancypantsadventures",
-    "new": false
-  },
-  {
     "name": "Fireboy and Watergirl: Forest Temple",
     "image": "logo.jpeg",
     "url": "fireboywatergirlforesttemple",
-    "new": false
-  },
-  {
-    "name": "Five Nights at Wario's (FNAW)",
-    "image": "splash.png",
-    "url": "fnaw",
     "new": false
   },
   {
@@ -483,12 +381,6 @@
     "name": "Flippy Fish",
     "image": "2022_10_28_0jt_Kleki.png",
     "url": "flippy-fish",
-    "new": false
-  },
-  {
-    "name": "Friday Night Funkin'",
-    "image": "fnf-icon.jpg",
-    "url": "fridaynightfunkin",
     "new": false
   },
   {
@@ -549,18 +441,6 @@
     "name": "Gimme the Airpod",
     "image": "img/logo.png",
     "url": "gimme-the-airpod",
-    "new": false
-  },
-  {
-    "name": "Glass City",
-    "image": "image.png",
-    "url": "glass-city",
-    "new": false
-  },
-  {
-    "name": "Go Ball",
-    "image": "game.jpg",
-    "url": "go-ball",
     "new": false
   },
   {
@@ -654,24 +534,6 @@
     "new": false
   },
   {
-    "name": "Idle Breakout",
-    "image": "img/thumbnail.png",
-    "url": "idle-breakout",
-    "new": false
-  },
-  {
-    "name": "Idle Shark",
-    "image": "img/sharkgame.png",
-    "url": "idle-shark",
-    "new": false
-  },
-  {
-    "name": "Impossible Quiz",
-    "image": "impossiblequiz.png",
-    "url": "impossiblequiz",
-    "new": false
-  },
-  {
     "name": "Interactive Buddy",
     "image": "interactivebuddy.jpg",
     "url": "interactivebuddy",
@@ -681,12 +543,6 @@
     "name": "Jetpack Joyride",
     "image": "splash.jpg",
     "url": "jetpack-joyride",
-    "new": false
-  },
-  {
-    "name": "Just Fall",
-    "image": "unnamed.png",
-    "url": "just-fall",
     "new": false
   },
   {
@@ -717,12 +573,6 @@
     "name": "Krunker",
     "image": "img/krunker-io.jpg",
     "url": "krunker",
-    "new": false
-  },
-  {
-    "name": "Learn to Fly",
-    "image": "learntofly.png",
-    "url": "learntofly",
     "new": false
   },
   {
@@ -780,18 +630,6 @@
     "new": false
   },
   {
-    "name": "Minecraft Beta",
-    "image": "bg_main.png",
-    "url": "minecraftbeta",
-    "new": false
-  },
-  {
-    "name": "Minecraft Classic",
-    "image": "pack.png",
-    "url": "minecraft-classic",
-    "new": false
-  },
-  {
     "name": "Minesweeper",
     "image": "img/minesweeper.png",
     "url": "minesweeper",
@@ -825,12 +663,6 @@
     "name": "Moto X3M Pool",
     "image": "splash.jpg",
     "url": "motox3m-pool",
-    "new": false
-  },
-  {
-    "name": "Moto X3M Spooky",
-    "image": "splash.jpeg",
-    "url": "motox3m-spooky",
     "new": false
   },
   {
@@ -924,12 +756,6 @@
     "new": false
   },
   {
-    "name": "Papery Planes",
-    "image": "splash.jpg",
-    "url": "papery-planes",
-    "new": false
-  },
-  {
     "name": "Particle Clicker",
     "image": "assets/pc32@2x.png",
     "url": "particle-clicker",
@@ -984,12 +810,6 @@
     "new": false
   },
   {
-    "name": "Rabbit Samurai",
-    "image": "splash.png",
-    "url": "rabbit-samurai",
-    "new": false
-  },
-  {
     "name": "Rabbit Samurai 2",
     "image": "splash.png",
     "url": "rabbit-samurai2",
@@ -1011,12 +831,6 @@
     "name": "Riddle School",
     "image": "riddleschool.png",
     "url": "riddleschool",
-    "new": false
-  },
-  {
-    "name": "Riddle Transfer",
-    "image": "riddletransfer.png",
-    "url": "riddletransfer",
     "new": false
   },
   {
@@ -1056,18 +870,6 @@
     "new": false
   },
   {
-    "name": "Sandboxels",
-    "image": "sandboxels.jpg",
-    "url": "sandboxels",
-    "new": false
-  },
-  {
-    "name": "Santy is Home",
-    "image": "splash.png",
-    "url": "santy-is-home",
-    "new": false
-  },
-  {
     "name": "Scrap Metal",
     "image": "img/splash.png",
     "url": "scrapmetal",
@@ -1083,12 +885,6 @@
     "name": "Shot in the Dark",
     "image": "shot.png",
     "url": "shotinthedark",
-    "new": false
-  },
-  {
-    "name": "Shuttle Deck",
-    "image": "splash.png",
-    "url": "shuttledeck",
     "new": false
   },
   {
@@ -1146,12 +942,6 @@
     "new": false
   },
   {
-    "name": "Snow Battle",
-    "image": "img/logo.png",
-    "url": "snowbattle",
-    "new": false
-  },
-  {
     "name": "Soccer Random",
     "image": "splash.png",
     "url": "soccer-random",
@@ -1167,12 +957,6 @@
     "name": "Soldier Legend",
     "image": "images/logo.jpg",
     "url": "soldier-legend",
-    "new": false
-  },
-  {
-    "name": "Solitaire",
-    "image": "img/hover.jpg",
-    "url": "solitaire",
     "new": false
   },
   {
@@ -1212,12 +996,6 @@
     "new": false
   },
   {
-    "name": "Starve",
-    "image": "img/favicon.png",
-    "url": "starve",
-    "new": false
-  },
-  {
     "name": "Station 141",
     "image": "75wxYs.png",
     "url": "station-141",
@@ -1239,18 +1017,6 @@
     "name": "Stick Duel Battle",
     "image": "512x512.jpg",
     "url": "stick-duel-battle",
-    "new": false
-  },
-  {
-    "name": "Stick War",
-    "image": "stickwar.jpg",
-    "url": "stickwar",
-    "new": false
-  },
-  {
-    "name": "Stickman Boost",
-    "image": "icon-256.png",
-    "url": "stickman-boost",
     "new": false
   },
   {
@@ -1284,12 +1050,6 @@
     "new": false
   },
   {
-    "name": "Subway Surfers NY",
-    "image": "NewYorkIcon.png",
-    "url": "subway-surfers-ny",
-    "new": false
-  },
-  {
     "name": "Super Mario Construct",
     "image": "icons/icon-256.png",
     "url": "supermarioconstruct",
@@ -1314,24 +1074,6 @@
     "new": false
   },
   {
-    "name": "Swerve",
-    "image": "img/favicon.jpg",
-    "url": "swerve",
-    "new": false
-  },
-  {
-    "name": "Synesthesia",
-    "image": "index.splash.png",
-    "url": "synesthesia",
-    "new": false
-  },
-  {
-    "name": "Tactical Assassin 2",
-    "image": "tacticalassassin2.png",
-    "url": "tacticalassasin2",
-    "new": false
-  },
-  {
     "name": "Tactical Weapon Pack 2",
     "image": "splash.jpg",
     "url": "tactical-weapon-pack-2",
@@ -1344,21 +1086,9 @@
     "new": false
   },
   {
-    "name": "Tanuki Sunset",
-    "image": "img/logo.png",
-    "url": "tanuki-sunset",
-    "new": false
-  },
-  {
     "name": "Temple Run 2",
     "image": "img/temple-run-2-256.png",
     "url": "temple-run-2",
-    "new": false
-  },
-  {
-    "name": "The Battle",
-    "image": "thebattle.png",
-    "url": "thebattle",
     "new": false
   },
   {
@@ -1374,12 +1104,6 @@
     "new": false
   },
   {
-    "name": "The Hotel",
-    "image": "splash.png",
-    "url": "the-hotel",
-    "new": false
-  },
-  {
     "name": "There Is No Game",
     "image": "logo.png",
     "url": "there-is-no-game",
@@ -1392,12 +1116,6 @@
     "new": false
   },
   {
-    "name": "Tiny Fishing",
-    "image": "tiny-fishing.png",
-    "url": "tiny-fishing",
-    "new": false
-  },
-  {
     "name": "Tiny Islands",
     "image": "splash.png",
     "url": "tiny-islands",
@@ -1407,12 +1125,6 @@
     "name": "Toss the Turtle",
     "image": "tosstheturtle.png",
     "url": "tosstheturtle",
-    "new": false
-  },
-  {
-    "name": "Townscaper",
-    "image": "img/cover.jpg",
-    "url": "townscaper",
     "new": false
   },
   {
@@ -1479,18 +1191,6 @@
     "name": "WebRetro",
     "image": "assets/icons/iconm256.png",
     "url": "webretro",
-    "new": false
-  },
-  {
-    "name": "Win the White House",
-    "image": "splash.png",
-    "url": "win-the-whitehouse",
-    "new": false
-  },
-  {
-    "name": "Wolf 3D",
-    "image": "art/wolf3d.png",
-    "url": "wolf3d",
     "new": false
   },
   {
