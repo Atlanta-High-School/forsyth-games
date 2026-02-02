@@ -8,6 +8,7 @@ import BentoGameCard from '@/components/BentoGameCard'
 import SearchIsland from '@/components/SearchIsland'
 import Footer from '@/components/Footer'
 import Settings from '@/components/Settings'
+import GameSuggestionForm from '@/components/GameSuggestionForm'
 
 // Lazy load FloatingNavigation to improve initial load performance
 const FloatingNavigation = lazy(() => import('@/components/FloatingNavigation'))
@@ -31,6 +32,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearchActive, setIsSearchActive] = useState(false)
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+  const [isSuggestionFormOpen, setIsSuggestionFormOpen] = useState(false)
   const [displayLimit, setDisplayLimit] = useState(20)
 
   // Scroll to top on component mount
@@ -174,6 +176,9 @@ export default function Home() {
       {/* Settings Modal */}
       <Settings isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
       
+      {/* Game Suggestion Form */}
+      <GameSuggestionForm isOpen={isSuggestionFormOpen} onClose={() => setIsSuggestionFormOpen(false)} />
+      
       {/* Search Island - Only show when search is active */}
       <AnimatePresence>
         {isSearchActive && (
@@ -233,15 +238,13 @@ export default function Home() {
                 Explore our curated collection of {filteredGames.length} educational games designed to enhance learning, critical thinking, and problem-solving skills
               </p>
               
-              {/* Want More Games Link */}
+              {/* Want More Games Button */}
               <div className="mt-6">
-                <a
-                  href="https://forms.google.com/your-form-link-here"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => setIsSuggestionFormOpen(true)}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-premium border border-neon-blue/30 hover:border-neon-blue/60 text-text-primary hover:text-neon-blue transition-all duration-300 hover:scale-105 group"
                 >
-                  <span className="text-sm font-medium">Want more games? Suggest here:</span>
+                  <span className="text-sm font-medium">Want more games? Suggest here</span>
                   <svg 
                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
                     fill="none" 
@@ -250,7 +253,7 @@ export default function Home() {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                </a>
+                </button>
               </div>
             </div>
 
