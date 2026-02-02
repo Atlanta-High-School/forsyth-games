@@ -204,12 +204,13 @@ export default function Home() {
                   <div className="w-16 h-16 mx-auto border-4 border-neon-blue/30 border-t-transparent rounded-full animate-spin"></div>
                 </div>
               ) : (
-                // Stable grid with fixed aspect ratios
-                filteredGames.slice(0, 20).map((game) => (
+                // Stable grid with fixed aspect ratios, prioritize first 6 games
+                filteredGames.slice(0, 20).map((game, index) => (
                   <div key={game.url} className="aspect-ratio-1-1">
                     <BentoGameCard
                       game={game}
                       size="medium"
+                      priority={index < 6}
                     />
                   </div>
                 ))
