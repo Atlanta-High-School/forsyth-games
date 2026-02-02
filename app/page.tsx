@@ -1,11 +1,9 @@
 'use client'
 
 import { useState, useEffect, lazy, Suspense } from 'react'
-import { AnimatePresence } from 'framer-motion'
 import HeroSection from '@/components/HeroSection'
 import CategoryPills from '@/components/CategoryPills'
 import BentoGameCard from '@/components/BentoGameCard'
-import SearchIsland from '@/components/SearchIsland'
 import Footer from '@/components/Footer'
 
 // Lazy load FloatingNavigation to improve initial load performance
@@ -28,7 +26,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
-  const [isSearchActive, setIsSearchActive] = useState(false)
   const [displayLimit, setDisplayLimit] = useState(20)
 
   // Scroll to top on component mount
@@ -149,9 +146,6 @@ export default function Home() {
     setSearchQuery(query)
   }
 
-  const handleSearchToggle = () => {
-    setIsSearchActive(!isSearchActive)
-  }
 
   const handleLoadMore = () => {
     setDisplayLimit(prev => Math.min(prev + 20, filteredGames.length))
@@ -171,22 +165,19 @@ export default function Home() {
       {/* Fixed navigation height */}
       <div className="nav-reserve">
         <Suspense fallback={<div className="h-20" />}>
-          <FloatingNavigation 
-            onSearchToggle={handleSearchToggle}
-            isSearchActive={isSearchActive}
-          />
+          <FloatingNavigation />
         </Suspense>
       </div>
       
-      {/* Search Island - Only show when search is active */}
-      <AnimatePresence>
+      {/* Search Island - Can be toggled if needed in the future */}
+      {/* <AnimatePresence>
         {isSearchActive && (
           <SearchIsland 
             onSearch={handleSearch}
             placeholder="Search 204+ educational games..."
           />
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
       
       {/* Main Content with stable layout */}
       <div className="relative">

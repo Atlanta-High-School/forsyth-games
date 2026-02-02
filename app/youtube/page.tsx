@@ -30,7 +30,6 @@ export default function YouTubePage() {
   const [videoTitle, setVideoTitle] = useState<string>('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [isSearchActive, setIsSearchActive] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
   const [mounted, setMounted] = useState(false)
@@ -231,10 +230,7 @@ export default function YouTubePage() {
         )}
       </div>
 
-      <FloatingNavigation 
-        onSearchToggle={() => setIsSearchActive(!isSearchActive)}
-        isSearchActive={isSearchActive}
-      />
+      <FloatingNavigation />
 
       {/* Main Content */}
       <main className="relative z-10 container mx-auto px-6 py-24 min-h-screen flex flex-col items-center justify-center">

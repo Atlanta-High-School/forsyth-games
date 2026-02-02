@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useRouter, usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Home, TrendingUp, Youtube, Search, X, Menu, Settings } from 'lucide-react'
+import { Home, TrendingUp, Youtube, MessageCircle, X, Menu, Settings } from 'lucide-react'
 import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import { startTransition } from 'react'
 
@@ -15,12 +15,8 @@ interface NavigationItem {
   href: string
 }
 
-interface FloatingNavigationProps {
-  onSearchToggle: () => void
-  isSearchActive: boolean
-}
 
-export default function FloatingNavigation({ onSearchToggle, isSearchActive }: FloatingNavigationProps) {
+export default function FloatingNavigation() {
   const router = useRouter()
   const pathname = usePathname()
   const [isVisible, setIsVisible] = useState(true)
@@ -33,7 +29,7 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
     { id: 'home', label: 'Home', icon: Home, href: '#home' },
     { id: 'trending', label: 'Trending', icon: TrendingUp, href: '#trending' },
     { id: 'youtube', label: 'YouTube', icon: Youtube, href: '/youtube' },
-    { id: 'search', label: 'Search', icon: Search, href: '#search' },
+    { id: 'chat', label: 'Chat', icon: MessageCircle, href: 'https://forsyth-chats.vercel.app/' },
     { id: 'settings', label: 'Settings', icon: Settings, href: '/settings' },
   ]
 
@@ -77,8 +73,9 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
   }, [lastScrollY])
 
   const handleNavClick = (itemId: string, href: string) => {
-    if (itemId === 'search') {
-      onSearchToggle()
+    if (itemId === 'chat') {
+      // Open chat in new tab
+      window.open(href, '_blank', 'noopener,noreferrer')
     } else if (itemId === 'settings' || itemId === 'youtube') {
       // Navigate to Settings or YouTube page using Next.js router
       setActiveItem(itemId)
@@ -144,9 +141,7 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
                       key={item.id}
                       onClick={() => handleNavClick(item.id, item.href)}
                       className={`group relative p-2.5 rounded-xl transition-all duration-300 ${
-                        item.id === 'search' && isSearchActive
-                          ? 'bg-neon-blue/20 border border-neon-blue/50 shadow-neon'
-                          : item.id === 'search' && !isSearchActive
+                        item.id === 'chat'
                           ? 'hover:bg-surfaceHover/50 border border-transparent'
                           : activeItem === item.id
                           ? 'bg-neon-blue/20 border border-neon-blue/50 shadow-neon'
@@ -160,9 +155,7 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
                     >
                       <item.icon 
                         className={`w-5 h-5 transition-colors duration-300 ${
-                          item.id === 'search' && isSearchActive
-                          ? 'text-neon-blue'
-                          : item.id === 'search' && !isSearchActive
+                          item.id === 'chat'
                           ? 'text-text-secondary group-hover:text-text-primary'
                           : activeItem === item.id
                           ? 'text-neon-blue'
@@ -285,9 +278,7 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
                           key={item.id}
                           onClick={() => handleNavClick(item.id, item.href)}
                           className={`w-full flex items-center gap-3 p-3 rounded-lg transition-all duration-300 ${
-                            item.id === 'search' && isSearchActive
-                            ? 'bg-neon-blue/20 border border-neon-blue/50'
-                            : item.id === 'search' && !isSearchActive
+                            item.id === 'chat'
                             ? 'hover:bg-surfaceHover/50 border border-transparent'
                             : activeItem === item.id
                             ? 'bg-neon-blue/20 border border-neon-blue/50'
@@ -301,9 +292,7 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
                         >
                           <item.icon 
                             className={`w-5 h-5 ${
-                              item.id === 'search' && isSearchActive
-                              ? 'text-neon-blue'
-                              : item.id === 'search' && !isSearchActive
+                              item.id === 'chat'
                               ? 'text-text-secondary'
                               : activeItem === item.id
                               ? 'text-neon-blue'
@@ -311,9 +300,7 @@ export default function FloatingNavigation({ onSearchToggle, isSearchActive }: F
                               }`} 
                           />
                           <span className={`text-sm font-medium ${
-                            item.id === 'search' && isSearchActive
-                            ? 'text-neon-blue'
-                            : item.id === 'search' && !isSearchActive
+                            item.id === 'chat'
                             ? 'text-text-primary'
                             : activeItem === item.id
                             ? 'text-neon-blue'

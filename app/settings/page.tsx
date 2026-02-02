@@ -37,7 +37,6 @@ type FormStatus = 'idle' | 'sending' | 'success' | 'error'
 export default function SettingsPage() {
   const [selectedTab, setSelectedTab] = useState<string>('classlink')
   const [isAnimating, setIsAnimating] = useState(false)
-  const [isSearchActive, setIsSearchActive] = useState(false)
   
   // Game suggestion form state
   const [status, setStatus] = useState<FormStatus>('idle')
@@ -183,10 +182,7 @@ export default function SettingsPage() {
       <div className="aurora-light aurora-2 hidden lg:block" />
       <div className="aurora-light aurora-3 hidden xl:block" />
       
-      <FloatingNavigation 
-        onSearchToggle={() => setIsSearchActive(!isSearchActive)}
-        isSearchActive={isSearchActive}
-      />
+      <FloatingNavigation />
 
       {/* Main Content */}
       <div className="container mx-auto px-6 py-24 min-h-screen">
