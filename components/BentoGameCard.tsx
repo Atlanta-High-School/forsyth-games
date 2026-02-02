@@ -62,7 +62,7 @@ export default function BentoGameCard({ game, size, priority = false }: BentoGam
 
   return (
     <div
-      className={`${sizeClasses[size]} ${heightClasses[size]} relative group cursor-pointer game-card opacity-0 transition-opacity duration-300`}
+      className={`${sizeClasses[size]} ${heightClasses[size]} relative group cursor-pointer game-card`}
     >
       {/* Optimized Glass Card */}
       <div 
