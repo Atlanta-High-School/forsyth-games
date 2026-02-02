@@ -21,7 +21,13 @@ export async function GET() {
       )
     }
     
-    return NextResponse.json(games, {
+    // Prioritize specific games at the top
+    const priorityGames = ['Geometry Dash', 'Duck Life 1', 'Duck Life 2', 'Duck Life 3', 'Duck Life 4']
+    const prioritized = games.filter((game: any) => priorityGames.includes(game.name))
+    const rest = games.filter((game: any) => !priorityGames.includes(game.name))
+    const sortedGames = [...prioritized, ...rest]
+    
+    return NextResponse.json(sortedGames, {
       headers: {
         'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
         'Access-Control-Allow-Origin': '*',
