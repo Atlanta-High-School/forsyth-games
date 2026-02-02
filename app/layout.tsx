@@ -159,8 +159,8 @@ export default function RootLayout({
           <link rel="apple-touch-icon" href="/classlink-logo.png" />
           <link rel="manifest" href="/site.webmanifest" />
           <meta name="theme-color" content="#000000" />
-          <meta name="application-name" content="Forsyth Games" />
-          <meta name="apple-mobile-web-app-title" content="Forsyth Games" />
+          <meta name="application-name" content="FCS | Classlink" />
+          <meta name="apple-mobile-web-app-title" content="FCS | Classlink" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
           <meta name="mobile-web-app-capable" content="yes" />

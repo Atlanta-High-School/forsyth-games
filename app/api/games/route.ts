@@ -21,10 +21,19 @@ export async function GET() {
       )
     }
     
-    // Prioritize specific games at the top
+    // Prioritize specific games at the top - optimized single-pass
     const priorityGames = ['Geometry Dash', 'Duck Life 1', 'Duck Life 2', 'Duck Life 3', 'Duck Life 4']
-    const prioritized = games.filter((game: any) => priorityGames.includes(game.name))
-    const rest = games.filter((game: any) => !priorityGames.includes(game.name))
+    const prioritized: any[] = []
+    const rest: any[] = []
+    
+    games.forEach((game: any) => {
+      if (priorityGames.includes(game.name)) {
+        prioritized.push(game)
+      } else {
+        rest.push(game)
+      }
+    })
+    
     const sortedGames = [...prioritized, ...rest]
     
     return NextResponse.json(sortedGames, {

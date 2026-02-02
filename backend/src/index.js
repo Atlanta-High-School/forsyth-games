@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 3001;
 const GAME_SERVER_URL = 'https://gms.parcoil.com';
 
 // Middleware
+// NOTE: frameguard is disabled to allow game embedding in iframes from any domain
+// This is required for the game proxy functionality but could expose to clickjacking
+// Consider implementing domain whitelisting if this becomes a security concern
 app.use(helmet({
   contentSecurityPolicy: false, // Disable CSP for iframe content
   frameguard: false, // Disable X-Frame-Options to allow iframe embedding
