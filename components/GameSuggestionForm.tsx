@@ -14,13 +14,17 @@ type FormStatus = 'idle' | 'sending' | 'success' | 'error'
 export default function GameSuggestionForm({ isOpen, onClose }: GameSuggestionFormProps) {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [message, setMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setStatus('sending')
+    setErrorMessage('')
 
     const formData = new FormData(event.currentTarget)
-    formData.append('access_key', 'e93c5755-8acb-4e64-872b-2ba9d3b00e54')
+    // Use environment variable if available, fallback to hardcoded key
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'e93c5755-8acb-4e64-872b-2ba9d3b00e54'
+    formData.append('access_key', accessKey)
     
     // Optional metadata fields
     formData.append('subject', 'New Game Suggestion from Forsyth Games')
@@ -31,6 +35,17 @@ export default function GameSuggestionForm({ isOpen, onClose }: GameSuggestionFo
         method: 'POST',
         body: formData
       })
+
+      // Check if response is ok (status 200-299)
+      if (!response.ok) {
+        setStatus('error')
+        setErrorMessage(`Server error: ${response.status}. Please try again.`)
+        setTimeout(() => {
+          setStatus('idle')
+          setErrorMessage('')
+        }, 3000)
+        return
+      }
 
       const data = await response.json()
 
@@ -44,16 +59,21 @@ export default function GameSuggestionForm({ isOpen, onClose }: GameSuggestionFo
         }, 2000)
       } else {
         setStatus('error')
+        // Use API error message if available
+        setErrorMessage(data.message || 'Failed to submit. Please try again.')
         // Reset to idle after 3 seconds
         setTimeout(() => {
           setStatus('idle')
+          setErrorMessage('')
         }, 3000)
       }
     } catch {
       setStatus('error')
+      setErrorMessage('Network error. Please check your connection.')
       // Reset to idle after 3 seconds
       setTimeout(() => {
         setStatus('idle')
+        setErrorMessage('')
       }, 3000)
     }
   }
@@ -163,7 +183,7 @@ export default function GameSuggestionForm({ isOpen, onClose }: GameSuggestionFo
                       >
                         <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
                         <p className="text-sm text-red-500">
-                          Failed to submit. Please try again.
+                          {errorMessage || 'Failed to submit. Please try again.'}
                         </p>
                       </motion.div>
                     )}
