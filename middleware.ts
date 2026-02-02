@@ -172,7 +172,7 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
     // Font sources
     "font-src 'self' data: https://fonts.gstatic.com",
     // Connect sources - explicit allowlist (blocks monitoring services by omission)
-    "connect-src 'self' https://clerk.accounts.dev https://*.clerk.accounts.dev https://vitals.vercel-insights.com https://gms.parcoil.com",
+    "connect-src 'self' https://clerk.accounts.dev https://*.clerk.accounts.dev https://vitals.vercel-insights.com https://gms.parcoil.com https://api.web3forms.com",
     // Media sources
     "media-src 'self' https://gms.parcoil.com",
     // Frame sources - allow required iframes but block monitoring/filtering services
