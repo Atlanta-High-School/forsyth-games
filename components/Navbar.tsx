@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Menu, X, Gamepad2, Sparkles } from 'lucide-react'
+import { Menu, X, Gamepad2, Sparkles, MessageCircle } from 'lucide-react'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -106,21 +106,25 @@ export default function Navbar() {
             {[
               { href: "/", label: "Home", icon: Gamepad2 },
               { href: "#games", label: "Games", icon: Sparkles },
-              { href: "#categories", label: "Categories", icon: Search },
+              { href: "https://forsyth-chats.vercel.app/", label: "Chat", icon: MessageCircle, external: true },
             ].map((item, index) => (
-              <motion.a
-                key={item.label}
+              <a
                 href={item.href}
+                target={item.external ? "_blank" : "_self"}
+                rel={item.external ? "noopener noreferrer" : ""}
                 className="flex items-center gap-2 text-textSecondary hover:text-accent transition-colors font-medium"
-                variants={linkVariants}
-                initial="initial"
-                animate="animate"
-                transition={{ delay: index * 0.1 }}
-                whileHover="hover"
               >
-                <item.icon className="w-4 h-4" />
-                {item.label}
-              </motion.a>
+                <motion.div
+                  variants={linkVariants}
+                  initial="initial"
+                  animate="animate"
+                  transition={{ delay: index * 0.1 }}
+                  whileHover="hover"
+                >
+                  <item.icon className="w-4 h-4" />
+                  {item.label}
+                </motion.div>
+              </a>
             ))}
           </motion.div>
 
@@ -171,18 +175,25 @@ export default function Navbar() {
                 {[
                   { href: "/", label: "Home", icon: Gamepad2 },
                   { href: "#games", label: "Games", icon: Sparkles },
-                  { href: "#categories", label: "Categories", icon: Search },
+                  { href: "https://forsyth-chats.vercel.app/", label: "Chat", icon: MessageCircle, external: true },
                 ].map((item, index) => (
-                  <motion.a
-                    key={item.label}
+                  <a
                     href={item.href}
+                    target={item.external ? "_blank" : "_self"}
+                    rel={item.external ? "noopener noreferrer" : ""}
                     className="flex items-center gap-3 text-textSecondary hover:text-accent transition-colors px-4 py-3 rounded-lg hover:bg-surfaceHover"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ x: 5 }}
                     onClick={() => setIsMenuOpen(false)}
                   >
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ x: 5 }}
+                    >
+                      <item.icon className="w-5 h-5" />
+                      <span className="font-medium">{item.label}</span>
+                    </motion.div>
+                  </a>
                     <item.icon className="w-5 h-5" />
                     <span className="font-medium">{item.label}</span>
                   </motion.a>
