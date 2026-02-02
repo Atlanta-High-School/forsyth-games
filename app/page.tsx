@@ -47,7 +47,7 @@ export default function Home() {
         const option = tabOptions.find(opt => opt.id === savedTab)
         if (option) {
           try {
-            document.title = `FCS | ${option.name}`
+            document.title = option.name
             
             const faviconLink = document.querySelector("link[rel='icon']") as HTMLLinkElement
             const appleTouchIcon = document.querySelector("link[rel='apple-touch-icon']") as HTMLLinkElement

@@ -64,7 +64,7 @@ export default function SettingsPage() {
     }
     
     // Update document title
-    document.title = `FCS | ${option.name}`
+    document.title = option.name
     
     // Update favicon
     const faviconLink = document.querySelector("link[rel='icon']") as HTMLLinkElement
@@ -82,10 +82,10 @@ export default function SettingsPage() {
     const appleMobileWebAppTitle = document.querySelector("meta[name='apple-mobile-web-app-title']")
     
     if (appNameMeta) {
-      appNameMeta.setAttribute('content', `FCS | ${option.name}`)
+      appNameMeta.setAttribute('content', option.name)
     }
     if (appleMobileWebAppTitle) {
-      appleMobileWebAppTitle.setAttribute('content', `FCS | ${option.name}`)
+      appleMobileWebAppTitle.setAttribute('content', option.name)
     }
   }
 
@@ -255,7 +255,7 @@ export default function SettingsPage() {
                           {option.name}
                         </div>
                         <div className="text-text-secondary/60 text-xs">
-                          FCS | {option.name}
+                          {option.name}
                         </div>
                       </div>
                     </div>
