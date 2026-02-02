@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: 'Forsyth Games - Educational Gaming Platform | Forsyth County Schools',
-  description: 'Official Forsyth County Schools educational gaming platform featuring 293+ curriculum-aligned games. Designed to enhance student learning through interactive gameplay, critical thinking exercises, and brain-training activities. Safe, monitored, and educationally approved for K-12 students.',
+  description: 'Official Forsyth County Schools educational gaming platform featuring 255+ curriculum-aligned games. Designed to enhance student learning through interactive gameplay, critical thinking exercises, and brain-training activities. Safe, monitored, and educationally approved for K-12 students.',
   keywords: [
     'Forsyth County Schools',
     'educational games',
@@ -59,7 +59,7 @@ export const metadata = {
   },
   openGraph: {
     title: 'Forsyth Games - Educational Gaming Platform | Forsyth County Schools',
-    description: 'Official Forsyth County Schools educational platform with 293+ curriculum-aligned games. Enhance student learning through interactive gameplay and critical thinking exercises.',
+    description: 'Official Forsyth County Schools educational platform with 255+ curriculum-aligned games. Enhance student learning through interactive gameplay and critical thinking exercises.',
     url: 'https://forsyth-games.vercel.app',
     siteName: 'Forsyth Games - Forsyth County Schools',
     images: [
@@ -85,7 +85,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Forsyth Games - Educational Gaming Platform | Forsyth County Schools',
-    description: 'Official Forsyth County Schools platform with 293+ curriculum-aligned educational games for K-12 students.',
+    description: 'Official Forsyth County Schools platform with 255+ curriculum-aligned educational games for K-12 students.',
     images: [
       '/og-image.jpg',
       'https://site.imsglobal.org/sites/default/files/orgs/logos/primary/fcslogo_hexagon.png'
@@ -188,7 +188,7 @@ export default function RootLayout({
                 "@context": "https://schema.org",
                 "@type": "EducationalOrganization",
                 "name": "Forsyth County Schools",
-                "description": "Forsyth County Schools educational gaming platform featuring 293+ curriculum-aligned games for K-12 students",
+                "description": "Forsyth County Schools educational gaming platform featuring 255+ curriculum-aligned games for K-12 students",
                 "url": "https://forsyth-games.vercel.app",
                 "logo": "https://site.imsglobal.org/sites/default/files/orgs/logos/primary/fcslogo_hexagon.png",
                 "sameAs": [
@@ -224,7 +224,7 @@ export default function RootLayout({
                 "mainEntity": {
                   "@type": "ItemList",
                   "name": "Educational Games Collection",
-                  "description": "Collection of 293+ curriculum-aligned educational games for K-12 students",
+                  "description": "Collection of 255+ curriculum-aligned educational games for K-12 students",
                   "numberOfItems": 255,
                   "itemListElement": [
                     {
@@ -287,7 +287,7 @@ export default function RootLayout({
                 "@context": "https://schema.org",
                 "@type": "LearningResource",
                 "name": "Forsyth Games - Educational Gaming Platform",
-                "description": "Official Forsyth County Schools educational platform with 293+ curriculum-aligned games for K-12 students",
+                "description": "Official Forsyth County Schools educational platform with 255+ curriculum-aligned games for K-12 students",
                 "url": "https://forsyth-games.vercel.app",
                 "learningResourceType": "interactive resource, educational game, learning tool",
                 "educationalLevel": ["Elementary School", "Middle School", "High School"],
