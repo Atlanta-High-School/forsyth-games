@@ -57,7 +57,6 @@ function checkRateLimit(ip: string): boolean {
 const isPublicRoute = createRouteMatcher([
   '/',
   '/play(.*)',
-  '/welcome(.*)',
   '/sign-in(.*)',
   '/sign-up(.*)',
   '/api/webhooks(.*)',

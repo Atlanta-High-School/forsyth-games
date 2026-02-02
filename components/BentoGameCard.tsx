@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { Play, Users, Star, TrendingUp } from 'lucide-react'
-import { getOptimizedGameUrl, CDNPerformanceMonitor } from '@/lib/cdn-utils'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { startTransition } from 'react'
@@ -27,15 +26,12 @@ interface BentoGameCardProps {
 export default function BentoGameCard({ game, size, priority = false }: BentoGameCardProps) {
   const router = useRouter()
   const [imageUrl, setImageUrl] = useState<string>("")
-  const [loadStartTime, setLoadStartTime] = useState<number>(0)
-  const performanceMonitor = CDNPerformanceMonitor.getInstance()
 
   // Optimize image URL with CDN fallback
   useEffect(() => {
     if (game.url && game.image) {
-      const optimizedUrl = getOptimizedGameUrl(game.url, game.image)
-      setImageUrl(optimizedUrl)
-      setLoadStartTime(performance.now())
+      const url = `/games/${game.url}/${game.image}`
+      setImageUrl(url)
     }
   }, [game.url, game.image])
 
@@ -87,11 +83,6 @@ export default function BentoGameCard({ game, size, priority = false }: BentoGam
               loading={priority ? "eager" : "lazy"}
               priority={priority ? true : false}
               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-              onLoad={() => {
-                if (loadStartTime > 0) {
-                  performanceMonitor.measureLoadTime(imageUrl, loadStartTime)
-                }
-              }}
               onError={(e) => {
                 const target = e.target as HTMLImageElement
                 if (target.dataset.errorHandled === 'true') return
