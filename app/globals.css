@@ -295,10 +295,7 @@ input:focus {
   90% { transform: translate(-10%, 10%); }
 }
 
-/* Smooth transitions - only for specific properties to prevent black screen during route changes */
-* {
-  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
+/* Note: Removed global * transition to prevent dark flash during page navigation */
 
 /* Loading animations */
 @keyframes slide-up {
@@ -383,17 +380,9 @@ input:focus {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Lazy loading for game cards */
-.game-card.in-viewport {
-  opacity: 1 !important;
-}
-
-.game-card:not(.in-viewport) img {
-  display: none;
-}
-
-.game-card.in-viewport img {
-  display: block;
+/* Game cards - always visible for better compatibility with low-end devices */
+.game-card {
+  contain: layout style paint;
 }
 
 /* Hide scrollbar for cleaner look */
