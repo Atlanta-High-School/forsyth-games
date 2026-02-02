@@ -109,6 +109,7 @@ export default function Navbar() {
               { href: "https://forsyth-chats.vercel.app/", label: "Chat", icon: MessageCircle, external: true },
             ].map((item, index) => (
               <a
+                key={item.label}
                 href={item.href}
                 target={item.external ? "_blank" : "_self"}
                 rel={item.external ? "noopener noreferrer" : ""}
@@ -178,6 +179,7 @@ export default function Navbar() {
                   { href: "https://forsyth-chats.vercel.app/", label: "Chat", icon: MessageCircle, external: true },
                 ].map((item, index) => (
                   <a
+                    key={item.label}
                     href={item.href}
                     target={item.external ? "_blank" : "_self"}
                     rel={item.external ? "noopener noreferrer" : ""}
@@ -189,14 +191,12 @@ export default function Navbar() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
                       whileHover={{ x: 5 }}
+                      className="flex items-center gap-3"
                     >
                       <item.icon className="w-5 h-5" />
                       <span className="font-medium">{item.label}</span>
                     </motion.div>
                   </a>
-                    <item.icon className="w-5 h-5" />
-                    <span className="font-medium">{item.label}</span>
-                  </motion.a>
                 ))}
               </div>
             </motion.div>
