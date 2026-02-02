@@ -11,14 +11,14 @@ const PARTICLE_COUNT = 15
 const MOUSE_THROTTLE_MS = 16 // ~60fps
 
 // Utility: Throttle function
-function throttle<T extends (...args: any[]) => void>(
+function throttle<T extends (...args: unknown[]) => void>(
   func: T,
   delay: number
-): (...args: Parameters<T>) => void {
+): (this: unknown, ...args: Parameters<T>) => void {
   let timeoutId: NodeJS.Timeout | null = null
   let lastRan: number = 0
 
-  return function (this: any, ...args: Parameters<T>) {
+  return function (this: unknown, ...args: Parameters<T>) {
     const now = Date.now()
 
     if (now - lastRan >= delay) {
@@ -78,7 +78,7 @@ export default function YouTubePage() {
 
   // Throttled mouse tracking for performance
   const handleMouseMove = useCallback(
-    throttle((e: MouseEvent) => {
+    throttle<[MouseEvent]>((e) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }, MOUSE_THROTTLE_MS),
     []

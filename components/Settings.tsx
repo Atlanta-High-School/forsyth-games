@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Settings as SettingsIcon, X, Check } from 'lucide-react'
+import Image from 'next/image'
 
 interface TabOption {
   id: string
@@ -165,13 +166,16 @@ export default function Settings({ isOpen, onClose }: SettingsProps) {
                     >
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center overflow-hidden">
-                          <img 
+                          <Image 
                             src={option.faviconUrl} 
                             alt={`${option.name} logo`}
-                            className="w-8 h-8 object-contain"
-                            onError={(e) => {
+                            width={32}
+                            height={32}
+                            className="object-contain"
+                            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                               // Fallback if image fails to load
-                              (e.target as HTMLImageElement).style.display = 'none'
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
                             }}
                           />
                         </div>
