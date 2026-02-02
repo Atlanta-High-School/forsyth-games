@@ -19,9 +19,10 @@ interface Game {
 interface BentoGameCardProps {
   game: Game
   size: 'small' | 'medium' | 'large' | 'wide'
+  priority?: boolean
 }
 
-export default function BentoGameCard({ game, size }: BentoGameCardProps) {
+export default function BentoGameCard({ game, size, priority = false }: BentoGameCardProps) {
   const [imageUrl, setImageUrl] = useState<string>("")
   const [loadStartTime, setLoadStartTime] = useState<number>(0)
   const performanceMonitor = CDNPerformanceMonitor.getInstance()
@@ -74,7 +75,8 @@ export default function BentoGameCard({ game, size }: BentoGameCardProps) {
             alt={game.name}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
+            loading={priority ? "eager" : "lazy"}
+            priority={priority}
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
             onLoad={() => {
               if (loadStartTime > 0) {

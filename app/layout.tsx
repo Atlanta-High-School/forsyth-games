@@ -9,7 +9,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Forsyth Games - Educational Gaming Platform | Forsyth County Schools',
+  title: 'FCS | Classlink',
   description: 'Official Forsyth County Schools educational gaming platform featuring 255+ curriculum-aligned games. Designed to enhance student learning through interactive gameplay, critical thinking exercises, and brain-training activities. Safe, monitored, and educationally approved for K-12 students.',
   keywords: [
     'Forsyth County Schools',
@@ -155,11 +155,12 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <head>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" type="image/png" href="/classlink-logo.png" />
+          <link rel="apple-touch-icon" href="/classlink-logo.png" />
           <link rel="manifest" href="/site.webmanifest" />
           <meta name="theme-color" content="#000000" />
-          <meta name="application-name" content="Forsyth Games" />
-          <meta name="apple-mobile-web-app-title" content="Forsyth Games" />
+          <meta name="application-name" content="FCS | Classlink" />
+          <meta name="apple-mobile-web-app-title" content="FCS | Classlink" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
           <meta name="mobile-web-app-capable" content="yes" />
@@ -167,14 +168,14 @@ export default function RootLayout({
           <meta name="format-detection" content="telephone=no" />
           
           {/* Performance Optimization - Resource Hints for faster loading on slower computers */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link rel="dns-prefetch" href="https://gms.parcoil.com" />
           <link rel="dns-prefetch" href="https://forsyth-games.onrender.com" />
           <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
           <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
           <link rel="preconnect" href="https://gms.parcoil.com" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://forsyth-games.onrender.com" crossOrigin="anonymous" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           
           {/* Security Policy - Blocks monitoring/filtering services (Linewize, Qoria, Classwize, etc.) */}
           <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.com https://va.vercel-scripts.com blob:; worker-src 'self' blob:; object-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: blob: https://img.clerk.com https://site.imsglobal.org; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: wss: https://clerk.accounts.dev https://*.clerk.accounts.dev https://vitals.vercel-insights.com https://gms.parcoil.com; media-src 'self' https:; frame-src 'self' https://gms.parcoil.com https://forsyth-games.onrender.com https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.app https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com https://youtube-nocookie.com;" />

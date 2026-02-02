@@ -2,6 +2,13 @@ import { NextResponse } from 'next/server'
 import path from 'path'
 import { promises as fs } from 'fs'
 
+interface Game {
+  name: string
+  image: string
+  url: string
+  new: boolean
+}
+
 export async function GET() {
   const filePath = path.join(process.cwd(), 'config', 'games.json')
   
@@ -21,7 +28,22 @@ export async function GET() {
       )
     }
     
-    return NextResponse.json(games, {
+    // Prioritize specific games at the top - optimized single-pass
+    const priorityGames = ['Geometry Dash', 'Duck Life 1', 'Duck Life 2', 'Duck Life 3', 'Duck Life 4']
+    const prioritized: Game[] = []
+    const rest: Game[] = []
+    
+    games.forEach((game: Game) => {
+      if (priorityGames.includes(game.name)) {
+        prioritized.push(game)
+      } else {
+        rest.push(game)
+      }
+    })
+    
+    const sortedGames = [...prioritized, ...rest]
+    
+    return NextResponse.json(sortedGames, {
       headers: {
         'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
         'Access-Control-Allow-Origin': '*',
