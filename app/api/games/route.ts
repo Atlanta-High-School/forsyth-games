@@ -2,6 +2,13 @@ import { NextResponse } from 'next/server'
 import path from 'path'
 import { promises as fs } from 'fs'
 
+interface Game {
+  name: string
+  image: string
+  url: string
+  new: boolean
+}
+
 export async function GET() {
   const filePath = path.join(process.cwd(), 'config', 'games.json')
   
@@ -23,10 +30,10 @@ export async function GET() {
     
     // Prioritize specific games at the top - optimized single-pass
     const priorityGames = ['Geometry Dash', 'Duck Life 1', 'Duck Life 2', 'Duck Life 3', 'Duck Life 4']
-    const prioritized: any[] = []
-    const rest: any[] = []
+    const prioritized: Game[] = []
+    const rest: Game[] = []
     
-    games.forEach((game: any) => {
+    games.forEach((game: Game) => {
       if (priorityGames.includes(game.name)) {
         prioritized.push(game)
       } else {
