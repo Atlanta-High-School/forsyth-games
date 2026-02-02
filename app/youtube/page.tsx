@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Youtube, Play, X, Loader2, Sparkles, Zap, Volume2, Maximize2 } from 'lucide-react'
+import Head from 'next/head'
 import FloatingNavigation from '@/components/FloatingNavigation'
 import Footer from '@/components/Footer'
 
@@ -166,7 +167,11 @@ export default function YouTubePage() {
   const cursorGlowOffset = cursorGlowSize / 2
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+    <>
+      <Head>
+        <meta httpEquiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.com https://va.vercel-scripts.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https: https://img.clerk.com https://i.ytimg.com https://i9.ytimg.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: wss:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://youtube.com https://youtube-nocookie.com https://clerk.accounts.dev https://*.clerk.accounts.dev;" />
+      </Head>
+      <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Screen reader announcements */}
       <div 
         ref={errorAnnouncerRef}
@@ -482,5 +487,6 @@ export default function YouTubePage() {
 
       <Footer />
     </div>
+    </>
   )
 }

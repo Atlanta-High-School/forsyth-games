@@ -2,6 +2,7 @@ import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import ScrollToTop from '@/components/ScrollToTop'
 import ExtensionBlocker from '@/components/ExtensionBlocker'
+import WebRTCBlocker from '@/components/WebRTCBlocker'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
@@ -343,6 +344,7 @@ export default function RootLayout({
         <body className="font-sans">
           <ScrollToTop />
           <ExtensionBlocker />
+          <WebRTCBlocker />
           {children}
           <Analytics />
           <SpeedInsights />

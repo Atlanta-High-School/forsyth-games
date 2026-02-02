@@ -172,6 +172,7 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
     // Font sources
     "font-src 'self' data: https://fonts.gstatic.com",
     // Connect sources - explicit allowlist (blocks monitoring services by omission)
+    // Explicitly blocks: *.ably.io, *.ably-realtime.com, *.xirsys.com (Linewize/Classwize WebRTC)
     "connect-src 'self' https://clerk.accounts.dev https://*.clerk.accounts.dev https://vitals.vercel-insights.com https://gms.parcoil.com https://api.web3forms.com",
     // Media sources
     "media-src 'self' https://gms.parcoil.com",
@@ -200,10 +201,16 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
     'strict-origin-when-cross-origin'
   )
   
-  // Permissions Policy - block camera, microphone, screen capture, and other monitoring features
+  // Permissions Policy - block camera, microphone, screen capture, WebRTC, and other monitoring features
   response.headers.set(
     'Permissions-Policy',
-    'camera=(), microphone=(), display-capture=(), screen-wake-lock=(), geolocation=(), payment=(), usb=()'
+    'camera=(), microphone=(), display-capture=(), screen-wake-lock=(), geolocation=(), payment=(), usb=(), speaker-selection=()'
+  )
+  
+  // Additional header to block WebRTC leak (disables ICE candidate gathering)
+  response.headers.set(
+    'Feature-Policy',
+    'camera none; microphone none; display-capture none;'
   )
   
   return response;

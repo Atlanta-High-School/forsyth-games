@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Settings as SettingsIcon, Send, Check, CheckCircle, AlertCircle } from 'lucide-react'
 import Image from 'next/image'
+import Head from 'next/head'
 import FloatingNavigation from '@/components/FloatingNavigation'
 import Footer from '@/components/Footer'
 
@@ -172,7 +173,11 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-deep-space text-text-primary relative overflow-hidden">
+    <>
+      <Head>
+        <meta httpEquiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.com https://va.vercel-scripts.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https: https://img.clerk.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: wss: https://api.web3forms.com; frame-src 'self' https://clerk.accounts.dev https://*.clerk.accounts.dev;" />
+      </Head>
+      <div className="min-h-screen bg-deep-space text-text-primary relative overflow-hidden">
       {/* Background Effects */}
       <div className="aurora-light aurora-1 hidden lg:block" />
       <div className="aurora-light aurora-2 hidden lg:block" />
@@ -387,5 +392,6 @@ export default function SettingsPage() {
 
       <Footer />
     </div>
+    </>
   )
 }
