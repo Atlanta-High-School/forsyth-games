@@ -50,6 +50,8 @@ const isPublicRoute = createRouteMatcher([
   '/sign-up(.*)',
   '/api/webhooks(.*)',
   '/blocked(.*)', // Allow access to blocked page
+  '/settings(.*)', // Allow access to settings page
+  '/youtube(.*)', // Allow access to youtube page
 ]);
 
 // Routes that should bypass region check (API routes)
