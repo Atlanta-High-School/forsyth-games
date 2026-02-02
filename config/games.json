@@ -1,5 +1,11 @@
 [
   {
+    "name": "Madalin Stunt Cars 2",
+    "image": "splash.png",
+    "url": "madalin-stunt-cars-2",
+    "new": true
+  },
+  {
     "name": "Among Us",
     "image": "red.png",
     "url": "among-us",
