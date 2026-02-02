@@ -166,6 +166,16 @@ export default function RootLayout({
           <meta name="referrer" content="no-referrer-when-downgrade" />
           <meta name="format-detection" content="telephone=no" />
           
+          {/* Performance Optimization - Resource Hints for faster loading on slower computers */}
+          <link rel="dns-prefetch" href="https://gms.parcoil.com" />
+          <link rel="dns-prefetch" href="https://forsyth-games.onrender.com" />
+          <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+          <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+          <link rel="preconnect" href="https://gms.parcoil.com" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://forsyth-games.onrender.com" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          
           {/* Security Policy - Blocks monitoring/filtering services (Linewize, Qoria, Classwize, etc.) */}
           <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.com https://va.vercel-scripts.com blob:; worker-src 'self' blob:; object-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: blob: https://img.clerk.com https://site.imsglobal.org; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: wss: https://clerk.accounts.dev https://*.clerk.accounts.dev https://vitals.vercel-insights.com https://gms.parcoil.com; media-src 'self' https:; frame-src 'self' https://gms.parcoil.com https://forsyth-games.onrender.com https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.app https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com https://youtube-nocookie.com;" />
           <meta httpEquiv="Permissions-Policy" content="camera=(), microphone=(), display-capture=(), screen-wake-lock=(), geolocation=(), payment=(), usb=()" />
@@ -215,7 +225,7 @@ export default function RootLayout({
                   "@type": "ItemList",
                   "name": "Educational Games Collection",
                   "description": "Collection of 293+ curriculum-aligned educational games for K-12 students",
-                  "numberOfItems": 293,
+                  "numberOfItems": 255,
                   "itemListElement": [
                     {
                       "@type": "Game",

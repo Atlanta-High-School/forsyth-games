@@ -528,6 +528,12 @@
     "new": false
   },
   {
+    "name": "Geodesical",
+    "image": "images/logo.svg",
+    "url": "games/geodesicalxx",
+    "new": true
+  },
+  {
     "name": "Geometry Dash",
     "image": "geoscratchicon.png",
     "url": "games/geodash",
