@@ -2,7 +2,6 @@
 const nextConfig = {
   // Performance optimizations
   reactStrictMode: true,
-  swcMinify: true,
   
   // Compiler optimizations
   compiler: {
@@ -23,10 +22,6 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'site.imsglobal.org',
       },
-      {
-        protocol: 'https',
-        hostname: '**.clerk.accounts.dev',
-      },
       // Add CDN domains for game assets
       {
         protocol: 'https',
@@ -43,10 +38,11 @@ const nextConfig = {
   
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['framer-motion', '@clerk/nextjs'],
-    // Enable CDN optimizations
-    serverComponentsExternalPackages: ['sharp'],
+    optimizePackageImports: ['framer-motion'],
   },
+  
+  // External packages for server components
+  serverExternalPackages: ['sharp'],
   
   // CDN and caching headers
   async headers() {
