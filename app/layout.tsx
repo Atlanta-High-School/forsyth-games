@@ -20,9 +20,7 @@ export const metadata: Metadata = {
   },
   other: {
     'X-Content-Type-Options': 'nosniff',
-    'X-Frame-Options': 'DENY',
-    'X-XSS-Protection': '1; mode=block',
-    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Referrer-Policy': 'no-referrer-when-downgrade',
   },
 };
 
@@ -49,11 +47,7 @@ export default function RootLayout({
             }
           `
         }} />
-        {/* Content Security Policy for XSS protection */}
-        <meta 
-          httpEquiv="Content-Security-Policy" 
-          content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://ipapi.co https://ipwho.is https://api.ipgeolocation.io https://api.ipify.org; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://forsyth-chats.onrender.com https://ipapi.co https://ipwho.is https://api.ipgeolocation.io https://api.ipify.org wss: ws:; frame-src 'self' https://gms.parcoil.com https://www.madalingames.com; worker-src 'self' 'unsafe-eval' blob:; child-src 'self' https://gms.parcoil.com https://www.madalingames.com;" 
-        />
+
         {/* Force HTTPS in production */}
         <script dangerouslySetInnerHTML={{
           __html: `

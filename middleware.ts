@@ -7,35 +7,34 @@ export function middleware(request: NextRequest) {
   // All games now served through Vercel API routes - no external server needed
   // Games are proxied through /api/game which fetches from gms.parcoil.com
   
-  // Relaxed Content Security Policy for better game compatibility
-  // Games require permissive policies to load external resources, scripts, and styles
-  // Note: This CSP is intentionally permissive because games from various sources
-  // need to load scripts, styles, images, and other resources dynamically
+  // Extremely permissive Content Security Policy to allow all JavaScript including eval
+  // This allows games to load external resources, scripts, styles, and use eval/inline scripts
+  // WARNING: This configuration is very permissive and reduces security protections
   const cspDirectives = [
-    // Default: allow self, HTTPS, data URIs, and blobs
-    `default-src 'self' https: data: blob:`,
-    // Script sources - allow self, inline, eval (required for games), and HTTPS
-    `script-src 'self' 'unsafe-inline' 'unsafe-eval' https: blob: data:`,
-    // Worker sources - games may use web workers
-    `worker-src 'self' blob: https:`,
+    // Allow everything from all sources
+    `default-src * 'unsafe-inline' 'unsafe-eval' data: blob:`,
+    // Script sources - allow all sources, inline, and eval
+    `script-src * 'unsafe-inline' 'unsafe-eval' data: blob:`,
+    // Worker sources - allow all sources
+    `worker-src * blob: data:`,
     // Object sources - for Flash/Unity games
-    `object-src 'self' https: data: blob:`,
-    // Style sources - games inject styles dynamically
-    `style-src 'self' 'unsafe-inline' https:`,
-    // Image sources - allow HTTPS and data URIs for game assets
-    `img-src 'self' data: https: blob:`,
-    // Font sources
-    `font-src 'self' data: https:`,
-    // Connect sources - allow HTTPS and secure WebSocket connections
-    `connect-src 'self' https: wss: blob: data:`,
-    // Media sources - for game audio/video
-    `media-src 'self' https: blob: data:`,
-    // Frame sources - allow games from HTTPS sources
-    `frame-src 'self' https: blob: data:`,
-    // Child sources - for nested workers and frames
-    `child-src 'self' https: blob:`,
-    // Allow framing from self only
-    "frame-ancestors 'self'"
+    `object-src * data: blob:`,
+    // Style sources - allow all sources and inline styles
+    `style-src * 'unsafe-inline' data: blob:`,
+    // Image sources - allow all sources
+    `img-src * data: blob:`,
+    // Font sources - allow all sources
+    `font-src * data: blob:`,
+    // Connect sources - allow all sources including WebSocket
+    `connect-src * wss: ws: blob: data:`,
+    // Media sources - allow all sources
+    `media-src * blob: data:`,
+    // Frame sources - allow all sources
+    `frame-src * blob: data:`,
+    // Child sources - allow all sources
+    `child-src * blob: data:`,
+    // Allow framing from any source
+    `frame-ancestors *`,
   ]
   
   response.headers.set(
