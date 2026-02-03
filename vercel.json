@@ -24,12 +24,6 @@
       "dest": "/$1"
     }
   ],
-  "cors": {
-    "allowedOrigins": ["*"],
-    "allowedMethods": ["GET", "OPTIONS"],
-    "allowedHeaders": ["Content-Type", "Authorization"],
-    "maxAge": 86400
-  },
   "headers": [
     {
       "source": "/games/(.*)",
