@@ -1,26 +1,7 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const isPublicRoute = createRouteMatcher([
-  '/',
-  '/play(.*)',
-  '/sign-in(.*)',
-  '/sign-up(.*)',
-  '/api/webhooks(.*)',
-  '/api/games(.*)', // Allow access to games API
-  '/api/youtube(.*)', // Allow access to YouTube API
-  '/blocked(.*)', // Allow access to blocked page
-  '/settings(.*)', // Allow access to settings page
-  '/youtube(.*)', // Allow access to youtube page
-]);
-
-export default clerkMiddleware(async (auth, request: NextRequest) => {
-  // Clerk authentication check
-  if (!isPublicRoute(request)) {
-    await auth.protect();
-  }
-
+export function middleware(request: NextRequest) {
   const response = NextResponse.next();
   
   // Relaxed Content Security Policy for better game compatibility
@@ -65,7 +46,7 @@ export default clerkMiddleware(async (auth, request: NextRequest) => {
   )
   
   return response;
-});
+}
 
 export const config = {
   matcher: [

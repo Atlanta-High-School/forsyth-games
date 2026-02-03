@@ -2,6 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import { ArrowLeft, Maximize2, RefreshCw, AlertTriangle, Gamepad2, Trophy, Star } from 'lucide-react'
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
@@ -113,12 +114,16 @@ function PlayPageContent() {
       fullscreenWindow.document.close()
       
       // Try to request fullscreen for the new window
-      if (fullscreenWindow.document.documentElement.requestFullscreen) {
-        fullscreenWindow.document.documentElement.requestFullscreen()
-      } else if ((fullscreenWindow.document.documentElement as any).webkitRequestFullscreen) {
-        (fullscreenWindow.document.documentElement as any).webkitRequestFullscreen()
-      } else if ((fullscreenWindow.document.documentElement as any).msRequestFullscreen) {
-        (fullscreenWindow.document.documentElement as any).msRequestFullscreen()
+      const docEl = fullscreenWindow.document.documentElement as HTMLElement & {
+        webkitRequestFullscreen?: () => Promise<void>;
+        msRequestFullscreen?: () => Promise<void>;
+      }
+      if (docEl.requestFullscreen) {
+        docEl.requestFullscreen()
+      } else if (docEl.webkitRequestFullscreen) {
+        docEl.webkitRequestFullscreen()
+      } else if (docEl.msRequestFullscreen) {
+        docEl.msRequestFullscreen()
       }
     }
   }
@@ -234,13 +239,13 @@ function PlayPageContent() {
             <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-8 max-w-md mx-auto">
               <h2 className="text-red-400 text-2xl font-bold mb-4">Error</h2>
               <p className="text-white mb-6">{error}</p>
-              <a 
+              <Link 
                 href="/"
                 className="inline-flex items-center space-x-2 bg-accent hover:bg-accent/90 text-white px-6 py-3 rounded-lg transition-colors"
               >
                 <ArrowLeft size={20} />
                 <span>Back to Games</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -258,13 +263,13 @@ function PlayPageContent() {
         <div className={`bg-gradient-to-r ${theme.primary} rounded-xl p-6 mb-6 shadow-xl`}>
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <a 
+              <Link 
                 href="/"
                 className="inline-flex items-center space-x-2 text-white/80 hover:text-white transition-colors"
               >
                 <ArrowLeft size={20} />
                 <span>Back to Games</span>
-              </a>
+              </Link>
               <div className="h-6 w-px bg-white/20"></div>
               <div className="flex items-center space-x-3">
                 <div className="bg-white/20 p-2 rounded-lg">
@@ -340,13 +345,13 @@ function PlayPageContent() {
                     <RefreshCw size={18} />
                     <span>Try Again</span>
                   </button>
-                  <a
+                  <Link
                     href="/"
                     className="inline-flex items-center space-x-2 bg-surface hover:bg-surfaceHover text-white px-6 py-3 rounded-lg transition-colors"
                   >
                     <ArrowLeft size={18} />
                     <span>Choose Different Game</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -174,7 +174,7 @@ export default function SettingsPage() {
   return (
     <>
       <Head>
-        <meta httpEquiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://clerk.accounts.dev https://*.clerk.accounts.dev https://challenges.cloudflare.com https://vercel.live https://*.vercel.com https://va.vercel-scripts.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https: https://img.clerk.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: wss: https://api.web3forms.com; frame-src 'self' https://clerk.accounts.dev https://*.clerk.accounts.dev;" />
+        <meta httpEquiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://challenges.cloudflare.com https://vercel.live https://*.vercel.com https://va.vercel-scripts.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: wss: https://api.web3forms.com; frame-src 'self';" />
       </Head>
       <div className="min-h-screen bg-deep-space text-text-primary relative overflow-hidden">
       {/* Background Effects */}
