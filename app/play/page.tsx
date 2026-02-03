@@ -20,6 +20,20 @@ function PlayPageContent() {
 
   const serverUrl = "/api/game"
 
+  // Helper function to get the correct game source URL
+  const getGameSrc = (url: string) => {
+    if (url === 'madalin-stunt-cars-2') {
+      return "https://www.madalingames.com/madalingames/wp-content/uploads/games/webgl/M/MSC2-WEBGL/index.html"
+    } else if (url.startsWith('games/')) {
+      return `/${url}/index.html`
+    } else if (url.startsWith('http://') || url.startsWith('https://')) {
+      // Full URL from GitHub - proxy it through our API
+      return `${serverUrl}/${encodeURIComponent(url)}`
+    } else {
+      return `${serverUrl}/${url}`
+    }
+  }
+
   useEffect(() => {
     if (!gameUrl) {
       setError('Game URL not provided!')
@@ -50,16 +64,8 @@ function PlayPageContent() {
     // Create a new window with about:blank and write the game content
     const fullscreenWindow = window.open('', '_blank', 'fullscreen=yes,scrollbars=no, resizable=no')
     if (fullscreenWindow) {
-      let gameSrc
-      
-      // Determine the correct game source
-      if (gameUrl === 'madalin-stunt-cars-2') {
-        gameSrc = "https://www.madalingames.com/madalingames/wp-content/uploads/games/webgl/M/MSC2-WEBGL/index.html"
-      } else if (gameUrl.startsWith('games/')) {
-        gameSrc = `/${gameUrl}/index.html`
-      } else {
-        gameSrc = `${serverUrl}/${gameUrl}`
-      }
+      // Use the helper function to determine the correct game source
+      const gameSrc = getGameSrc(gameUrl)
       
       fullscreenWindow.document.write(`
         <!DOCTYPE html>
@@ -138,14 +144,8 @@ function PlayPageContent() {
     if (iframe && gameUrl) {
       iframe.src = ''
       setTimeout(() => {
-        // Check if this is Madalin Stunt Cars 2
-        if (gameUrl === 'madalin-stunt-cars-2') {
-          iframe.src = "https://www.madalingames.com/madalingames/wp-content/uploads/games/webgl/M/MSC2-WEBGL/index.html"
-        } else {
-          // Check if this is a local game (starts with 'games/')
-          const isLocalGame = gameUrl.startsWith('games/')
-          iframe.src = isLocalGame ? `/${gameUrl}/index.html` : `${serverUrl}/${gameUrl}`
-        }
+        // Use the helper function to set the correct game source
+        iframe.src = getGameSrc(gameUrl)
       }, 100)
     }
   }
@@ -360,13 +360,7 @@ function PlayPageContent() {
           {/* Game Iframe */}
           <iframe
             id="gameFrame"
-            src={gameUrl ? (
-              gameUrl === 'madalin-stunt-cars-2' 
-                ? "https://www.madalingames.com/madalingames/wp-content/uploads/games/webgl/M/MSC2-WEBGL/index.html"
-                : gameUrl.startsWith('games/') 
-                  ? `/${gameUrl}/index.html` 
-                  : `${serverUrl}/${gameUrl}`
-            ) : ''}
+            src={gameUrl ? getGameSrc(gameUrl) : ''}
             className="w-full h-[calc(100vh-200px)] min-h-[600px] border-0"
             title={gameData.name}
             allowFullScreen

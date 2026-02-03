@@ -38,7 +38,20 @@ export async function GET(
     
     // Get the path segments
     const pathSegments = params.path || [];
-    const gamePath = pathSegments.join('/');
+    let gamePath = pathSegments.join('/');
+    
+    // Check if the first segment is a URL-encoded full URL
+    if (pathSegments.length === 1 && pathSegments[0].includes('%')) {
+      try {
+        const decodedUrl = decodeURIComponent(pathSegments[0]);
+        if (decodedUrl.startsWith('http://') || decodedUrl.startsWith('https://')) {
+          gamePath = decodedUrl;
+        }
+      } catch (error) {
+        // If decoding fails, use the original path
+        console.warn('Failed to decode URL parameter:', error);
+      }
+    }
     
     if (!gamePath) {
       return new NextResponse('Missing game path', { 
@@ -47,9 +60,17 @@ export async function GET(
       });
     }
 
-    // Build the target URL - add trailing slash for directories (paths without file extensions)
-    const isFile = gamePath.match(/\.[a-zA-Z0-9]+$/); // Has file extension
-    const targetUrl = `${GAME_SERVER_URL}/${gamePath}${!isFile ? '/' : ''}`;
+    // Build the target URL
+    let targetUrl: string;
+    
+    // Check if the path is already a full URL (starts with http:// or https://)
+    if (gamePath.startsWith('http://') || gamePath.startsWith('https://')) {
+      targetUrl = gamePath;
+    } else {
+      // For relative paths, use the old game server (for legacy games)
+      const isFile = gamePath.match(/\.[a-zA-Z0-9]+$/); // Has file extension
+      targetUrl = `${GAME_SERVER_URL}/${gamePath}${!isFile ? '/' : ''}`;
+    }
     
     console.log(`Proxying game request: ${targetUrl}`);
 
