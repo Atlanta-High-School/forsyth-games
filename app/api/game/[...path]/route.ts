@@ -91,8 +91,10 @@ export async function GET(
       const response = await fetch(targetUrl, {
         signal: controller.signal,
         headers: {
-          'User-Agent': request.headers.get('user-agent') || 'Mozilla/5.0',
-          'Accept': request.headers.get('accept') || '*/*',
+          'User-Agent': request.headers.get('user-agent') || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+          'Accept': request.headers.get('accept') || 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'Accept-Encoding': 'identity', // Prevent compression to avoid encoding issues
+          'Cache-Control': 'no-cache'
         },
       });
       
@@ -137,10 +139,9 @@ export async function GET(
       responseHeaders.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
       responseHeaders.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
       
-      // Copy useful headers from the original response
+      // Copy useful headers from the original response, but exclude encoding headers
+      // since we might modify the content
       const allowedHeaders = [
-        'content-encoding',
-        'content-length',
         'etag',
         'last-modified'
       ];
@@ -179,8 +180,12 @@ export async function GET(
         });
       }
 
-      // For binary content, pass through as-is
+      // For binary content, pass through as-is but avoid encoding issues
       const content = await response.arrayBuffer();
+      
+      // Don't copy content-encoding or content-length for binary content either
+      responseHeaders.delete('content-encoding');
+      responseHeaders.delete('content-length');
       
       return new NextResponse(content, {
         status: 200,
