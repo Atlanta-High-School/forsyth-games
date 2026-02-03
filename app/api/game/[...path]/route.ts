@@ -150,92 +150,25 @@ export async function GET(
         if (value) responseHeaders.set(header, value);
       });
 
-      // For text-based content (HTML, CSS, JS), rewrite URLs to go through Vercel proxy
-      if (contentType.includes('text/html') || 
-          contentType.includes('text/css') || 
-          contentType.includes('application/javascript') ||
-          contentType.includes('text/javascript')) {
-        
+      // For HTML content from GitHub games, do minimal URL rewriting
+      if (contentType.includes('text/html')) {
         let content = await response.text();
         
-        // Get the base URL for this request
-        const requestUrl = new URL(request.url);
-        const vercelProxyBase = `${requestUrl.protocol}//${requestUrl.host}/api/game`;
+        // Get the base directory URL from the GitHub URL
+        const baseDir = targetUrl.substring(0, targetUrl.lastIndexOf('/') + 1);
         
-        // Extract the game name from the path (first segment)
-        const gameId = pathSegments[0];
-        
-        // Rewrite various URL patterns to go through Vercel proxy
-        // Pattern 1: Absolute URLs to GitHub
+        // Only fix relative URLs that don't already start with http/https
+        // This handles things like src="script.js" -> src="https://raw.githubusercontent.com/.../script.js"
         content = content.replace(
-          new RegExp(`https?://gms\\.parcoil\\.com/${gameId}/`, 'g'),
-          `${vercelProxyBase}/${gameId}/`
+          /((?:src|href|action)=["'])(?!https?:\/\/|\/\/|data:|#)([^"']+)(["'])/g,
+          (match, prefix, url, suffix) => {
+            // Skip if it's already an absolute path or data URL
+            if (url.startsWith('/') || url.includes('://')) {
+              return match;
+            }
+            return `${prefix}${baseDir}${url}${suffix}`;
+          }
         );
-        content = content.replace(
-          new RegExp(`https?://gms\\.parcoil\\.com/`, 'g'),
-          `${vercelProxyBase}/`
-        );
-        
-        // Pattern 2: Protocol-relative URLs
-        content = content.replace(
-          new RegExp(`//gms\\.parcoil\\.com/${gameId}/`, 'g'),
-          `${vercelProxyBase}/${gameId}/`
-        );
-        content = content.replace(
-          new RegExp(`//gms\\.parcoil\\.com/`, 'g'),
-          `${vercelProxyBase}/`
-        );
-        
-        // Pattern 3: Relative paths that might reference the root
-        // Make sure paths starting with / in the game context go through proxy
-        if (contentType.includes('text/html')) {
-          // In HTML, replace src and href attributes that point to absolute paths
-          content = content.replace(
-            /(<(?:script|link|img|source|iframe)[^>]*(?:src|href)=["'])\/(?!api\/game)/gi,
-            `$1${vercelProxyBase}/${gameId}/`
-          );
-          
-          // Pattern 4: Handle relative paths (not starting with / or http)
-          // Replace relative paths in src/href to go through proxy
-          content = content.replace(
-            /(<(?:script|link|img|source|iframe)[^>]*(?:src|href)=["'])(?!https?:\/\/|\/\/|\/|data:|blob:|#)([^"']+)(["'])/gi,
-            `$1${vercelProxyBase}/${gameId}/$2$3`
-          );
-          
-          // Pattern 5: Handle JavaScript string literals in Ruffle/Flash player loading
-          // Replace patterns like player.load("file.swf") with proper proxy paths
-          content = content.replace(
-            /(player\.load\(["'])(?!https?:\/\/|\/\/|\/|data:|blob:)([^"']+)(["']\))/gi,
-            `$1${vercelProxyBase}/${gameId}/$2$3`
-          );
-          
-          // Pattern 6: Handle other common JavaScript asset loading patterns
-          // Replace patterns like loadMovie("file.swf") or similar
-          content = content.replace(
-            /((?:loadMovie|loadSound|load)\(["'])(?!https?:\/\/|\/\/|\/|data:|blob:)([^"']+)(["']\))/gi,
-            `$1${vercelProxyBase}/${gameId}/$2$3`
-          );
-          
-          // Pattern 7: Handle XMLHttpRequest and fetch API calls with relative URLs
-          content = content.replace(
-            /((?:fetch|XMLHttpRequest\.open)\([^"']*["'])(?!https?:\/\/|\/\/|\/|data:|blob:)([^"']+)(["'])/gi,
-            `$1${vercelProxyBase}/${gameId}/$2$3`
-          );
-          
-          // Pattern 8: Handle Unity and game engine asset paths
-          // Replace relative paths in game configuration and asset loading
-          content = content.replace(
-            /(["'])assets\/([^"']+)(["'])/gi,
-            `$1${vercelProxyBase}/${gameId}/assets/$2$3`
-          );
-          
-          // Pattern 9: Handle general relative file references in JavaScript strings
-          // This catches patterns like "file.ext" that aren't in HTML attributes
-          content = content.replace(
-            /(["'])(?!https?:\/\/|\/\/|\/|data:|blob:|#|\.)([a-zA-Z0-9_-]+\.(swf|json|js|css|png|jpg|jpeg|gif|ogg|mp3|wav))(["'])/gi,
-            `$1${vercelProxyBase}/${gameId}/$2$3`
-          );
-        }
         
         // Remove content-length header as we modified the content
         responseHeaders.delete('content-length');
