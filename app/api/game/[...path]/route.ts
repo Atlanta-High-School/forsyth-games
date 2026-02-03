@@ -172,6 +172,40 @@ export async function GET(
             /(<(?:script|link|img|source|iframe)[^>]*(?:src|href)=["'])(?!https?:\/\/|\/\/|\/|data:|blob:|#)([^"']+)(["'])/gi,
             `$1${vercelProxyBase}/${gameId}/$2$3`
           );
+          
+          // Pattern 5: Handle JavaScript string literals in Ruffle/Flash player loading
+          // Replace patterns like player.load("file.swf") with proper proxy paths
+          content = content.replace(
+            /(player\.load\(["'])(?!https?:\/\/|\/\/|\/|data:|blob:)([^"']+)(["']\))/gi,
+            `$1${vercelProxyBase}/${gameId}/$2$3`
+          );
+          
+          // Pattern 6: Handle other common JavaScript asset loading patterns
+          // Replace patterns like loadMovie("file.swf") or similar
+          content = content.replace(
+            /((?:loadMovie|loadSound|load)\(["'])(?!https?:\/\/|\/\/|\/|data:|blob:)([^"']+)(["']\))/gi,
+            `$1${vercelProxyBase}/${gameId}/$2$3`
+          );
+          
+          // Pattern 7: Handle XMLHttpRequest and fetch API calls with relative URLs
+          content = content.replace(
+            /((?:fetch|XMLHttpRequest\.open)\([^"']*["'])(?!https?:\/\/|\/\/|\/|data:|blob:)([^"']+)(["'])/gi,
+            `$1${vercelProxyBase}/${gameId}/$2$3`
+          );
+          
+          // Pattern 8: Handle Unity and game engine asset paths
+          // Replace relative paths in game configuration and asset loading
+          content = content.replace(
+            /(["'])assets\/([^"']+)(["'])/gi,
+            `$1${vercelProxyBase}/${gameId}/assets/$2$3`
+          );
+          
+          // Pattern 9: Handle general relative file references in JavaScript strings
+          // This catches patterns like "file.ext" that aren't in HTML attributes
+          content = content.replace(
+            /(["'])(?!https?:\/\/|\/\/|\/|data:|blob:|#|\.)([a-zA-Z0-9_-]+\.(swf|json|js|css|png|jpg|jpeg|gif|ogg|mp3|wav))(["'])/gi,
+            `$1${vercelProxyBase}/${gameId}/$2$3`
+          );
         }
         
         // Remove content-length header as we modified the content

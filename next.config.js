@@ -41,9 +41,6 @@ const nextConfig = {
     optimizePackageImports: ['framer-motion'],
   },
   
-  // External packages for server components
-  serverExternalPackages: ['sharp'],
-  
   // CDN and caching headers
   async headers() {
     return [

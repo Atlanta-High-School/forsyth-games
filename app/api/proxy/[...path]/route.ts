@@ -75,7 +75,8 @@ export async function GET(request: NextRequest) {
           }
         );
       }
-    } catch (err) {
+    } catch (error) {
+      console.error('Invalid URL:', error);
       return new NextResponse('Invalid URL', { status: 400 });
     }
 

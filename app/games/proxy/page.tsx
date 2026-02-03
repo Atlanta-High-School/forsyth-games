@@ -24,7 +24,8 @@ function ProxyGameContent() {
     let decodedUrl;
     try {
       decodedUrl = decodeURIComponent(gameUrl);
-    } catch (err) {
+    } catch (error) {
+      console.error('URL decoding error:', error);
       setError('Invalid game URL');
       setIsLoading(false);
       return;
@@ -34,7 +35,8 @@ function ProxyGameContent() {
     try {
       new URL(decodedUrl);
       setIsLoading(false);
-    } catch (err) {
+    } catch (error) {
+      console.error('URL validation error:', error);
       setError('Invalid game URL format');
       setIsLoading(false);
     }
