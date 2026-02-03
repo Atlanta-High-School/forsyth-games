@@ -120,7 +120,19 @@ export async function GET(
       }
 
       // Get the content type from the response
-      const contentType = response.headers.get('content-type') || 'application/octet-stream';
+      let contentType = response.headers.get('content-type') || '';
+      
+      // Force HTML content type for HTML files if not set properly
+      if (!contentType && (targetUrl.endsWith('.html') || targetUrl.includes('index.html'))) {
+        contentType = 'text/html; charset=utf-8';
+      } else if (contentType && !contentType.includes('charset') && contentType.includes('text/html')) {
+        contentType = 'text/html; charset=utf-8';
+      }
+      
+      // Set default if still empty
+      if (!contentType) {
+        contentType = 'application/octet-stream';
+      }
       
       // Determine cache control based on content type
       let cacheControl;
@@ -173,6 +185,10 @@ export async function GET(
         
         // Remove content-length header as we modified the content
         responseHeaders.delete('content-length');
+        responseHeaders.delete('content-encoding');
+        
+        // Ensure proper content type for HTML
+        responseHeaders.set('Content-Type', 'text/html; charset=utf-8');
         
         return new NextResponse(content, {
           status: 200,
@@ -180,12 +196,16 @@ export async function GET(
         });
       }
 
-      // For binary content, pass through as-is but avoid encoding issues
+      // For binary content, pass through as-is but ensure proper headers
       const content = await response.arrayBuffer();
       
-      // Don't copy content-encoding or content-length for binary content either
+      // Don't copy content-encoding for binary content to avoid decoding issues
       responseHeaders.delete('content-encoding');
-      responseHeaders.delete('content-length');
+      // Keep content-length for binary content if available
+      const originalLength = response.headers.get('content-length');
+      if (originalLength) {
+        responseHeaders.set('content-length', originalLength);
+      }
       
       return new NextResponse(content, {
         status: 200,
