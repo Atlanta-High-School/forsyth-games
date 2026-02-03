@@ -6,24 +6,6 @@
       "use": "@vercel/next"
     }
   ],
-  "routes": [
-    {
-      "src": "/games/(?<game>[^/]+)/(?<path>.*)",
-      "dest": "/games/$game/$path"
-    },
-    {
-      "src": "/games/([^/]+)$",
-      "dest": "/games/$1"
-    },
-    {
-      "src": "/api/proxy/(.*)",
-      "dest": "/api/proxy/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
   "headers": [
     {
       "source": "/games/(.*)",
