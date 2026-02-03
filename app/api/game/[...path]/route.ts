@@ -5,6 +5,11 @@ export const dynamic = 'force-dynamic';
 
 const GAME_SERVER_URL = 'https://gms.parcoil.com';
 
+// Cache duration constants
+const ONE_HOUR = 3600;
+const ONE_DAY = 86400;
+const ONE_WEEK = 604800;
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, OPTIONS',
@@ -42,8 +47,9 @@ export async function GET(
       });
     }
 
-    // Build the target URL - ensure trailing slash for game directories
-    const targetUrl = `${GAME_SERVER_URL}/${gamePath}${gamePath && !gamePath.includes('.') ? '/' : ''}`;
+    // Build the target URL - add trailing slash for directories (paths without file extensions)
+    const isFile = gamePath.match(/\.[a-zA-Z0-9]+$/); // Has file extension
+    const targetUrl = `${GAME_SERVER_URL}/${gamePath}${!isFile ? '/' : ''}`;
     
     console.log(`Proxying game request: ${targetUrl}`);
 
@@ -88,10 +94,10 @@ export async function GET(
       // Determine cache control based on content type
       let cacheControl;
       if (contentType.includes('text/html')) {
-        cacheControl = 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400';
+        cacheControl = `public, max-age=${ONE_HOUR}, s-maxage=${ONE_HOUR}, stale-while-revalidate=${ONE_DAY}`;
       } else {
         // Cache assets more aggressively
-        cacheControl = 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800, immutable';
+        cacheControl = `public, max-age=${ONE_DAY}, s-maxage=${ONE_DAY}, stale-while-revalidate=${ONE_WEEK}, immutable`;
       }
 
       // Create response headers
@@ -182,40 +188,21 @@ export async function GET(
       clearTimeout(timeoutId);
       console.error('Fetch error:', fetchError);
       
-      // For missing JS/CSS files, return empty content to prevent breaking games
-      if (gamePath.endsWith('.js')) {
-        return new NextResponse('// Game asset not found', {
-          status: 200,
-          headers: {
-            'Content-Type': 'text/javascript',
-            ...corsHeaders,
-            'Cache-Control': 'public, max-age=3600'
-          }
-        });
-      }
-      
-      if (gamePath.endsWith('.css')) {
-        return new NextResponse('/* Game asset not found */', {
-          status: 200,
-          headers: {
-            'Content-Type': 'text/css',
-            ...corsHeaders,
-            'Cache-Control': 'public, max-age=3600'
-          }
-        });
-      }
-      
+      // Return 404 for missing assets to help with debugging
+      // Some games may need these files, while others work without them
       return new NextResponse(
         JSON.stringify({ 
           error: 'Failed to fetch game resource',
           message: fetchError instanceof Error ? fetchError.message : 'Unknown error',
-          url: targetUrl
+          url: targetUrl,
+          path: gamePath
         }),
         { 
-          status: 500,
+          status: 404,
           headers: {
             'Content-Type': 'application/json',
-            ...corsHeaders
+            ...corsHeaders,
+            'Cache-Control': `public, max-age=${ONE_HOUR}`
           }
         }
       );
