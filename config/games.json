@@ -1,644 +1,668 @@
 [
   {
-    "name": "Madalin Stunt Cars 2",
-    "image": "/games/madalin-stunt-cars-2/splash.png",
-    "url": "madalin-stunt-cars-2",
+    "name": "1 On 1 Soccer",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/1on1-soccer/index.html",
+    "new": true
+  },
+  {
+    "name": "1v1.lol",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/1v1lol/index.html",
+    "new": true
+  },
+  {
+    "name": "10 Bullets",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/10-bullets/index.html",
+    "new": true
+  },
+  {
+    "name": "10 Minutes Till Dawn",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/10-minutes-till-dawn/index.html",
+    "new": true
+  },
+  {
+    "name": "2048",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/2048/index.html",
+    "new": true
+  },
+  {
+    "name": "A Dance of Fire and Ice",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/a-dance-of-fire-and-ice/index.html",
+    "new": true
+  },
+  {
+    "name": "Age of War 2",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/age-of-war/index.html",
     "new": true
   },
   {
     "name": "Among Us",
-    "image": "red.png",
-    "url": "among-us",
-    "new": false
-  },
-  {
-    "name": "Basketball Stars",
-    "image": "assets/images/basketball-stars.png",
-    "url": "basketball-stars",
-    "new": false
-  },
-  {
-    "name": "Cannon Basketball 4",
-    "image": "img/splash.png",
-    "url": "cannon-basketball-4",
-    "new": false
-  },
-  {
-    "name": "Death Run 3D",
-    "image": "img/death.png",
-    "url": "death-run-3d",
-    "new": false
-  },
-  {
-    "name": "Drift Boss",
-    "image": "logo.png",
-    "url": "drift-boss",
-    "new": false
-  },
-  {
-    "name": "Drift Hunters",
-    "image": "drift-hunters.png",
-    "url": "drift-hunters",
-    "new": false
-  },
-  {
-    "name": "Duck Life 1",
-    "image": "ducklife.png",
-    "url": "ducklife1",
-    "new": false
-  },
-  {
-    "name": "Duck Life 2",
-    "image": "ducklife2.png",
-    "url": "ducklife2",
-    "new": false
-  },
-  {
-    "name": "Duck Life 3",
-    "image": "duck.png",
-    "url": "ducklife3",
-    "new": false
-  },
-  {
-    "name": "Duck Life 4",
-    "image": "splash.jpg",
-    "url": "games/ducklife4",
-    "new": false
-  },
-  {
-    "name": "Geometry Dash",
-    "image": "geoscratchicon.png",
-    "url": "games/geodash",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/among-us/index.html",
     "new": true
   },
   {
-    "name": "Krunker",
-    "image": "img/krunker-io.jpg",
-    "url": "krunker",
-    "new": false
+    "name": "Angry Birds",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/angry-birds/index.html",
+    "new": true
   },
   {
-    "name": "Polytrack",
-    "image": "/games/polytrack/polytrack.png",
-    "url": "polytrack",
+    "name": "Appel",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/appel/index.html",
+    "new": true
+  },
+  {
+    "name": "Awesome Tanks 2",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/awesome-tanks-2/index.html",
+    "new": true
+  },
+  {
+    "name": "Bad Ice Cream 3",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/bad-ice-cream-3/index.html",
+    "new": true
+  },
+  {
+    "name": "Bad Time Simulator",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/bad-time-simulator/index.html",
+    "new": true
+  },
+  {
+    "name": "Baldi's Basics",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/baldis-basics/index.html",
+    "new": true
+  },
+  {
+    "name": "Basketball Stars",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/basketball-stars/index.html",
+    "new": true
+  },
+  {
+    "name": "Big Ice Tower Tiny Square",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/big-ice-tower-tiny-square/index.html",
+    "new": true
+  },
+  {
+    "name": "Big Neon Tower Tiny Square",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/big-neon-tower-tiny-square/index.html",
+    "new": true
+  },
+  {
+    "name": "Big Tower Tiny Square",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/big-tower-tiny-square/index.html",
+    "new": true
+  },
+  {
+    "name": "Big Tower Tiny Square 2",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/big-tower-tiny-square-2/index.html",
+    "new": true
+  },
+  {
+    "name": "Bit Planes",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/bit-planes/index.html",
+    "new": true
+  },
+  {
+    "name": "BitLife",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/bitlife/index.html",
+    "new": true
+  },
+  {
+    "name": "Block Blast",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/block-blast/index.html",
+    "new": true
+  },
+  {
+    "name": "Bloons Tower Defense 5",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/bloons-tower-defense-5/index.html",
+    "new": true
+  },
+  {
+    "name": "Bob The Robber 5",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/bob-the-robber-5/index.html",
+    "new": true
+  },
+  {
+    "name": "Brawl Stars",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/brawl-stars/index.html",
+    "new": true
+  },
+  {
+    "name": "Candy Crush",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/candy-crush/index.html",
+    "new": true
+  },
+  {
+    "name": "Celeste",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/celeste/index.html",
+    "new": true
+  },
+  {
+    "name": "Cookie Clicker",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/cookie-click/index.html",
+    "new": true
+  },
+  {
+    "name": "Cut the Rope: Time Travel",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/cut-the-rope-time-travel/index.html",
+    "new": true
+  },
+  {
+    "name": "Dadish 3",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/dadish-3/index.html",
+    "new": true
+  },
+  {
+    "name": "Death Run 3D",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/death-run-3d/index.html",
+    "new": true
+  },
+  {
+    "name": "Doodle Jump",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/doodle-jump/index.html",
+    "new": true
+  },
+  {
+    "name": "Doomz.io",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/doomzio/index.html",
+    "new": true
+  },
+  {
+    "name": "Drift Boss",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/drift-boss/index.html",
+    "new": true
+  },
+  {
+    "name": "Drive Mad (Fanmade)",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/drive-mad/index.html",
+    "new": true
+  },
+  {
+    "name": "Duck Life 5",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/duck-life-5/index.html",
+    "new": true
+  },
+  {
+    "name": "Eaglercraft",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/eaglercraft/index.html",
+    "new": true
+  },
+  {
+    "name": "Escape Road",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/escape-road/index.html",
+    "new": true
+  },
+  {
+    "name": "Fancy Pants Adventures",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/fancy-pants-adventures/index.html",
+    "new": true
+  },
+  {
+    "name": "Fireboy and Watergirl 3",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/fireboy-and-watergirl-3/index.html",
+    "new": true
+  },
+  {
+    "name": "Five Nights at Freddy's 4",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/five-nights-at-freddys-4/index.html",
+    "new": true
+  },
+  {
+    "name": "Fly the Farthest",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/fly-the-farthest/index.html",
+    "new": true
+  },
+  {
+    "name": "Fruit Ninja",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/fruit-ninja/index.html",
+    "new": true
+  },
+  {
+    "name": "Gun Mayhem",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/gun-mayhem/index.html",
+    "new": true
+  },
+  {
+    "name": "Hei$t",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/heist/index.html",
+    "new": true
+  },
+  {
+    "name": "Henry Stickmin: Escaping the Prison",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/henry-stickmin-escaping-the-prison/index.html",
+    "new": true
+  },
+  {
+    "name": "Hole.io",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/holeio/index.html",
+    "new": true
+  },
+  {
+    "name": "Hollow Knight",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/hollow-knight/index.html",
+    "new": true
+  },
+  {
+    "name": "Justfall.lol",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/justfalllol/index.html",
+    "new": true
+  },
+  {
+    "name": "Kingdom Rush",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/kingdom-rush/index.html",
+    "new": true
+  },
+  {
+    "name": "Kingdom Rush: Frontiers",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/kingdom-rush-frontiers/index.html",
+    "new": true
+  },
+  {
+    "name": "Knights Battle Arena",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/knights-battle-arena/index.html",
+    "new": true
+  },
+  {
+    "name": "Layers Roll",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/layers-roll/index.html",
+    "new": true
+  },
+  {
+    "name": "Learn to Fly 3",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/learn-to-fly-3/index.html",
+    "new": true
+  },
+  {
+    "name": "Melon Playground",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/melon-playground/index.html",
+    "new": true
+  },
+  {
+    "name": "Monkey Mart",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/monkey-mart/index.html",
+    "new": true
+  },
+  {
+    "name": "Moto X 3M I",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/motox3m-1/index.html",
+    "new": true
+  },
+  {
+    "name": "Moto X 3M II",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/motox3m-2/index.html",
+    "new": true
+  },
+  {
+    "name": "Moto X 3M III",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/motox3m-3/index.html",
+    "new": true
+  },
+  {
+    "name": "Moto X 3M - Pool Party",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/motox3m-poolparty/index.html",
+    "new": true
+  },
+  {
+    "name": "Moto X 3M - Spooky Land",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/motox3m-spookyland/index.html",
+    "new": true
+  },
+  {
+    "name": "Moto X 3M - Winter Land",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/motox3m-winterland/index.html",
+    "new": true
+  },
+  {
+    "name": "N-Gon",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/ngon/index.html",
+    "new": true
+  },
+  {
+    "name": "Only Up",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/only-up/index.html",
+    "new": true
+  },
+  {
+    "name": "OvO Dimensions",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/ovo-dimensions/index.html",
+    "new": true
+  },
+  {
+    "name": "Paper.io 2",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/paperio-2/index.html",
+    "new": true
+  },
+  {
+    "name": "Pixel Shooter",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/pixel-shooter/index.html",
+    "new": true
+  },
+  {
+    "name": "Parking Fury 3",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/parking-fury-3/index.html",
+    "new": true
+  },
+  {
+    "name": "Plants vs Zombies",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/plants-vs-zombies/index.html",
+    "new": true
+  },
+  {
+    "name": "PolyTrack",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/polytrack/index.html",
+    "new": true
+  },
+  {
+    "name": "Rainbow Obby",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/rainbow-obby/index.html",
+    "new": true
+  },
+  {
+    "name": "Retro Bowl",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/retrobowl/index.html",
+    "new": true
+  },
+  {
+    "name": "RocketGoal.io",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/rocketgoalio/index.html",
+    "new": true
+  },
+  {
+    "name": "Rooftop Snipers",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/rooftop-snipers/index.html",
+    "new": true
+  },
+  {
+    "name": "Run 3",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/run3/index.html",
+    "new": true
+  },
+  {
+    "name": "Save My Pet",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/save-my-pet/index.html",
     "new": true
   },
   {
     "name": "Slope",
-    "image": "slope4.jpeg",
-    "url": "slope",
-    "new": false
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/slope/index.html",
+    "new": true
+  },
+  {
+    "name": "Snake.io",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/snakeio/index.html",
+    "new": true
+  },
+  {
+    "name": "Snow Rider 3D",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/snow-rider-3d/index.html",
+    "new": true
+  },
+  {
+    "name": "Snowball.io",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/snowballio/index.html",
+    "new": true
   },
   {
     "name": "Soccer Random",
-    "image": "splash.png",
-    "url": "soccer-random",
-    "new": false
-  },
-  {
-    "name": "Subway Surfers",
-    "image": "img/splash.jpg",
-    "url": "subway-surfers",
-    "new": false
-  },
-  {
-    "name": "Temple Run 2",
-    "image": "img/temple-run-2-256.png",
-    "url": "temple-run-2",
-    "new": false
-  },
-  {
-    "name": "Zombs Royale",
-    "image": "zomb.png",
-    "url": "zombs-royale",
-    "new": false
-  },
-  {
-    "name": "Tank Trouble 2",
-    "image": "tank.jpeg",
-    "url": "tank-trouble-2",
-    "new": false
-  },
-  {
-    "name": "Doctor Acorn 2",
-    "image": "splash.jpg",
-    "url": "doctor-acorn2",
-    "new": false
-  },
-  {
-    "name": "Minecraft 1.8",
-    "image": "splash.png",
-    "url": "minecraft-18",
-    "new": false
-  },
-  {
-    "name": "X-Trial Racing",
-    "image": "splash.png",
-    "url": "x-trial-racing",
-    "new": false
-  },
-  {
-    "name": "Sky Car Stunt",
-    "image": "512x512.jpg",
-    "url": "sky-car-stunt",
-    "new": false
-  },
-  {
-    "name": "Smoking Barrels",
-    "image": "smokingbarrels.jpg",
-    "url": "smokingbarrels",
-    "new": false
-  },
-  {
-    "name": "Helicopter",
-    "image": "helicopter.png",
-    "url": "helicopter",
-    "new": false
-  },
-  {
-    "name": "Waterworks",
-    "image": "square.png",
-    "url": "waterworks",
-    "new": false
-  },
-  {
-    "name": "Canyon Defense",
-    "image": "canyondefense.png",
-    "url": "canyondefense",
-    "new": false
-  },
-  {
-    "name": "Missiles",
-    "image": "miss.png",
-    "url": "missiles",
-    "new": false
-  },
-  {
-    "name": "Vex 4",
-    "image": "vex4.png",
-    "url": "vex4",
-    "new": false
-  },
-  {
-    "name": "Crossy Road",
-    "image": "crossyroad.png",
-    "url": "crossyroad",
-    "new": false
-  },
-  {
-    "name": "NS Resurgence",
-    "image": "neon.png",
-    "url": "nsresurgence",
-    "new": false
-  },
-  {
-    "name": "BitLife",
-    "image": "splash.png",
-    "url": "bitlife",
-    "new": false
-  },
-  {
-    "name": "Knife Master",
-    "image": "512x512.jpg",
-    "url": "knife-master",
-    "new": false
-  },
-  {
-    "name": "2048",
-    "image": "2048.png",
-    "url": "2048",
-    "new": false
-  },
-  {
-    "name": "Moto X3M 2",
-    "image": "Moto-X3M-2.webp",
-    "url": "motox3m2",
-    "new": false
-  },
-  {
-    "name": "Sort the Court",
-    "image": "img/splash.png",
-    "url": "sort-the-court",
-    "new": false
-  },
-  {
-    "name": "Hungry Lamu",
-    "image": "splash.png",
-    "url": "hungry-lamu",
-    "new": false
-  },
-  {
-    "name": "Getaway Shootout",
-    "image": "img/images.jpg",
-    "url": "getaway-shootout",
-    "new": false
-  },
-  {
-    "name": "Hextris",
-    "image": "images/hextris-logo.png",
-    "url": "hextris",
-    "new": false
-  },
-  {
-    "name": "Geodesical",
-    "image": "images/logo.svg",
-    "url": "games/geodesicalxx",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/soccer-random/index.html",
     "new": true
   },
   {
-    "name": "Tube Jumpers",
-    "image": "img/icon.jpg",
-    "url": "tube-jumpers",
-    "new": false
-  },
-  {
-    "name": "HexGL",
-    "image": "icon.png",
-    "url": "HexGL",
-    "new": false
-  },
-  {
-    "name": "Surviv",
-    "image": "img/favicon.png",
-    "url": "surviv",
-    "new": false
-  },
-  {
-    "name": "HBA",
-    "image": "hoverbotarena.JPG",
-    "url": "hba",
-    "new": false
-  },
-  {
-    "name": "Kitchen Gun Game",
-    "image": "splash.png",
-    "url": "kitchen-gun-game",
-    "new": false
-  },
-  {
-    "name": "Portal Flash",
-    "image": "portaltheflashversion.jpg",
-    "url": "portalflash",
-    "new": false
-  },
-  {
-    "name": "Slime Rush TD",
-    "image": "splash.png",
-    "url": "slime-rush-td",
-    "new": false
-  },
-  {
-    "name": "Polybranch",
-    "image": "img/pic1.png",
-    "url": "polybranch",
-    "new": false
-  },
-  {
-    "name": "Duck Life 5",
-    "image": "ducklife5.png",
-    "url": "games/ducklife5",
+    "name": "Speed Per Click",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/speed-per-click/index.html",
     "new": true
   },
   {
-    "name": "Astray",
-    "image": "splash.png",
-    "url": "astray",
-    "new": false
+    "name": "Spiral Roll",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/spiral-roll/index.html",
+    "new": true
   },
   {
-    "name": "Grindcraft",
-    "image": "img/splash.png",
-    "url": "grindcraft",
-    "new": false
+    "name": "Steal A Brainrot",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/steal-a-brainrot/index.html",
+    "new": true
   },
   {
-    "name": "Paper.io 2",
-    "image": "images/icon512.png",
-    "url": "paperio2",
-    "new": false
+    "name": "Stick War II",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/stick-war-2/index.html",
+    "new": true
   },
   {
-    "name": "Tactical Weapon Pack 2",
-    "image": "splash.jpg",
-    "url": "tactical-weapon-pack-2",
-    "new": false
+    "name": "Stick Warriors",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/stick-warriors/index.html",
+    "new": true
   },
   {
-    "name": "Defend the Tank",
-    "image": "images/splash.jpg",
-    "url": "defend-the-tank",
-    "new": false
-  },
-  {
-    "name": "Google Snake",
-    "image": "img/snake.png",
-    "url": "google-snake",
-    "new": false
-  },
-  {
-    "name": "Stickman Golf",
-    "image": "splash.png",
-    "url": "stickman-golf",
-    "new": false
-  },
-  {
-    "name": "Merge Round Racers",
-    "image": "splash.png",
-    "url": "merge-round-racers",
-    "new": false
-  },
-  {
-    "name": "Goodnight",
-    "image": "goodnight.jpg",
-    "url": "goodnight",
-    "new": false
-  },
-  {
-    "name": "Cars Simulator",
-    "image": "splash.png",
-    "url": "cars-simulator",
-    "new": false
-  },
-  {
-    "name": "Champion Island",
-    "image": "splash.png",
-    "url": "champion-island",
-    "new": false
-  },
-  {
-    "name": "Cubefield",
-    "image": "assets/unnamed.png",
-    "url": "cubefield",
-    "new": false
+    "name": "Stickman Climb",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/stickman-climb/index.html",
+    "new": true
   },
   {
     "name": "Stickman Hook",
-    "image": "unnamed.jpg",
-    "url": "stickman-hook",
-    "new": false
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/stickman-hook/index.html",
+    "new": true
   },
   {
-    "name": "Marvin Spectrum",
-    "image": "marvinspectrum.png",
-    "url": "marvinspectrum",
-    "new": false
+    "name": "Stick Ninja Academy",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/sticky-ninja-academy/index.html",
+    "new": true
   },
   {
-    "name": "Shell Shockers",
-    "image": "img/favicon.png",
-    "url": "shellshockers",
-    "new": false
+    "name": "Stumble Guys",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/stumble-guys/index.html",
+    "new": true
   },
   {
-    "name": "Particle Clicker",
-    "image": "assets/pc32@2x.png",
-    "url": "particle-clicker",
-    "new": false
+    "name": "Subway Surfers: San Francisco",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/subway-surfers-san-francisco/index.html",
+    "new": true
   },
   {
-    "name": "Storm the House 2",
-    "image": "stormthehouse2.jpg",
-    "url": "stormthehouse2",
-    "new": false
+    "name": "Super Mario Bros",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/super-mario-bros/index.html",
+    "new": true
   },
   {
-    "name": "Cluster Rush",
-    "image": "splash.png",
-    "url": "cluster-rush",
-    "new": false
+    "name": "Super Smash Bros",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/super-smash-bros/index.html",
+    "new": true
   },
   {
-    "name": "Cookie Clicker",
-    "image": "cookie1.jpeg",
-    "url": "cookie-clicker",
-    "new": false
+    "name": "Swords and Souls",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/swords-and-souls/index.html",
+    "new": true
   },
   {
-    "name": "Stick Archers",
-    "image": "splash.jpg",
-    "url": "stick-archers",
-    "new": false
+    "name": "Temple Run 2",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/temple-run-2/index.html",
+    "new": true
   },
   {
-    "name": "Fruit Ninja",
-    "image": "FruitNinjaTeaser.jpg",
-    "url": "fruitninja",
-    "new": false
+    "name": "Territorial.io",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/territorialio/index.html",
+    "new": true
   },
   {
-    "name": "There Is No Game",
-    "image": "logo.png",
-    "url": "there-is-no-game",
-    "new": false
+    "name": "Tetris",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/tetris/index.html",
+    "new": true
   },
   {
-    "name": "Google Feud",
-    "image": "splash.png",
-    "url": "google-feud",
-    "new": false
+    "name": "The Impossible Quiz",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/the-impossible-quiz/index.html",
+    "new": true
   },
   {
-    "name": "CTR",
-    "image": "logo.png",
-    "url": "ctr",
-    "new": false
+    "name": "The Legend of Zelda: Majora's Mask",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/the-legend-of-zelda-majoras-mask/index.html",
+    "new": true
   },
   {
-    "name": "Space Company",
-    "image": "whiteLogo.png",
-    "url": "space-company",
-    "new": false
+    "name": "The Legend of Zelda: Ocarina of Time",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/the-legend-of-zelda-ocarina-of-time/index.html",
+    "new": true
   },
   {
-    "name": "A Dance of Fire and Ice",
-    "image": "splash.png",
-    "url": "a-dance-of-fire-and-ice",
-    "new": false
+    "name": "The Oregon Trail",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/the-oregon-trail/index.html",
+    "new": true
   },
   {
-    "name": "NS Shaft",
-    "image": "favicon.png",
-    "url": "ns-shaft",
-    "new": false
+    "name": "This is the Only Level",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/this-is-the-only-level/index.html",
+    "new": true
   },
   {
-    "name": "Vex 6",
-    "image": "assets/icon.png",
-    "url": "vex6",
-    "new": false
+    "name": "Time Shooter 2",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/time-shooter-2/index.html",
+    "new": true
   },
   {
-    "name": "Game Inside",
-    "image": "img/display.png",
-    "url": "game-inside",
-    "new": false
+    "name": "Time Shooter 3 S.W.A.T",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/time-shooter-3-swat/index.html",
+    "new": true
   },
   {
-    "name": "Achievement Unlocked",
-    "image": "achievementunlocked.png",
-    "url": "achievementunlocked",
-    "new": false
+    "name": "Tiny Fishing",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/tiny-fishing/index.html",
+    "new": true
   },
   {
-    "name": "Just One Boss",
-    "image": "pv1Gr5.png",
-    "url": "just-one-boss",
-    "new": false
+    "name": "Tomb of the Mask",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/tomb-of-the-mask/index.html",
+    "new": true
   },
   {
-    "name": "Popcat Classic",
-    "image": "android-chrome-512x512.png",
-    "url": "popcat-classic",
-    "new": false
+    "name": "Tunnel Rush 2",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/tunnel-rush-2/index.html",
+    "new": true
   },
   {
-    "name": "Soccer Skills",
-    "image": "splash.png",
-    "url": "soccer-skills",
-    "new": false
+    "name": "Vex 7",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/vex-7/index.html",
+    "new": true
   },
   {
-    "name": "Vex 3",
-    "image": "vex3.png",
-    "url": "vex3",
-    "new": false
+    "name": "We Become What We Behold",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/we-become-what-we-behold/index.html",
+    "new": true
   },
   {
-    "name": "Papa's Pizzeria",
-    "image": "papaspizzaria.jpg",
-    "url": "papaspizzaria",
-    "new": false
+    "name": "Wordle+",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/wordle+/index.html",
+    "new": true
   },
   {
-    "name": "Basket Random",
-    "image": "splash.jpeg",
-    "url": "basket-random",
-    "new": false
-  },
-  {
-    "name": "Super Mario Construct",
-    "image": "icons/icon-256.png",
-    "url": "supermarioconstruct",
-    "new": false
-  },
-  {
-    "name": "Awesome Tanks 2",
-    "image": "awesometanks2.jpg",
-    "url": "awesometanks2",
-    "new": false
-  },
-  {
-    "name": "My Rusty Submarine",
-    "image": "splash.png",
-    "url": "my-rusty-submarine",
-    "new": false
-  },
-  {
-    "name": "Precision Client",
-    "image": "logo.png",
-    "url": "precision-client",
-    "new": false
-  },
-  {
-    "name": "Flappy Bird",
-    "image": "flappybird.jpg",
-    "url": "flappy-bird",
-    "new": false
-  },
-  {
-    "name": "Ninja",
-    "image": "logo1.png",
-    "url": "ninja",
-    "new": false
-  },
-  {
-    "name": "Smash Karts",
-    "image": "images/icon-512.png",
-    "url": "smashkarts",
-    "new": false
-  },
-  {
-    "name": "Stealing the Diamond",
-    "image": "stealingthediamond.jpg",
-    "url": "stealingthediamond",
-    "new": false
-  },
-  {
-    "name": "Slope Ball",
-    "image": "icon.jpg",
-    "url": "slope-ball",
-    "new": false
-  },
-  {
-    "name": "The Heist",
-    "image": "theheist.jpg",
-    "url": "theheist",
-    "new": false
-  },
-  {
-    "name": "Dante",
-    "image": "splash.png",
-    "url": "dante",
-    "new": false
-  },
-  {
-    "name": "Bloons TD 2",
-    "image": "bloonstd2.png",
-    "url": "bloonstd2",
-    "new": false
-  },
-  {
-    "name": "Hex Empire",
-    "image": "hexempire.jpg",
-    "url": "hexempire",
-    "new": false
-  },
-  {
-    "name": "Spinning Rat",
-    "image": "favicon-32x32.png",
-    "url": "spinningrat",
-    "new": false
-  },
-  {
-    "name": "Resent Client",
-    "image": "splash.jpg",
-    "url": "resent-client",
-    "new": false
-  },
-  {
-    "name": "Retro Bowl",
-    "image": "img/icon.jpg",
-    "url": "retro-bowl",
-    "new": false
-  },
-  {
-    "name": "Tiny Islands",
-    "image": "splash.png",
-    "url": "tiny-islands",
-    "new": false
-  },
-  {
-    "name": "Bad Ice Cream 2",
-    "image": "bad-ice-cream-2.png",
-    "url": "bad-ice-cream-2",
-    "new": false
-  },
-  {
-    "name": "Jetpack Joyride",
-    "image": "splash.jpg",
-    "url": "jetpack-joyride",
-    "new": false
-  },
-  {
-    "name": "Station 141",
-    "image": "75wxYs.png",
-    "url": "station-141",
-    "new": false
-  },
-  {
-    "name": "Burger and Frights",
-    "image": "splash.png",
-    "url": "burger-and-frights",
-    "new": false
+    "name": "World's Hardest Game 3",
+    "image": "/games/placeholder.svg",
+    "url": "https://raw.githubusercontent.com/celestrium-games/portal/main/games/worlds-hardest-game-3/index.html",
+    "new": true
   }
 ]
