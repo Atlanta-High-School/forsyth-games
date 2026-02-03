@@ -16,7 +16,7 @@ interface GameCardProps {
 }
 
 export default function GameCard({ game }: GameCardProps) {
-  const serverUrl = "https://gms.parcoil.com"
+  const serverUrl = "https://forsyth-games.onrender.com"
   
   // Validate image URL
   const imageUrl = `${serverUrl}/${game.url}/${game.image}`

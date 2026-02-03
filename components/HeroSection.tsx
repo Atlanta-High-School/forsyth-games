@@ -22,7 +22,7 @@ export default function HeroSection() {
     rating: 4.8
   }
 
-  const serverUrl = "https://gms.parcoil.com"
+  const serverUrl = "https://forsyth-games.onrender.com"
 
   const handlePlayGame = () => {
     // Open about:blank in fullscreen with game content

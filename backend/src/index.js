@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Game server URL
-const GAME_SERVER_URL = 'https://gms.parcoil.com';
+const GAME_SERVER_URL = 'https://forsyth-games.onrender.com';
 
 // Middleware
 // NOTE: frameguard is disabled to allow game embedding in iframes from any domain

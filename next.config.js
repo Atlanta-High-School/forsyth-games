@@ -16,7 +16,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'gms.parcoil.com',
+        hostname: 'forsyth-games.onrender.com',
       },
       {
         protocol: 'https',

@@ -21,7 +21,7 @@ interface BentoGameCardProps {
 }
 
 export default function BentoGameCard({ game, size, priority = false }: BentoGameCardProps) {
-  const GAME_SERVER = 'https://gms.parcoil.com'
+  const GAME_SERVER = 'https://forsyth-games.onrender.com'
   
   // Check if game has local assets (only 5 games: ducklife4, ducklife5, geodash, geodesicalxx, polytrack)
   const localGames = ['games/ducklife4', 'games/ducklife5', 'games/geodash', 'geodesicalxx', 'polytrack', 'geodash']
