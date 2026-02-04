@@ -122,16 +122,16 @@ export async function GET(
       // Get the content type from the response
       let contentType = response.headers.get('content-type') || '';
       
-      // Force HTML content type for HTML files if not set properly
-      if (!contentType && (targetUrl.endsWith('.html') || targetUrl.includes('index.html'))) {
-        contentType = 'text/html; charset=utf-8';
-      } else if (contentType && !contentType.includes('charset') && contentType.includes('text/html')) {
-        contentType = 'text/html; charset=utf-8';
-      }
+      // GitHub raw URLs return text/plain for HTML files - we need to fix this
+      const isHtmlUrl = targetUrl.endsWith('.html') || targetUrl.includes('.html?') || targetUrl.includes('/index.html');
       
-      // Set default if still empty
-      if (!contentType) {
+      // Force HTML content type for HTML files
+      if (isHtmlUrl) {
+        contentType = 'text/html; charset=utf-8';
+      } else if (!contentType) {
         contentType = 'application/octet-stream';
+      } else if (contentType.includes('text/html') && !contentType.includes('charset')) {
+        contentType = 'text/html; charset=utf-8';
       }
       
       // Determine cache control based on content type
@@ -164,7 +164,8 @@ export async function GET(
       });
 
       // For HTML content from GitHub games, do minimal URL rewriting
-      if (contentType.includes('text/html')) {
+      // Check both content type AND URL extension since GitHub raw returns text/plain
+      if (contentType.includes('text/html') || isHtmlUrl) {
         let content = await response.text();
         
         // Get the base directory URL from the GitHub URL
